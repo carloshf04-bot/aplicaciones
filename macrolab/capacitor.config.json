@@ -1,0 +1,21 @@
+{
+  "appId": "es.macrolab.app",
+  "appName": "Macrolab",
+  "webDir": "www",
+  "backgroundColor": "#0E2E35",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0E2E35",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0E2E35",
+      "overlaysWebView": false
+    },
+    "LocalNotifications": {
+      "iconColor": "#FF5A36"
+    }
+  }
+}

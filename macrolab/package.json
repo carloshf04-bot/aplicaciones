@@ -1,0 +1,26 @@
+{
+  "name": "macrolab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Macrolab: calorías, macros y menú semanal a medida",
+  "scripts": {
+    "sync": "npx cap sync",
+    "android": "npx cap open android",
+    "ios": "npx cap open ios",
+    "icons": "npx @capacitor/assets generate --ios --android --iconBackgroundColor '#0E2E35' --iconBackgroundColorDark '#0E2E35' --splashBackgroundColor '#0E2E35' --splashBackgroundColorDark '#0A1518'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/ios": "^6.2.0",
+    "@capacitor/local-notifications": "^6.1.0",
+    "@capacitor/share": "^6.0.2",
+    "@capacitor/splash-screen": "^6.0.3",
+    "@capacitor/status-bar": "^6.0.2",
+    "@revenuecat/purchases-capacitor": "^9.2.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.0"
+  }
+}

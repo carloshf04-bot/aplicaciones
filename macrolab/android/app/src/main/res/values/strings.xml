@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Macrolab</string>
+    <string name="title_activity_main">Macrolab</string>
+    <string name="package_name">es.macrolab.app</string>
+    <string name="custom_url_scheme">es.macrolab.app</string>
+</resources>
