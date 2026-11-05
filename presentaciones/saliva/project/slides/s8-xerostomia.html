@@ -1,17 +1,34 @@
 <section id="s8-xerostomia" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0E2A3B">08 · Importancia clínica</p><p style="font-size:24px;font-weight:700;background:#0E2A3B;color:#F4F8F7;padding:6px 20px;border-radius:999px">Mar</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Hiposalivación y xerostomía no son lo mismo</h2>
-<div style="display:flex;gap:24px">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0E2A3B;border-radius:16px;padding:40px"><p style="font-size:24px;font-weight:700;color:#9FD3DE">OBJETIVA · SE MIDE</p><h3 style="font-size:44px;font-weight:700;color:#F4F8F7">Hiposalivación</h3>
-<p style="font-size:28px;line-height:1.4;color:#E4EFF1">Flujo en reposo <b>&lt; 0,1 mL/min</b></p>
-<p style="font-size:28px;line-height:1.4;color:#E4EFF1">Flujo estimulado <b>&lt; 0,5–0,7 mL/min</b></p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FCFDFD;border:1px solid #D3E2E6;border-radius:16px;padding:40px"><p style="font-size:24px;font-weight:700;color:#1C6E82">SUBJETIVA · SE PREGUNTA</p><h3 style="font-size:44px;font-weight:700;color:#0E2A3B">Xerostomía</h3>
-<p style="font-size:28px;line-height:1.4">Sensación de boca seca. Puede existir con flujo normal, y no siempre aparece con hiposalivación.</p></div>
-</div>
-<div style="display:flex;flex-direction:column;gap:12px">
-<h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Consecuencias orales</h3>
-<p style="font-size:28px;line-height:1.4">Caries cervicales y radiculares rápidas · candidiasis · mucositis y úlceras · disgeusia · dificultad para masticar, tragar, hablar y llevar prótesis.</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Hiposalivación y xerostomía</h2>
+<x-embed style="position:absolute;left:128px;top:320px;width:700px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="700" height="600" viewBox="0 0 700 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:700,height:600,rx:24,fill:'#0E2A3B'});
+tx(30,52,28,'#F4F8F7','Sialometría: saliva en reposo, 5 minutos',{'font-weight':800});
+var clock=tx(30,92,26,'#BFD8DE','');
+var T=[{x:150,r:.35,c:'#2A9DB5',n:'Normal'},{x:450,r:.07,c:'#E4785C',n:'Hiposalivación'}];
+var TOP=150,BOT=500,ML=2.5;function yv(v){return BOT-(BOT-TOP)*v/ML}
+T.forEach(function(t){el('rect',{x:t.x,y:TOP,width:100,height:BOT-TOP,rx:10,fill:'#163B50',stroke:'#BFD8DE','stroke-width':3});for(var v=.5;v<=2.5;v+=.5){el('line',{x1:t.x,y1:yv(v),x2:t.x+24,y2:yv(v),stroke:'#BFD8DE','stroke-width':2});tx(t.x+112,yv(v)+8,24,'#BFD8DE',(''+v).replace('.',','))}
+t.liq=el('rect',{x:t.x+4,width:92,rx:6,fill:t.c});t.lab=tx(t.x+50,545,26,'#F4F8F7','',{'text-anchor':'middle','font-weight':800});tx(t.x+50,585,24,t.c,t.n,{'text-anchor':'middle','font-weight':700})});
+var st=0;function F(ts){if(!st)st=ts;var s=((ts-st)/1000)%10,m=Math.min(5,s*.75);clock.textContent='Minuto '+m.toFixed(1).replace('.',',')+' de 5';
+T.forEach(function(t){var v=t.r*m;t.liq.setAttribute('y',yv(v).toFixed(1));t.liq.setAttribute('height',Math.max(0,BOT-4-yv(v)).toFixed(1));t.lab.textContent=v.toFixed(2).replace('.',',')+' mL'});
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<svg aria-label="Diagrama de Venn: hiposalivación se mide, xerostomía se siente; pueden coincidir" width="924" height="344" viewBox="0 0 924 344" style="position:absolute;left:868px;top:320px;width:924px;height:344px"><circle cx="340" cy="172" r="170" fill="#2A9DB5" opacity="0.35"/><circle cx="584" cy="172" r="170" fill="#E4785C" opacity="0.4"/><circle cx="340" cy="172" r="170" fill="none" stroke="#1C6E82" stroke-width="4"/><circle cx="584" cy="172" r="170" fill="none" stroke="#C2502F" stroke-width="4"/></svg>
+<p data-build-in="pop 1" style="position:absolute;left:1020px;top:430px;width:262px;font-size:28px;font-weight:800;line-height:1.25;color:#0E2A3B">Hiposalivación<br><span style="color:#1C6E82">se mide</span></p>
+<p data-build-in="pop 2" style="position:absolute;left:1396px;top:430px;width:226px;font-size:28px;font-weight:800;line-height:1.25;color:#0E2A3B">Xerostomía<br><span style="color:#A8462C">se siente</span></p>
+<p data-build-in="pop 3" style="position:absolute;left:1282px;top:474px;width:96px;font-size:24px;font-weight:700;color:#0E2A3B;text-align:center">Ambas</p>
+<p data-build-in="fade 4" style="position:absolute;left:868px;top:676px;width:924px;font-size:24px;line-height:1.4">Hiposalivación: reposo <b>&lt; 0,1 mL/min</b> · estimulada <b>&lt; 0,5–0,7 mL/min</b></p>
+<div data-build-in="rise 5" style="position:absolute;left:868px;top:730px;width:924px;display:flex;flex-wrap:wrap;gap:12px">
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Caries radiculares rápidas</p>
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Candidiasis</p>
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Úlceras y mucositis</p>
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Disgeusia</p>
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Problemas con prótesis</p>
+<p style="font-size:24px;background:#0E2A3B;color:#F4F8F7;border-radius:999px;padding:10px 20px">Dificultad para tragar y hablar</p>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Villa et al., 2015; Navazesh y Kumar, 2008 · 24</p>
-<aside>Dato contrastado: el umbral de hiposalivación más aceptado es menos de 0,1 mL/min en reposo; para el estimulado se usan valores entre 0,5 y 0,7 mL/min según el autor. Una persona nota la boca seca cuando su flujo baja aproximadamente a la mitad de lo habitual para ella, por eso la xerostomía y la medición no siempre coinciden. Manejo: tratar la causa, revisar la medicación, sialogogos (pilocarpina, cevimelina), sustitutos salivales, chicle sin azúcar y flúor de alta concentración.</aside>
+<aside>Animación: en una sialometría de 5 minutos en reposo, una persona con flujo normal (0,3–0,4 mL/min) recoge en torno a 1,5–2 mL; con hiposalivación, menos de 0,5 mL. Hiposalivación es objetiva (se mide); xerostomía es subjetiva (se siente), y no siempre coinciden. Una persona nota la boca seca cuando su flujo baja más o menos a la mitad de lo habitual para ella. Manejo: tratar la causa, revisar la medicación, sialogogos (pilocarpina, cevimelina), sustitutos salivales, chicle sin azúcar y flúor de alta concentración.</aside>
 </section>

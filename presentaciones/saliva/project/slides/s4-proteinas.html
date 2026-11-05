@@ -1,13 +1,30 @@
 <section id="s4-proteinas" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1C6E82">04 · Componentes orgánicos</p><p style="font-size:24px;font-weight:700;background:#1C6E82;color:#F4F8F7;padding:6px 20px;border-radius:999px">Marta</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Proteínas y glucoproteínas</h2>
-<p style="font-size:32px;line-height:1.45">Entre 1 y 3 g/L, pero con <b>más de 2000 proteínas</b> distintas. Muchas son multifuncionales y se agrupan por familias:</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 24px">
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-left:6px solid #1C6E82;border-radius:12px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Proteínas ricas en prolina (PRP)</h3><p style="font-size:26px;line-height:1.4">Las más abundantes. Película adquirida, unión de calcio y de taninos.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-left:6px solid #1C6E82;border-radius:12px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Estaterina</h3><p style="font-size:26px;line-height:1.4">Inhibe la precipitación de fosfato cálcico; lubrica.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-left:6px solid #1C6E82;border-radius:12px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Histatinas</h3><p style="font-size:26px;line-height:1.4">Ricas en histidina; antifúngicas frente a Candida.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-left:6px solid #1C6E82;border-radius:12px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Cistatinas</h3><p style="font-size:26px;line-height:1.4">Inhiben cisteína-proteasas bacterianas y del huésped.</p></div>
-</div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Proteínas: más de 2000 en 1–3 g/L</h2>
+<x-embed style="position:absolute;left:128px;top:320px;width:1000px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="1000" height="600" viewBox="0 0 1000 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:1000,height:600,rx:24,fill:'#E4EFF1'});
+tx(30,52,28,'#0E2A3B','Se forma la película adquirida sobre el esmalte',{'font-weight':800});
+var timer=tx(30,92,24,'#5B6F7C','');
+el('rect',{x:0,y:470,width:1000,height:130,fill:'#E9E4D4'});for(var i=0;i<20;i++)el('rect',{x:10+i*50,y:486,width:40,height:96,rx:6,fill:'#F7F3E8',stroke:'#C9C1A8','stroke-width':2});
+tx(30,590,24,'#0E2A3B','Esmalte',{'font-weight':800});
+var K=[['PRP','#1C6E82'],['Estaterina','#E4785C'],['Histatinas','#D9A520'],['Cistatinas','#0E2A3B']];
+K.forEach(function(k,i){var x=560+(i%2)*220,y=40+Math.floor(i/2)*44;shape(i,x,y-8,1);tx(x+26,y,24,'#0E2A3B',k[0],{'font-weight':700})});
+function shape(i,x,y,s,p){var g=el('g',{transform:'translate('+x+' '+y+')'},p);if(i==0)el('rect',{x:-18,y:-7,width:36,height:14,rx:7,fill:K[0][1]},g);else if(i==1)el('circle',{r:10,fill:K[1][1]},g);else if(i==2)el('path',{d:'M0 -12 L12 10 L-12 10Z',fill:K[2][1]},g);else el('rect',{x:-10,y:-10,width:20,height:20,rx:3,fill:K[3][1],transform:'rotate(45)'},g);return g}
+var P=[],layer=el('g',{});var slots=[];for(var j=0;j<60;j++)slots.push({x:20+(j%30)*32+(j<30?0:16),y:j<30?458:436});
+var lab=tx(620,410,28,'#A8462C','Película adquirida',{'font-weight':800});
+var st=0,n=0;function F(ts){if(!st)st=ts;var t=(ts-st)/1000;if(t>14){st=ts;t=0;n=0;P.forEach(function(p){p.g.remove()});P=[]}
+if(n<60&&t>n*.18){var sl=slots[n];var g=shape(n%4,sl.x,130,1,layer);P.push({g:g,x:sl.x+(Math.random()-.5)*200,y:120,tx:sl.x,ty:sl.y,rot:Math.random()*360});n++}
+P.forEach(function(p){p.y+=(p.ty-p.y)*.04;p.x+=(p.tx-p.x)*.04;p.rot*=.96;p.g.setAttribute('transform','translate('+p.x.toFixed(1)+' '+p.y.toFixed(1)+') rotate('+p.rot.toFixed(0)+')')});
+timer.textContent=t<4?'Segundos después del cepillado…':t<9?'Minutos: las proteínas se adsorben':'Horas: capa protectora y anclaje de la placa';
+lab.setAttribute('opacity',t>9?1:0);requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="left 1" style="position:absolute;left:1168px;top:320px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-left:10px solid #1C6E82;border-radius:16px;padding:16px 28px"><p style="font-size:28px;font-weight:800;color:#0E2A3B">PRP (ricas en prolina)</p><p style="font-size:24px">Las más abundantes; unen calcio y taninos</p></div>
+<div data-build-in="left 2" style="position:absolute;left:1168px;top:476px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-left:10px solid #E4785C;border-radius:16px;padding:16px 28px"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Estaterina</p><p style="font-size:24px">Evita que precipite el fosfato cálcico</p></div>
+<div data-build-in="left 3" style="position:absolute;left:1168px;top:632px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-left:10px solid #D9A520;border-radius:16px;padding:16px 28px"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Histatinas</p><p style="font-size:24px">Ricas en histidina; antifúngicas</p></div>
+<div data-build-in="left 4" style="position:absolute;left:1168px;top:788px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-left:10px solid #0E2A3B;border-radius:16px;padding:16px 28px"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Cistatinas</p><p style="font-size:24px">Inhiben cisteína-proteasas</p></div>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Amerongen y Veerman, 2002; Dawes et al., 2015 · 11</p>
-<aside>Las glucoproteínas llevan cadenas de azúcares que les dan capacidad de retener agua y de unirse a bacterias. Muchas de estas proteínas forman la película adquirida del esmalte, una capa fina que se forma segundos después de cepillarse y que protege frente al ácido pero también sirve de anclaje para la placa. Además de las familias mostradas, en la saliva hay amilasa, mucinas, inmunoglobulinas, lisozima, lactoferrina, peroxidasa y factores de crecimiento como el EGF.</aside>
+<aside>La animación muestra cómo, segundos después de cepillarse, las proteínas salivales se depositan sobre el esmalte y forman la película adquirida: protege frente al ácido y la abrasión, pero también sirve de anclaje para la placa. Muchas proteínas salivales son glucoproteínas multifuncionales. Además de estas familias, en la saliva hay amilasa, mucinas, inmunoglobulinas, lisozima, lactoferrina, peroxidasa y factores de crecimiento como el EGF.</aside>
 </section>

@@ -1,15 +1,28 @@
 <section id="s6-funciones" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A8462C">06 · Funciones bioquímicas</p><p style="font-size:24px;font-weight:700;background:#E4785C;color:#0E2A3B;padding:6px 20px;border-radius:999px">Alba</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Cada componente, una función</h2>
-<table style="font-size:28px;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif">
-<tr style="background:#0E2A3B"><th style="width:30%;color:#F4F8F7">Función</th><th style="width:70%;color:#F4F8F7">Componentes responsables</th></tr>
-<tr style="background:#FCFDFD"><td><b>Digestión inicial</b></td><td>α-amilasa, lipasa lingual, agua que disuelve sabores</td></tr>
-<tr style="background:#E4EFF1"><td><b>Protección antimicrobiana</b></td><td>IgA secretora, lisozima, lactoferrina, peroxidasa, histatinas, defensinas</td></tr>
-<tr style="background:#FCFDFD"><td><b>Lubricación y bolo</b></td><td>Mucinas MUC5B y MUC7, estaterina, agua</td></tr>
-<tr style="background:#E4EFF1"><td><b>Mantenimiento del pH</b></td><td>Bicarbonato, fosfato, urea, anhidrasa carbónica VI</td></tr>
-<tr style="background:#FCFDFD"><td><b>Protección del esmalte</b></td><td>Ca²⁺, fosfato, F⁻, estaterina, PRP, película adquirida</td></tr>
-</table>
-<p style="font-size:28px;line-height:1.4">Además: <b>limpieza mecánica</b> (aclaramiento), gusto, habla y cicatrización (EGF, histatinas).</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Cinco funciones, muchos protagonistas</h2>
+<x-embed style="position:absolute;left:740px;top:330px;width:440px;height:580px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="440" height="580" viewBox="0 0 440 580"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+var D='M220 40 C220 40 50 290 50 400 A170 170 0 0 0 390 400 C390 290 220 40 220 40Z';
+var df=el('defs',{});var g=el('radialGradient',{id:'g',cx:'.4',cy:'.6',r:'.7'},df);el('stop',{offset:0,'stop-color':'#9FD3DE'},g);el('stop',{offset:1,'stop-color':'#1C6E82'},g);
+var rings=[];for(var i=0;i<3;i++)rings.push(el('path',{d:D,fill:'none',stroke:'#2A9DB5','stroke-width':4}));
+var drop=el('path',{d:D,fill:'url(#g)'});
+var t1=el('text',{x:220,y:420,'font-size':40,'font-weight':800,fill:'#F4F8F7','text-anchor':'middle'});t1.textContent='Saliva';
+function F(ts){var t=ts/1000;var s=1+.03*Math.sin(t*2);drop.setAttribute('transform','translate(220 330) scale('+s.toFixed(3)+') translate(-220 -330)');
+rings.forEach(function(r,i){var p=((t/3)+i/3)%1;var sc=1+p*.25;r.setAttribute('transform','translate(220 330) scale('+sc.toFixed(3)+') translate(-220 -330)');r.setAttribute('opacity',(1-p).toFixed(2))});
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<x-connector x1="666" y1="400" x2="800" y2="560" route="straight" head="none" style="color:#9FB5BF;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="666" y1="620" x2="790" y2="640" route="straight" head="none" style="color:#9FB5BF;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="666" y1="840" x2="800" y2="760" route="straight" head="none" style="color:#9FB5BF;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="1254" y1="480" x2="1120" y2="580" route="straight" head="none" style="color:#9FB5BF;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="1254" y1="740" x2="1120" y2="700" route="straight" head="none" style="color:#9FB5BF;border-width:3px;border-style:dashed"></x-connector>
+<div data-build-in="pop 1" style="position:absolute;left:128px;top:330px;width:538px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #D9A520;border-radius:16px;padding:16px 24px;box-shadow:0px 8px 24px rgba(14,42,59,0.08)"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Digestión inicial</p><p style="font-size:24px;line-height:1.35">α-amilasa, lipasa lingual, agua que disuelve sabores</p></div>
+<div data-build-in="pop 2" style="position:absolute;left:128px;top:530px;width:538px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #7A5BA6;border-radius:16px;padding:16px 24px;box-shadow:0px 8px 24px rgba(14,42,59,0.08)"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Protección antimicrobiana</p><p style="font-size:24px;line-height:1.35">IgA, lisozima, lactoferrina, peroxidasa, histatinas</p></div>
+<div data-build-in="pop 3" style="position:absolute;left:128px;top:730px;width:538px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #1C6E82;border-radius:16px;padding:16px 24px;box-shadow:0px 8px 24px rgba(14,42,59,0.08)"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Lubricación y bolo</p><p style="font-size:24px;line-height:1.35">Mucinas MUC5B y MUC7, estaterina, agua</p></div>
+<div data-build-in="pop 4" style="position:absolute;left:1254px;top:390px;width:538px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #2A9DB5;border-radius:16px;padding:16px 24px;box-shadow:0px 8px 24px rgba(14,42,59,0.08)"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Mantenimiento del pH</p><p style="font-size:24px;line-height:1.35">Bicarbonato, fosfato, urea, anhidrasa carbónica VI</p></div>
+<div data-build-in="pop 5" style="position:absolute;left:1254px;top:650px;width:538px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #E4785C;border-radius:16px;padding:16px 24px;box-shadow:0px 8px 24px rgba(14,42,59,0.08)"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Protección del esmalte</p><p style="font-size:24px;line-height:1.35">Ca²⁺, fosfato, F⁻, estaterina, PRP, película adquirida</p></div>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Dawes et al., 2015; Humphrey y Williamson, 2001 · 19</p>
-<aside>Esta tabla resume las cinco funciones del guion. Idea clave: casi todos los componentes son multifuncionales. Por ejemplo, la estaterina protege el esmalte y también lubrica; la amilasa digiere y además se une a bacterias. Para el bolo, el agua humedece el alimento y las mucinas lo cohesionan para tragarlo sin dañar la mucosa. El aclaramiento salival es la capacidad de diluir y eliminar azúcares y ácidos: cuanto más flujo, más rápido.</aside>
+<aside>Las cinco funciones del guion aparecen alrededor de la gota, una por clic. Idea clave: casi todos los componentes son multifuncionales; la estaterina protege el esmalte y además lubrica, y la amilasa digiere y se une a bacterias. Además: limpieza mecánica (aclaramiento), gusto, habla y cicatrización (EGF, histatinas). El aclaramiento salival es la capacidad de diluir y eliminar azúcares y ácidos: cuanto más flujo, más rápido.</aside>
 </section>

@@ -1,15 +1,35 @@
-<section id="s4-antimicrobianos" data-transition="fade" style="background:#E4EFF1;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<section id="s4-antimicrobianos" data-transition="push" style="background:#E4EFF1;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1C6E82">04 · Componentes orgánicos</p><p style="font-size:24px;font-weight:700;background:#1C6E82;color:#F4F8F7;padding:6px 20px;border-radius:999px">Marta</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Péptidos antimicrobianos y proteínas defensivas</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Lisozima</h3><p style="font-size:24px;line-height:1.4">Hidroliza el peptidoglucano de la pared de bacterias grampositivas.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Lactoferrina</h3><p style="font-size:24px;line-height:1.4">Secuestra hierro y lo hace inaccesible a las bacterias.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Peroxidasa salival</h3><p style="font-size:24px;line-height:1.4">SCN⁻ + H₂O₂ → OSCN⁻ (hipotiocianito), que inhibe la glucólisis bacteriana.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Histatinas</h3><p style="font-size:24px;line-height:1.4">Antifúngicas (Candida albicans); también ayudan a cicatrizar.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Defensinas y LL-37</h3><p style="font-size:24px;line-height:1.4">α-defensinas (neutrófilos), β-defensinas (epitelio) y catelicidina: rompen membranas.</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#FCFDFD;border-radius:16px;padding:24px 28px"><h3 style="font-size:32px;font-weight:700;color:#0E2A3B">Aglutinina gp340</h3><p style="font-size:24px;line-height:1.4">Agrega bacterias para eliminarlas al tragar.</p></div>
-</div>
-<p style="font-size:28px;line-height:1.4">Actúan en red y de forma <b>sinérgica</b>: controlan la microbiota oral sin eliminarla.</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Péptidos y proteínas defensivas</h2>
+<x-embed style="position:absolute;left:128px;top:320px;width:600px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="600" height="600" viewBox="0 0 600 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:600,height:600,rx:24,fill:'#0E2A3B'});
+var CX=300,CY=290;
+var wall=el('rect',{x:CX-130,y:CY-60,width:260,height:120,rx:60,fill:'#7A5BA6',stroke:'#F4F8F7','stroke-width':6});
+var core=el('rect',{x:CX-100,y:CY-36,width:200,height:72,rx:36,fill:'#9A7BC6'});
+var Fe=[];for(var i=0;i<4;i++)Fe.push(el('circle',{r:9,fill:'#D9A520'}));
+var holes=[];for(i=0;i<5;i++)holes.push(el('circle',{cx:CX-90+i*45,cy:CY+(i%2?-30:30),r:0,fill:'#0E2A3B'}));
+var D=[];for(i=0;i<10;i++)D.push({e:el('circle',{r:9,fill:'#2A9DB5'}),a:i/10*6.283});
+var name=tx(300,500,32,'#F4F8F7','',{'font-weight':800,'text-anchor':'middle'});
+var what=tx(300,545,24,'#BFD8DE','',{'text-anchor':'middle'});
+var ph=[['Lisozima','rompe la pared bacteriana'],['Lactoferrina','le roba el hierro'],['Peroxidasa','OSCN⁻ frena su metabolismo'],['Defensinas · LL-37','abren poros en la membrana'],['Histatinas','atacan a Candida'],['Aglutinina gp340','agrupa bacterias para tragarlas']];
+function F(ts){var t=ts/1000,k=Math.floor(t/3.2)%6,p=(t%3.2)/3.2;name.textContent=ph[k][0];what.textContent=ph[k][1];
+D.forEach(function(d,i){var R=k==5?230:200-80*Math.sin(p*3.14);d.e.setAttribute('cx',(CX+R*Math.cos(d.a+t)).toFixed(1));d.e.setAttribute('cy',(CY+R*.75*Math.sin(d.a+t)).toFixed(1))});
+wall.setAttribute('stroke-dasharray',k==0?(20-16*p).toFixed(1)+' '+(4+20*p).toFixed(1):'none');
+Fe.forEach(function(f,i){var out=k==1?p:0;f.setAttribute('cx',(CX-60+i*40+out*(i<2?-220:220)).toFixed(1));f.setAttribute('cy',(CY+out*(i%2?-140:140)).toFixed(1));f.setAttribute('opacity',k==1?(1-p*.8).toFixed(2):1)});
+core.setAttribute('fill',k==2?'#5A4A72':'#9A7BC6');core.setAttribute('opacity',k==2?(1-.5*p).toFixed(2):1);
+holes.forEach(function(h){h.setAttribute('r',k==3?(14*p).toFixed(1):0)});
+var sc=k==4?1-.3*p:1;var dx=k==5?60*Math.sin(t*3):0;var g='translate('+(CX+dx)+' '+CY+') scale('+sc.toFixed(2)+') translate('+(-CX)+' '+(-CY)+')';wall.setAttribute('transform',g);core.setAttribute('transform',g);
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="pop 1" style="position:absolute;left:768px;top:320px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Lisozima</h3><p style="font-size:24px;line-height:1.35">Hidroliza el peptidoglucano (grampositivas)</p></div>
+<div data-build-in="pop 2" style="position:absolute;left:1292px;top:320px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Lactoferrina</h3><p style="font-size:24px;line-height:1.35">Secuestra hierro y lo hace inaccesible</p></div>
+<div data-build-in="pop 3" style="position:absolute;left:768px;top:530px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Peroxidasa salival</h3><p style="font-size:24px;line-height:1.35">SCN⁻ + H₂O₂ → OSCN⁻ (hipotiocianito)</p></div>
+<div data-build-in="pop 4" style="position:absolute;left:1292px;top:530px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Defensinas y LL-37</h3><p style="font-size:24px;line-height:1.35">α (neutrófilos), β (epitelio), catelicidina</p></div>
+<div data-build-in="pop 5" style="position:absolute;left:768px;top:740px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Histatinas</h3><p style="font-size:24px;line-height:1.35">Antifúngicas; ayudan a cicatrizar</p></div>
+<div data-build-in="pop 6" style="position:absolute;left:1292px;top:740px;width:500px;height:180px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px"><h3 style="font-size:30px;font-weight:800;color:#0E2A3B">Aglutinina gp340</h3><p style="font-size:24px;line-height:1.35">Agrega bacterias para eliminarlas</p></div>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Pedersen y Belstrøm, 2019; Amerongen y Veerman, 2002 · 15</p>
-<aside>Este es el sistema de inmunidad innata de la saliva. Ejemplo de sinergia: la lisozima y la lactoferrina potencian su efecto juntas, y el sistema peroxidasa usa el peróxido producido por las propias bacterias. A estas proteínas se suman los inhibidores de proteasas (cistatinas, SLPI) y la IgA secretora, que es la parte específica. Objetivo: no esterilizar la boca, sino mantener una microbiota equilibrada.</aside>
+<aside>La animación recorre las seis defensas sobre una bacteria: la lisozima rompe la pared, la lactoferrina le quita el hierro, la peroxidasa genera hipotiocianito que frena su metabolismo, las defensinas abren poros, las histatinas actúan sobre todo contra Candida y la aglutinina agrupa bacterias. Actúan en red y de forma sinérgica, junto con los inhibidores de proteasas (cistatinas, SLPI) y la IgA secretora. El objetivo no es esterilizar la boca, sino mantener una microbiota equilibrada.</aside>
 </section>

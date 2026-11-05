@@ -1,14 +1,30 @@
 <section id="s1-definicion" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1C6E82">01 · Introducción a la saliva</p><p style="font-size:24px;font-weight:700;background:#1C6E82;color:#F4F8F7;padding:6px 20px;border-radius:999px">Marta</p></div>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Un fluido complejo, no solo agua</h2>
-<p style="font-size:32px;line-height:1.45;width:1500px">La saliva es la secreción exocrina de las glándulas salivales que, mezclada con líquido crevicular, células descamadas, bacterias y restos de alimento, forma la <b>saliva total o mixta</b> que baña la boca.</p>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px">
-<div style="display:flex;flex-direction:column;gap:8px;background:#E4EFF1;border-radius:16px;padding:28px"><p style="font-family:'Fraunces', Georgia, serif;font-size:48px;font-weight:600;color:#0E2A3B">≈99 %</p><p style="font-size:26px">agua</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#E4EFF1;border-radius:16px;padding:28px"><p style="font-family:'Fraunces', Georgia, serif;font-size:48px;font-weight:600;color:#0E2A3B">0,5–1,5 L</p><p style="font-size:26px">producidos al día</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#E4EFF1;border-radius:16px;padding:28px"><p style="font-family:'Fraunces', Georgia, serif;font-size:48px;font-weight:600;color:#0E2A3B">6,2–7,6</p><p style="font-size:26px">pH habitual</p></div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#E4EFF1;border-radius:16px;padding:28px"><p style="font-family:'Fraunces', Georgia, serif;font-size:48px;font-weight:600;color:#0E2A3B">Hipotónica</p><p style="font-size:26px">respecto al plasma</p></div>
-</div>
-<p style="font-size:28px;line-height:1.4">Además es <b>viscoelástica</b> (por las mucinas), incolora y ligeramente turbia.</p>
+<x-embed style="position:absolute;left:128px;top:320px;width:620px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="620" height="600" viewBox="0 0 620 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+el('rect',{width:620,height:600,rx:24,fill:'#E4EFF1'});
+var D='M310 40 C310 40 110 300 110 410 A200 200 0 0 0 510 410 C510 300 310 40 310 40Z';
+var df=el('defs',{});var cp=el('clipPath',{id:'c'},df);el('path',{d:D},cp);
+el('path',{d:D,fill:'#FCFDFD',stroke:'#1C6E82','stroke-width':6});
+var cl=el('g',{'clip-path':'url(#c)'});var w=el('path',{fill:'#1C6E82'},cl),w2=el('path',{fill:'#9FD3DE',opacity:.5},cl);
+var P=[];var C=['#E4785C','#D9A520','#0E2A3B'];for(var i=0;i<14;i++)P.push({e:el('circle',{r:7,fill:C[i%3]},cl),a:Math.random()*6.28,r:30+Math.random()*120});
+var big=el('text',{x:310,y:420,'font-size':76,'font-weight':800,fill:'#F4F8F7','text-anchor':'middle'});
+var sm=el('text',{x:310,y:470,'font-size':30,'font-weight':700,fill:'#F4F8F7','text-anchor':'middle'});sm.textContent='agua';
+var lab=el('text',{x:310,y:578,'font-size':26,'font-weight':700,fill:'#A8462C','text-anchor':'middle'});lab.textContent='≈1 % de solutos (puntos de color)';
+var st=0;function F(ts){if(!st)st=ts;var t=(ts-st)/1000,c=t%12,p=Math.min(1,c/3.5),e=1-Math.pow(1-p,3);var top=610,lv=top-(top-62)*e*.985;
+var d='M100 '+lv;for(var x=100;x<=520;x+=10)d+='L'+x+' '+(lv+8*Math.sin(x/40+t*3)).toFixed(1);w.setAttribute('d',d+'L520 620L100 620Z');
+var d2='M100 '+(lv+10);for(x=100;x<=520;x+=10)d2+='L'+x+' '+(lv+10+6*Math.sin(x/30-t*2)).toFixed(1);w2.setAttribute('d',d2+'L520 620L100 620Z');
+big.textContent='≈'+Math.round(99*e)+' %';big.setAttribute('opacity',Math.min(1,p*2));sm.setAttribute('opacity',p>.9?1:0);
+P.forEach(function(q,i){q.a+=.01+i*.0007;q.e.setAttribute('cx',(310+q.r*Math.cos(q.a)*1.1).toFixed(1));q.e.setAttribute('cy',(380+q.r*Math.sin(q.a)*.9).toFixed(1));q.e.setAttribute('opacity',p>.95?1:0)});
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="pop 1" style="position:absolute;left:800px;top:320px;width:484px;height:168px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#0E2A3B;border-radius:20px;padding:24px 32px"><p style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;color:#F4F8F7">0,5–1,5 L</p><p style="font-size:26px;color:#BFD8DE">producidos al día</p></div>
+<div data-build-in="pop 2" style="position:absolute;left:1308px;top:320px;width:484px;height:168px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#1C6E82;border-radius:20px;padding:24px 32px"><p style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;color:#F4F8F7">pH 6,2–7,6</p><p style="font-size:26px;color:#E4EFF1">sube al estimularla</p></div>
+<div data-build-in="pop 3" style="position:absolute;left:800px;top:512px;width:484px;height:168px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#E4785C;border-radius:20px;padding:24px 32px"><p style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;color:#0E2A3B">Hipotónica</p><p style="font-size:26px;color:#0E2A3B">respecto al plasma</p></div>
+<div data-build-in="pop 4" style="position:absolute;left:1308px;top:512px;width:484px;height:168px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#E4EFF1;border-radius:20px;padding:24px 32px"><p style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;color:#0E2A3B">Viscoelástica</p><p style="font-size:26px;color:#3D5361">gracias a las mucinas</p></div>
+<p data-build-in="fade 5" style="position:absolute;left:800px;top:712px;width:992px;font-size:28px;line-height:1.45">Es la secreción de las glándulas salivales. Mezclada con líquido crevicular, células descamadas, bacterias y restos de alimento forma la <b>saliva total o mixta</b>.</p>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Humphrey y Williamson, 2001; Dawes et al., 2015 · 3</p>
-<aside>Dato contrastado: el volumen diario suele citarse entre 0,5 y 1,5 L; estudios de Dawes estiman unos 0,5–0,6 L en adultos sanos, porque durante el sueño el flujo es casi nulo. Conviene distinguir saliva glandular (la que sale de un conducto) de saliva total, que es la que se recoge en clínica. El pH de la saliva en reposo ronda 6,7–7,0 y sube con la estimulación por el bicarbonato.</aside>
+<aside>La gota se llena hasta el 99 % de agua; los puntos de color representan el 1 % de solutos que dan a la saliva sus funciones. Dato contrastado: el volumen diario suele citarse entre 0,5 y 1,5 L; estudios de Dawes estiman unos 0,5–0,6 L en adultos sanos, porque durante el sueño el flujo es casi nulo. El pH de la saliva en reposo ronda 6,7–7,0 y sube con la estimulación por el bicarbonato.</aside>
 </section>

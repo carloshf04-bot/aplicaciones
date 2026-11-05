@@ -1,14 +1,27 @@
 <section id="s3-electrolitos" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A8462C">03 · Componentes inorgánicos</p><p style="font-size:24px;font-weight:700;background:#E4785C;color:#0E2A3B;padding:6px 20px;border-radius:999px">Alba</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Electrolitos principales</h2>
-<table style="font-size:28px;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif">
-<tr style="background:#0E2A3B"><th style="width:16%;color:#F4F8F7">Ion</th><th style="width:20%;color:#F4F8F7;text-align:right">Reposo</th><th style="width:20%;color:#F4F8F7;text-align:right">Estimulada</th><th style="width:16%;color:#F4F8F7;text-align:right">Plasma</th><th style="width:28%;color:#F4F8F7">Papel principal</th></tr>
-<tr style="background:#FCFDFD"><td>Na⁺</td><td style="text-align:right">≈5</td><td style="text-align:right">20–80</td><td style="text-align:right">≈140</td><td>Osmolaridad, sabor</td></tr>
-<tr style="background:#E4EFF1"><td>K⁺</td><td style="text-align:right">≈20</td><td style="text-align:right">≈20</td><td style="text-align:right">≈4</td><td>Único ion más alto que en plasma</td></tr>
-<tr style="background:#FCFDFD"><td>Cl⁻</td><td style="text-align:right">≈15</td><td style="text-align:right">30–40</td><td style="text-align:right">≈100</td><td>Activa la amilasa</td></tr>
-<tr style="background:#E4EFF1"><td>HCO₃⁻</td><td style="text-align:right">1–5</td><td style="text-align:right">hasta 60</td><td style="text-align:right">≈25</td><td>Tampón principal</td></tr>
-</table>
-<p style="font-size:28px;line-height:1.4">Concentraciones en mmol/L, valores aproximados. La osmolalidad de la saliva (≈50–100 mOsm/kg) es mucho menor que la del plasma (≈290): por eso <b>percibimos mejor el sabor salado</b>.</p>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Humphrey y Williamson, 2001; Edgar, 1992 · 8</p>
-<aside>Dato contrastado: el potasio es el único electrolito más concentrado en saliva que en plasma, porque los conductos lo secretan. El cloruro es un activador alostérico de la alfa-amilasa. Los valores dependen del flujo, como vimos: en saliva estimulada el sodio y el bicarbonato suben mucho. Otros iones: tiocianato (más alto en fumadores), magnesio, yoduro.</aside>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Electrolitos: saliva frente a plasma</h2>
+<x-embed style="position:absolute;left:128px;top:320px;width:1040px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="1040" height="600" viewBox="0 0 1040 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:1040,height:600,rx:24,fill:'#E4EFF1'});
+var SER=[['Reposo','#9FD3DE'],['Estimulada','#1C6E82'],['Plasma','#7A8C99']];
+SER.forEach(function(s,i){el('rect',{x:30+i*230,y:26,width:28,height:28,rx:6,fill:s[1]});tx(68+i*230,50,24,'#0E2A3B',s[0],{'font-weight':700})});
+var D=[['Na⁺',[5,60,140]],['K⁺',[20,20,4]],['Cl⁻',[15,35,100]],['HCO₃⁻',[3,50,25]]];
+var X0=150,SC=780/140,B=[];
+D.forEach(function(d,i){var y0=96+i*124;tx(30,y0+52,32,'#0E2A3B',d[0],{'font-weight':800});
+d[1].forEach(function(v,j){var r=el('rect',{x:X0,y:y0+j*34,width:0,height:28,rx:8,fill:SER[j][1]});var l=tx(X0,y0+j*34+24,24,'#0E2A3B','',{'font-weight':700});B.push({r:r,l:l,v:v,i:i,j:j})})});
+var hl=el('rect',{x:16,y:96+124-10,width:1008,height:118,rx:16,fill:'none',stroke:'#C2502F','stroke-width':4,'stroke-dasharray':'10 8',opacity:0});
+var note=tx(560,240,26,'#A8462C','',{'font-weight':800});
+var st=0;function F(ts){if(!st)st=ts;var t=((ts-st)/1000)%10;
+B.forEach(function(b,k){var p=Math.max(0,Math.min(1,(t-b.i*.5-b.j*.15)/1.2));var e=1-Math.pow(1-p,3);var w=Math.max(4,b.v*SC*e);b.r.setAttribute('width',w.toFixed(1));b.l.setAttribute('x',(X0+w+10).toFixed(1));b.l.textContent=p>0?'≈'+Math.round(b.v*e):''});
+var on=t>4;hl.setAttribute('opacity',on?(.6+.4*Math.sin(t*5)).toFixed(2):0);note.textContent=on?'K⁺: más alto que en plasma':'';
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="left 1" style="position:absolute;left:1208px;top:320px;width:584px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #D9A520;border-radius:16px;padding:20px 28px"><p style="font-size:30px;font-weight:800;color:#0E2A3B">K⁺, la excepción</p><p style="font-size:24px;line-height:1.4">Único ion más concentrado que en plasma: lo secretan los conductos.</p></div>
+<div data-build-in="left 2" style="position:absolute;left:1208px;top:528px;width:584px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #0E2A3B;border-radius:16px;padding:20px 28px"><p style="font-size:30px;font-weight:800;color:#0E2A3B">Cl⁻ activa la amilasa</p><p style="font-size:24px;line-height:1.4">Es un activador alostérico de la α-amilasa salival.</p></div>
+<div data-build-in="left 3" style="position:absolute;left:1208px;top:736px;width:584px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-left:10px solid #1C6E82;border-radius:16px;padding:20px 28px"><p style="font-size:30px;font-weight:800;color:#0E2A3B">Saliva hipotónica</p><p style="font-size:24px;line-height:1.4">≈50–100 mOsm/kg frente a ≈290 del plasma: notamos mejor lo salado.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Concentraciones aproximadas en mmol/L. Fuentes: Humphrey y Williamson, 2001; Edgar, 1992 · 8</p>
+<aside>Las barras crecen para cada ion en saliva en reposo, estimulada y en plasma, y después se resalta el potasio, el único electrolito más concentrado en saliva que en plasma. El sodio y el cloruro son muy bajos en reposo y suben con el flujo; el bicarbonato llega a superar al del plasma en saliva muy estimulada. Otros iones: tiocianato (más alto en fumadores), magnesio y yoduro.</aside>
 </section>

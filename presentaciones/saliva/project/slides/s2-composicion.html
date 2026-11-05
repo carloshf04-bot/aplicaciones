@@ -1,14 +1,22 @@
 <section id="s2-composicion" data-transition="fade" style="background:#0E2A3B;color:#BFD8DE;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#9FD3DE">02 · Composición general</p><p style="font-size:24px;font-weight:700;background:#9FD3DE;color:#0E2A3B;padding:6px 20px;border-radius:999px">Marta</p></div>
-<div style="display:flex;gap:64px;align-items:flex-end">
-<p style="font-family:'Fraunces', Georgia, serif;font-size:200px;font-weight:600;line-height:1;color:#F4F8F7">99,5 %</p>
-<p style="font-size:40px;line-height:1.3;color:#F4F8F7;width:640px">agua, que actúa como disolvente de todo lo demás</p>
-</div>
-<p style="font-size:32px;line-height:1.4;color:#BFD8DE">El ≈0,5 % restante son solutos (sólidos totales ≈ 5 g/L):</p>
-<div style="display:flex;gap:24px">
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#163B50;border-radius:16px;padding:32px"><h3 style="font-size:36px;font-weight:700;color:#9FD3DE">Inorgánicos</h3><p style="font-size:28px;line-height:1.4;color:#F4F8F7">Na⁺, K⁺, Cl⁻, HCO₃⁻, Ca²⁺, fosfatos, F⁻, SCN⁻, Mg²⁺, I⁻</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#163B50;border-radius:16px;padding:32px"><h3 style="font-size:36px;font-weight:700;color:#F2A58F">Orgánicos</h3><p style="font-size:28px;line-height:1.4;color:#F4F8F7">Proteínas (≈1–3 g/L), mucinas, enzimas, IgA, urea, ácido úrico, lípidos, glucosa, aminoácidos, hormonas</p></div>
-</div>
+<x-embed style="position:absolute;left:128px;top:250px;width:640px;height:670px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="640" height="670" viewBox="0 0 640 670"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+var Q=[],sz=54,gp=8;for(var i=0;i<100;i++){var r=Math.floor(i/10),c=i%10;var g=el('g',{transform:'translate('+(10+c*(sz+gp))+' '+(10+r*(sz+gp))+')'});var b=el('rect',{width:sz,height:sz,rx:10,fill:'#163B50'},g);var f=el('rect',{width:sz,height:sz,rx:10,fill:'#2A9DB5',opacity:0},g);Q.push({f:f,g:g})}
+Q[99].f.setAttribute('width',sz/2);var half=el('rect',{x:10+9*(sz+gp)+sz/2,y:10+9*(sz+gp),width:sz/2,height:sz,fill:'#E4785C',opacity:0});
+var lab=el('text',{x:10,y:660,'font-size':28,'font-weight':700,fill:'#F2A58F'});
+var st=0;function F(ts){if(!st)st=ts;var t=((ts-st)/1000)%11;
+Q.forEach(function(q,i){var on=t>i*.03;q.f.setAttribute('opacity',on?1:0)});
+var h=t>3.4;half.setAttribute('opacity',h?1:0);half.setAttribute('transform',h?'translate(0 0)':'');
+var pulse=1+.08*Math.sin(t*6);Q[99].g.setAttribute('transform','translate('+(10+9*(sz+gp))+' '+(10+9*(sz+gp))+')');
+lab.textContent=t>3.6?'■ medio cuadrado = 0,5 % de solutos':'';half.setAttribute('opacity',h?(.75+.25*Math.sin(t*5)).toFixed(2):0);
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<p data-build-in="fade 1" style="position:absolute;left:840px;top:250px;width:952px;font-family:'Fraunces', Georgia, serif;font-size:160px;font-weight:600;line-height:1;color:#F4F8F7">99,5 %</p>
+<p data-build-in="fade 1" style="position:absolute;left:840px;top:430px;width:952px;font-size:36px;line-height:1.35;color:#F4F8F7">agua, que actúa como disolvente. El resto (≈5 g/L) son solutos:</p>
+<div data-build-in="rise 2" style="position:absolute;left:840px;top:560px;width:464px;height:360px;display:flex;flex-direction:column;gap:12px;background:#163B50;border-top:8px solid #9FD3DE;border-radius:16px;padding:32px"><h3 style="font-size:36px;font-weight:700;color:#9FD3DE">Inorgánicos</h3><p style="font-size:28px;line-height:1.45;color:#F4F8F7">Na⁺, K⁺, Cl⁻, HCO₃⁻, Ca²⁺, fosfatos, F⁻, SCN⁻, Mg²⁺, I⁻</p></div>
+<div data-build-in="rise 3" style="position:absolute;left:1328px;top:560px;width:464px;height:360px;display:flex;flex-direction:column;gap:12px;background:#163B50;border-top:8px solid #F2A58F;border-radius:16px;padding:32px"><h3 style="font-size:36px;font-weight:700;color:#F2A58F">Orgánicos</h3><p style="font-size:28px;line-height:1.45;color:#F4F8F7">Proteínas (1–3 g/L), mucinas, enzimas, IgA, urea, ácido úrico, lípidos, glucosa, hormonas</p></div>
 <p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#9FB5BF">Fuentes: Humphrey y Williamson, 2001; Edgar, 1992 · 6</p>
-<aside>Para comparar: el plasma tiene unos 70 g/L de proteína; la saliva, entre 1 y 3 g/L. Aun así, en esa pequeña fracción hay más de 2000 proteínas identificadas por proteómica. La composición no es fija: depende de la glándula de origen, del flujo y del tipo de estímulo, que es lo que vemos en la siguiente diapositiva.</aside>
+<aside>La cuadrícula se llena: cada cuadrado es un 1 % de la saliva. Solo medio cuadrado, el 0,5 %, son solutos, y en esa pequeña fracción hay más de 2000 proteínas identificadas por proteómica. Para comparar: el plasma tiene unos 70 g/L de proteína; la saliva, entre 1 y 3 g/L. La composición no es fija: depende de la glándula, del flujo y del estímulo.</aside>
 </section>

@@ -1,12 +1,32 @@
 <section id="cover" data-transition="fade" style="background:#0E2A3B;color:#F4F8F7;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
-<svg aria-label="Gota de saliva estilizada con moléculas" width="640" height="820" viewBox="0 0 640 820" style="position:absolute;left:1180px;top:130px;width:640px;height:820px"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3DE"/><stop offset="1" stop-color="#1C6E82"/></linearGradient></defs><path d="M320 20 C320 20 70 360 70 540 A250 250 0 0 0 570 540 C570 360 320 20 320 20 Z" fill="url(#g)" opacity="0.9"/><path d="M200 520 A130 130 0 0 0 300 680" fill="none" stroke="#F4F8F7" stroke-width="18" stroke-linecap="round" opacity="0.55"/><g fill="#E4785C"><circle cx="400" cy="470" r="26"/><circle cx="460" cy="560" r="16"/><circle cx="380" cy="600" r="12"/></g><g stroke="#F4F8F7" stroke-width="6" opacity="0.8"><line x1="400" y1="470" x2="460" y2="560"/><line x1="460" y1="560" x2="380" y2="600"/></g><g fill="#F4F8F7"><circle cx="270" cy="400" r="10"/><circle cx="330" cy="330" r="7"/><circle cx="250" cy="300" r="5"/></g></svg>
 <p style="font-size:28px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#9FD3DE">Bioquímica oral · Odontología</p>
-<h1 style="font-family:'Fraunces', Georgia, serif;font-size:120px;font-weight:600;line-height:1.05;width:1040px;color:#F4F8F7">Composición bioquímica de la saliva</h1>
-<p style="font-size:36px;line-height:1.4;width:960px;color:#BFD8DE">Qué contiene, para qué sirve cada componente y por qué importa en la clínica dental</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:120px;font-weight:600;line-height:1.05;width:960px;color:#F4F8F7">Composición bioquímica de la saliva</h1>
+<p style="font-size:36px;line-height:1.4;width:900px;color:#BFD8DE">Qué contiene, para qué sirve cada componente y por qué importa en la clínica dental</p>
 <div style="display:flex;gap:20px;align-items:center">
 <p style="font-size:28px;font-weight:700;background:#1C6E82;color:#F4F8F7;padding:12px 28px;border-radius:999px">Marta</p>
 <p style="font-size:28px;font-weight:700;background:#E4785C;color:#0E2A3B;padding:12px 28px;border-radius:999px">Alba</p>
 <p style="font-size:28px;font-weight:700;background:#F4F8F7;color:#0E2A3B;padding:12px 28px;border-radius:999px">Mar</p>
 </div>
-<aside>Bienvenida. Presentamos la composición bioquímica de la saliva en nueve bloques: introducción y composición general (Marta), componentes inorgánicos (Alba), orgánicos (Marta), otras moléculas (Mar), funciones (Alba), factores modificadores e importancia clínica (Mar) y conclusiones (Alba). La presentación se navega con las flechas; en modo Presentar algunos elementos aparecen paso a paso.</aside>
+<x-embed style="position:absolute;left:1120px;top:120px;width:700px;height:840px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="700" height="840" viewBox="0 0 700 840"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+var D='M350 60 C350 60 90 420 90 590 A260 260 0 0 0 610 590 C610 420 350 60 350 60Z';
+var df=el('defs',{});var g=el('linearGradient',{id:'g',x1:0,y1:0,x2:0,y2:1},df);el('stop',{offset:0,'stop-color':'#9FD3DE'},g);el('stop',{offset:1,'stop-color':'#1C6E82'},g);
+var cp=el('clipPath',{id:'c'},df);el('path',{d:D},cp);
+var root=el('g',{});
+el('path',{d:D,fill:'url(#g)'},root);
+var cl=el('g',{'clip-path':'url(#c)'},root);
+var w1=el('path',{fill:'#F4F8F7',opacity:.18},cl),w2=el('path',{fill:'#0E2A3B',opacity:.18},cl);
+var B=[];for(var i=0;i<22;i++)B.push({e:el('circle',{fill:'#F4F8F7',opacity:.55},cl),x:120+Math.random()*460,y:300+Math.random()*560,r:4+Math.random()*12,s:.6+Math.random()*1.4});
+el('path',{d:'M210 600 A140 140 0 0 0 320 760',fill:'none',stroke:'#F4F8F7','stroke-width':16,'stroke-linecap':'round',opacity:.5},root);
+var L=[['Na⁺','#9FD3DE'],['Ca²⁺','#F2A58F'],['HCO₃⁻','#F4F8F7'],['IgA','#F2A58F'],['Mucina','#9FD3DE'],['Amilasa','#F4F8F7'],['F⁻','#F2A58F'],['Lisozima','#9FD3DE']];
+var T=L.map(function(l,i){var e=el('text',{'font-size':30,'font-weight':700,fill:l[1],'text-anchor':'middle'});e.textContent=l[0];return e});
+function wave(p,lv,a,f,ph){var d='M40 '+lv;for(var x=40;x<=660;x+=10)d+='L'+x+' '+(lv+a*Math.sin(x/f+ph)).toFixed(1);return d+'L660 900L40 900Z'}
+function F(ts){var t=ts/1000;root.setAttribute('transform','translate(0 '+(8*Math.sin(t*1.2)).toFixed(1)+')');
+w1.setAttribute('d',wave(0,420,14,55,t*2));w2.setAttribute('d',wave(0,640,10,70,-t*1.5));
+B.forEach(function(b){b.y-=b.s;if(b.y<200){b.y=860;b.x=120+Math.random()*460}b.e.setAttribute('cx',(b.x+6*Math.sin(t*2+b.r)).toFixed(1));b.e.setAttribute('cy',b.y.toFixed(1));b.e.setAttribute('r',b.r)});
+T.forEach(function(e,i){var a=i/T.length*6.283+t*.15;e.setAttribute('x',(350+300*Math.cos(a)).toFixed(1));e.setAttribute('y',(480+330*Math.sin(a)).toFixed(1));e.setAttribute('opacity',(.55+.45*Math.sin(t*1.5+i)).toFixed(2))});
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<aside>Bienvenida. Presentamos la composición bioquímica de la saliva en nueve bloques: introducción y composición general (Marta), componentes inorgánicos (Alba), orgánicos (Marta), otras moléculas (Mar), funciones (Alba), factores modificadores e importancia clínica (Mar) y conclusiones (Alba). Se navega con las flechas; en modo Presentar los elementos aparecen paso a paso y las ilustraciones están animadas.</aside>
 </section>
