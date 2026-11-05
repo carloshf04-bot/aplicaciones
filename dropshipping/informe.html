@@ -1,0 +1,259 @@
+<title>Informe Mimo &amp; Pata</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: informe de una sola columna legible, con tablas anchas en su propio scroll y una calculadora fija en su sección */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --fg:#1d2420; --muted:#5b6660; --line:#d9ded8;
+  --accent:#1f6f5c; --accent-soft:#e1efe9; --warn:#a85a12; --warn-soft:#f8ecdd; --bad:#a3302b; --good:#2a7a3e;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a17; --surface:#1c2420; --fg:#e6ebe7; --muted:#9aa69f; --line:#2f3a34;
+  --accent:#5fc3a6; --accent-soft:#1f3a31; --warn:#e0a35c; --warn-soft:#3a2c1b; --bad:#ec7b74; --good:#7fd08f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a17; --surface:#1c2420; --fg:#e6ebe7; --muted:#9aa69f; --line:#2f3a34;
+  --accent:#5fc3a6; --accent-soft:#1f3a31; --warn:#e0a35c; --warn-soft:#3a2c1b; --bad:#ec7b74; --good:#7fd08f; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:1.6rem;font-weight:700;margin-top:56px;padding-top:20px;border-top:1px solid var(--line)}
+h3{font-size:1.15rem;font-weight:500;margin-top:28px}
+p,li{max-width:68ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.2rem;color:var(--muted);margin-top:12px}
+.verdict{background:var(--accent-soft);border-radius:10px;padding:20px 22px;margin-top:28px}
+.verdict h3{margin-top:0;color:var(--accent)}
+.verdict ul{margin:8px 0 0;padding-left:20px}
+.note{background:var(--warn-soft);border-left:3px solid var(--warn);padding:12px 16px;border-radius:0 8px 8px 0;font-size:.95rem;margin:16px 0}
+.scroll{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:640px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:500;font-size:.82rem;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.p-good{background:var(--accent-soft);color:var(--good)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-bad{background:var(--warn-soft);color:var(--bad)}
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.calc>div{min-width:0}
+.field{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin-bottom:10px;font-size:.92rem}
+.field input{font-family:var(--mono);font-size:.95rem;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);width:100%;box-sizing:border-box}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.out{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.out .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+.out .big{font-size:1.6rem;font-weight:600;padding-top:12px}
+.out .big.neg{color:var(--bad)} .out .big.pos{color:var(--good)}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.presets button{font-family:var(--display);font-size:.82rem;border:1px solid var(--line);background:var(--bg);color:var(--fg);padding:5px 10px;border-radius:99px;cursor:pointer}
+.presets button:hover,.presets button:focus-visible{border-color:var(--accent);color:var(--accent)}
+ol.steps{padding-left:22px} ol.steps li{margin-bottom:10px}
+.qs li{margin-bottom:8px}
+.sources{font-size:.85rem;color:var(--muted)} .sources a{color:var(--accent);word-break:break-word}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Oficina de proyecto · 5 nov 2026 · Informe de arranque</div>
+  <h1>Tienda de dropshipping: qué vender, a quién comprar y cuánto se gana</h1>
+  <p class="lede">Investigación hecha en tu ausencia. Todo lo que dependía de una decisión tuya lo he dejado como recomendación y al final tienes las preguntas que necesito que contestes.</p>
+
+  <div class="verdict">
+    <h3>Resumen en 6 líneas</h3>
+    <ul>
+      <li><strong>Nicho recomendado:</strong> productos para gatos y perros que resuelven un problema doméstico (pelo en casa, hidratación, ansiedad, paseo). Marca de trabajo: <em>Mimo &amp; Pata</em>.</li>
+      <li><strong>Mercado:</strong> España, en español. El segmento gato es el que más crece (+11,7 % en un año, según datos del sector).</li>
+      <li><strong>Proveedor:</strong> empezar con CJdropshipping filtrando por almacén UE para testear, y BigBuy (español, entrega 24–72 h) cuando haya ventas que justifiquen su cuota.</li>
+      <li><strong>Plataforma:</strong> Shopify Basic. Más rápido de montar que WooCommerce y con Shopify Payments disponible en España.</li>
+      <li><strong>El cambio clave de 2026:</strong> desde el 1 de julio, cada paquete de fuera de la UE de menos de 150 € paga 3 € de arancel. Vender desde almacén europeo ya no es opcional para productos baratos.</li>
+      <li><strong>La cifra que decide todo:</strong> con publicidad en Meta, un pedido cuesta del orden de 15–50 € captarlo. Sin ticket medio de 35–45 € (packs) los números no salen: con 15 € de captación, el Pack Gato Hidratado de 42,90 € queda en unos −2 € por pedido. Para ganar dinero hace falta captar por debajo de 13 €, tráfico orgánico (TikTok) y segunda compra (filtros). Lo verás en la calculadora.</li>
+    </ul>
+  </div>
+
+  <h2>1. Mercado y nicho</h2>
+  <p>He comparado los nichos que más se repiten en las listas de 2026: mascotas, belleza/cosmética, hogar, fitness y accesorios tecnológicos. Los he filtrado con tres criterios propios para alguien que empieza en España: que no tenga barreras legales fuertes, que el producto no sea voluminoso y que haya compra repetida.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Nicho</th><th>Demanda en España</th><th>Barreras</th><th>Compra repetida</th><th>Veredicto</th></tr></thead>
+    <tbody>
+      <tr><td>Mascotas (accesorios)</td><td>Sector de 36.681 M€ (todo incluido). Gato +11,7 %, perro estable</td><td>Bajas. GPSR general</td><td>Sí: filtros, recambios, juguetes</td><td><span class="pill p-good">Recomendado</span></td></tr>
+      <tr><td>Cosmética / skincare</td><td>~11.200 M€, +5,8 % en 2025</td><td>Altas: un cosmético en la UE exige persona responsable y notificación CPNP</td><td>Sí</td><td><span class="pill p-bad">Evitar al inicio</span></td></tr>
+      <tr><td>Hogar / organización</td><td>Amplia, ticket 25–35 €</td><td>Bajas</td><td>Poca</td><td><span class="pill p-warn">Alternativa</span></td></tr>
+      <tr><td>Fitness en casa</td><td>Pistolas de masaje, bandas, esterillas</td><td>Medias (electrónica: CE, RAEE)</td><td>Poca</td><td><span class="pill p-warn">Alternativa</span></td></tr>
+      <tr><td>Gadgets tecnológicos</td><td>Alta pero saturada</td><td>Medias (CE, baterías, RAEE)</td><td>Poca</td><td><span class="pill p-bad">Saturado</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Por qué mascotas:</strong> el dueño de un gato o un perro compra por cariño y por solucionar problemas concretos, el contenido en vídeo con animales funciona solo en TikTok e Instagram, y hay recambios (filtros de fuente, rodillos, juguetes) que permiten email y segunda compra. Las grandes tiendas (Zooplus, Tiendanimal, Kiwoko) ganan en pienso; un dropshipper no puede competir ahí, así que el catálogo debe ser de accesorios que se explican mejor en vídeo.</p>
+
+  <h2>2. Productos candidatos y comparativa de precios</h2>
+  <div class="note"><strong>Aviso sobre los costes de proveedor:</strong> desde este entorno no he podido abrir CJdropshipping, AliExpress, BigBuy, Zooplus ni Tiendanimal (la red los bloquea). Los costes de proveedor son <em>rangos publicados por guías del sector</em> y deben confirmarse en el panel de CJ antes de fijar precios. Los precios de referencia en España sí vienen de fichas y comparadores de ofertas reales, con fecha variable.</div>
+  <div class="scroll"><table>
+    <thead><tr><th>Producto</th><th>Coste proveedor (est.)</th><th>Precio en España hoy</th><th>PVP propuesto</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td>Fuente de agua para gatos, acero inox. 2–2,5 L</td><td class="num">9–14 € (CN)<br>13–18 € (UE)</td><td class="num">13–25 € Amazon<br>42–80 € ManoMano</td><td class="num">34,90 € con 3 filtros</td><td>Producto estrella. Filtros de recambio = suscripción. Competencia barata en Amazon: hay que vender el pack y el vídeo</td></tr>
+      <tr><td>Cepillo autolimpiable (botón)</td><td class="num">2–5 €</td><td class="num">8,49 € (Morpilot)<br>19,99 € (FURminator oferta)</td><td class="num">16,90 €</td><td>Ideal para pack con el rodillo. Pico de demanda en primavera (muda)</td></tr>
+      <tr><td>Rodillo quitapelos reutilizable</td><td class="num">2–4 €</td><td class="num">~15 € referencia ChomChom</td><td class="num">17,90 €</td><td>Muy visual en vídeo: antes/después en sofá</td></tr>
+      <tr><td>Alfombra de lamer (lick mat)</td><td class="num">1,8–4,5 €</td><td class="num">2,90–15,45 € tiendas UE</td><td class="num">19,90 € pack 2</td><td>Viral en TikTok para ansiedad y baño. Vender siempre en pack</td></tr>
+      <tr><td>Comedero lento antivoracidad</td><td class="num">3–5 €</td><td class="num">8–15 €</td><td class="num">14,90 €</td><td>Complemento para subir ticket</td></tr>
+      <tr><td>Cama donut calmante</td><td class="num">10–18 €</td><td class="num">~40 € (ref. EE. UU.)</td><td class="num">39,90 €</td><td><span class="pill p-warn">Voluminosa</span> El envío se come el margen si sale de China</td></tr>
+      <tr><td>Arnés antitirones</td><td class="num">5–9 €</td><td class="num">20–35 €</td><td class="num">29,90 €</td><td><span class="pill p-warn">Tallas</span> Devoluciones por talla; añadir guía de medidas</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Packs propuestos (para llegar a 35–45 € de ticket)</h3>
+  <ul>
+    <li><strong>Pack Casa Sin Pelos</strong>: cepillo autolimpiable + rodillo · 29,90 € (separados 34,80 €).</li>
+    <li><strong>Pack Gato Hidratado</strong>: fuente 2,5 L + 6 filtros extra · 42,90 €.</li>
+    <li><strong>Pack Calma</strong>: 2 lick mats + comedero lento · 29,90 €.</li>
+    <li>Envío gratis desde 35 € para empujar el segundo producto.</li>
+  </ul>
+
+  <h2>3. Proveedores comparados</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Proveedor</th><th>Coste fijo</th><th>Almacén</th><th>Plazo a España</th><th>A favor</th><th>En contra</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CJdropshipping</strong></td><td class="num">Gratis (plan pago desde ~16 $/mes)</td><td>China + almacenes UE</td><td class="num">3–8 días (UE)<br>8–15 días (CN)</td><td>Sin cuota, catálogo enorme, muestras, branding y packaging propio</td><td>Stock UE limitado y no en todas las categorías</td></tr>
+      <tr><td><strong>BigBuy</strong> (España)</td><td class="num">69–99 €/mes + 90 € alta</td><td>Valencia</td><td class="num">24–72 h</td><td>El más fiable para España, sección mascotas, factura española</td><td>Cuota alta para empezar; productos de marca con menos margen (a menudo &lt;20 %)</td></tr>
+      <tr><td><strong>AliExpress</strong> (vía DSers)</td><td class="num">Gratis</td><td>China (algo en ES)</td><td class="num">7–20 días</td><td>Precio más bajo</td><td>Calidad irregular, 3 € de arancel por paquete desde julio 2026, sin control del envío</td></tr>
+      <tr><td><strong>Syncee</strong></td><td class="num">~29–99 $/mes</td><td>Marketplace con filtro UE</td><td class="num">Según proveedor</td><td>Muchos proveedores europeos</td><td>Los proveedores pueden rechazar tu tienda</td></tr>
+      <tr><td><strong>Spocket</strong></td><td class="num">39,99–299,99 $/mes</td><td>UE/EE. UU.</td><td class="num">3–7 días</td><td>Muestras fáciles, foco UE</td><td>Caro para el volumen inicial</td></tr>
+      <tr><td><strong>vidaXL / dropXL</strong></td><td class="num">Suscripción</td><td>UE</td><td class="num">2–5 días</td><td>Bueno para casetas, rascadores grandes</td><td>Solo encaja con productos voluminosos</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Plan:</strong> testear con CJ (stock UE) sin coste fijo. En cuanto un producto venda 5–10 pedidos/día, negociar con un agente de CJ un precio mejor y stock en su almacén europeo, o buscar el equivalente en BigBuy.</p>
+
+  <h2>4. Plataforma de tienda</h2>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>Shopify Basic</th><th>WooCommerce</th></tr></thead>
+    <tbody>
+      <tr><td>Coste mensual</td><td class="num">~29 € (anual) / ~39 € (mensual)</td><td class="num">Software gratis + hosting 5–15 € + plugins</td></tr>
+      <tr><td>Comisión extra por venta</td><td>0 % con Shopify Payments; 2 % con otra pasarela</td><td>Solo la de la pasarela</td></tr>
+      <tr><td>Montaje</td><td>1–2 días, apps de CJ y DSers nativas</td><td>Más lento, mantenimiento propio</td></tr>
+      <tr><td>Veredicto</td><td><span class="pill p-good">Recomendado</span></td><td>Solo si ya dominas WordPress</td></tr>
+    </tbody>
+  </table></div>
+  <p>Shopify suele tener prueba de 3 días y luego 1 €/mes durante los primeros meses; confírmalo al registrarte. El prototipo que te he preparado está pensado para trasladarse a un tema de Shopify (Dawn) sin cambios de estructura.</p>
+
+  <h2>5. Legal y fiscal en España</h2>
+  <div class="note">Esto es un resumen para que vayas al gestor con las preguntas claras, no asesoramiento fiscal.</div>
+  <ul>
+    <li><strong>Alta:</strong> autónomo en Hacienda (modelo 036/037) y Seguridad Social. Tarifa plana para nuevos autónomos de unos 80 €/mes el primer año. Epígrafe de comercio al por menor a confirmar con el gestor (las guías citan el 665.9).</li>
+    <li><strong>IVA:</strong> 21 % en España. Modelo 303 trimestral, 390 anual, 130 de IRPF. Si vendes a particulares de otros países UE por encima de 10.000 €/año, IVA de su país mediante la ventanilla única OSS (modelo 369).</li>
+    <li><strong>Aranceles 2026:</strong> desde el 1 de julio de 2026 los envíos extracomunitarios de menos de 150 € pagan 3 € de derecho de aduana (Reglamento UE 2026/382), provisionalmente hasta 2028. Hay fuentes que dicen por paquete y otras por categoría de artículo.</li>
+    <li><strong>Seguridad de producto (GPSR):</strong> cada ficha debe mostrar fabricante y persona responsable en la UE, y advertencias de seguridad. Pide estos datos al proveedor antes de publicar.</li>
+    <li><strong>Web:</strong> aviso legal (LSSI), privacidad (RGPD), cookies, condiciones de venta, derecho de desistimiento de 14 días y garantía legal de 3 años. Shopify genera borradores, pero revísalos.</li>
+    <li><strong>Electrónica (fuentes con bomba):</strong> marcado CE y registro como productor de RAEE si eres tú quien la introduce en el mercado español. Pregúntalo al gestor; puede ser un motivo para empezar con productos sin electrónica.</li>
+  </ul>
+
+  <h2>6. Calculadora de margen por pedido</h2>
+  <p>Ajusta los valores. El PVP incluye IVA: la calculadora le quita el 21 % antes de calcular beneficio. El coste de captación es lo que te cuesta en anuncios conseguir un pedido.</p>
+  <div class="calc">
+    <div>
+      <div class="presets" role="group" aria-label="Ejemplos">
+        <button type="button" data-p="fuente">Fuente sola</button>
+        <button type="button" data-p="pack">Pack Casa Sin Pelos</button>
+        <button type="button" data-p="hidratado">Pack Gato Hidratado</button>
+      </div>
+      <label class="field" for="pvp">PVP con IVA (€)<input id="pvp" type="number" step="0.1" value="42.9"></label>
+      <label class="field" for="coste">Coste producto (€)<input id="coste" type="number" step="0.1" value="15"></label>
+      <label class="field" for="envio">Envío del proveedor (€)<input id="envio" type="number" step="0.1" value="4.5"></label>
+      <label class="field" for="arancel">Arancel (0 si almacén UE)<input id="arancel" type="number" step="0.1" value="0"></label>
+      <label class="field" for="pago">Comisión de pago (%)<input id="pago" type="number" step="0.1" value="2.1"></label>
+      <label class="field" for="cpa">Coste de captación (€)<input id="cpa" type="number" step="0.5" value="15"></label>
+      <label class="field" for="dev">Devoluciones/incidencias (%)<input id="dev" type="number" step="0.5" value="5"></label>
+    </div>
+    <div class="out" aria-live="polite">
+      <div class="row"><span>Ingreso sin IVA</span><span id="o-neto"></span></div>
+      <div class="row"><span>Coste mercancía + envío</span><span id="o-cogs"></span></div>
+      <div class="row"><span>Pago + devoluciones</span><span id="o-fees"></span></div>
+      <div class="row"><span>Margen antes de anuncios</span><span id="o-mb"></span></div>
+      <div class="row"><span>ROAS de equilibrio</span><span id="o-roas"></span></div>
+      <div class="row"><span>CPA máximo sin perder</span><span id="o-cpamax"></span></div>
+      <div class="big" id="o-ben"></div>
+      <div style="font-size:.8rem;color:var(--muted)">beneficio por pedido tras anuncios</div>
+    </div>
+  </div>
+  <p style="font-size:.9rem;color:var(--muted)">Referencias de publicidad en España 2026: CPM de Facebook 5,5–8 $, Instagram 7–10 $, CPC 0,7–1,7 $, conversión de ecommerce 1–2 %. Con 0,80 € por clic y 1,5 % de conversión, cada pedido cuesta unos 53 € en frío; con buen creativo y retargeting baja a 15–25 €. Por eso el producto barato solo no funciona con anuncios de pago y el contenido orgánico en TikTok importa tanto.</p>
+
+  <h2>7. Presupuesto del primer mes</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Concepto</th><th>Mínimo</th><th>Cómodo</th></tr></thead>
+    <tbody>
+      <tr><td>Shopify (primeros meses con oferta)</td><td class="num">1–3 €</td><td class="num">39 €</td></tr>
+      <tr><td>Dominio .es o .com</td><td class="num">10 €</td><td class="num">15 €</td></tr>
+      <tr><td>Muestras de 3–4 productos (para grabar vídeos)</td><td class="num">60 €</td><td class="num">120 €</td></tr>
+      <tr><td>Apps (reseñas, email)</td><td class="num">0 €</td><td class="num">30 €</td></tr>
+      <tr><td>Test de anuncios (3 productos × 5–7 días)</td><td class="num">300 €</td><td class="num">700 €</td></tr>
+      <tr><td>Autónomo (tarifa plana)</td><td class="num">~80 €</td><td class="num">~80 €</td></tr>
+      <tr><td>Gestoría online</td><td class="num">40 €</td><td class="num">70 €</td></tr>
+      <tr><td><strong>Total</strong></td><td class="num"><strong>~490 €</strong></td><td class="num"><strong>~1.050 €</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>8. Calendario: ojo con Black Friday</h2>
+  <p>Hoy es 5 de noviembre. Black Friday es el 27 de noviembre y en noviembre y diciembre los anuncios se encarecen mucho porque compiten todas las grandes marcas. Mi recomendación:</p>
+  <ol class="steps">
+    <li><strong>Semana 1 (6–12 nov):</strong> gestor, alta de autónomo, dominio y Shopify. Pedir muestras de fuente, cepillo, rodillo y lick mat a CJ (almacén UE).</li>
+    <li><strong>Semana 2 (13–19 nov):</strong> pasar el prototipo a Shopify, fichas con datos GPSR, textos legales. Abrir TikTok e Instagram de la marca.</li>
+    <li><strong>Semanas 3–6 (20 nov–20 dic):</strong> lanzamiento suave con contenido orgánico (vídeos de antes/después con las muestras) y ángulo de regalo de Navidad para la mascota. Poco gasto en anuncios.</li>
+    <li><strong>Enero 2027:</strong> test de anuncios de pago cuando bajan los CPM. Mantener el producto que dé ROAS por encima del de equilibrio; matar los demás a los 5–7 días.</li>
+    <li><strong>Febrero–marzo:</strong> empuje del Pack Casa Sin Pelos con la época de muda.</li>
+  </ol>
+
+  <h2>9. Lo que necesito que me digas</h2>
+  <ol class="qs">
+    <li>¿Qué presupuesto total tienes para los primeros 2–3 meses?</li>
+    <li>¿Ya eres autónomo o tienes empresa? ¿Tienes gestor?</li>
+    <li>¿Te encaja el nicho de mascotas o prefieres otro (hogar, fitness)? ¿Tienes perro o gato para grabar contenido?</li>
+    <li>¿Vendemos solo en España o también en Portugal, Francia o Latinoamérica?</li>
+    <li>¿Te gusta el nombre <em>Mimo &amp; Pata</em> o tienes otro? Comprobaré dominio y redes.</li>
+    <li>¿Shopify te parece bien? Si me das acceso o creas la cuenta, puedo prepararte el tema, las fichas y los textos.</li>
+    <li>Para la próxima ronda: si puedes, habilita en la configuración del entorno el acceso a cjdropshipping.com, bigbuy.eu y aliexpress.com y saco precios reales de cada producto.</li>
+  </ol>
+
+  <h2>Fuentes</h2>
+  <ul class="sources">
+    <li><a href="https://www.tiendawebonline.es/blog/dropshipping/productos-rentables-para-hacer-dropshipping-en-2026">TiendaWebOnline: productos rentables 2026</a> · <a href="https://www.trendtrack.io/blog-post/top-10-dropshipping-niches-for-2026">Trendtrack: nichos 2026</a> · <a href="https://crevio.co/blog/best-dropshipping-products">Crevio</a></li>
+    <li><a href="https://www.ifema.es/iberpet/notas-prensa/el-potente-sector-de-mascotas-en-nuestra-economia">IFEMA/AMVAC: sector mascotas</a> · <a href="https://americaretail-malls.com/retail-especializado/mascotas/la-creciente-demanda-de-comida-para-gatos-revoluciona-el-mercado-espanol/">América Retail: crecimiento segmento gato</a> · <a href="https://www.mordorintelligence.com/es/industry-reports/spain-pet-food-market">Mordor Intelligence</a></li>
+    <li><a href="https://lexpress-franchise.com/wp-content/uploads/2026/05/radiografia_de_la_industria_cosmetica_y_del_perfume_2025_web.pdf">Stanpa: radiografía cosmética 2025</a></li>
+    <li><a href="https://dodropshipping.com/best-dropshipping-suppliers-in-europe-free-and-paid/">DoDropshipping: proveedores UE</a> · <a href="https://www.entrepreneurshiplife.com/dropshipping-suppliers-in-europe/">Entrepreneurship Life: comparativa UE</a> · <a href="https://www.trendtrack.io/es/blog-post/resena-de-bigbuy-es-una-opcion-confiable-para-tu-sitio-de-dropshipping">Trendtrack: reseña BigBuy</a> · <a href="https://stackscored.com/pricing/dropshipping-suppliers/compare/spocket-vs-syncee/">Stackscored: Spocket vs Syncee</a></li>
+    <li><a href="https://www.dropified.com/blog/pet-products-dropshipping-in-2026-best-selling-items-suppliers-profit-margins/">Dropified: márgenes mascotas</a> · <a href="https://www.salehoo.com/trends/pet-hair-remover">SaleHoo: quitapelos</a> · <a href="https://www.salehoo.com/trends/dog-lick-mat">SaleHoo: lick mat</a></li>
+    <li><a href="https://www.compradiccion.com/guia-de-compras/mejor-fuente-agua-para-gatos-perros-cual-comprar-consejos-recomendaciones">Compradicción: fuentes para gatos</a> · <a href="https://www.manomano.es/p/fuente-para-gatos-de-acero-inoxidable-de-2-litros-con-forma-de-grifo-lavable-bomba-silenciosa-y-doble-filtro-95537026">ManoMano: fuentes</a> · <a href="https://www.chollometro.com/ofertas/cepillo-para-mascotas-morpilot-2039052">Chollómetro: cepillo Morpilot</a> · <a href="https://www.perro.eu/en/waffle-lick-mat">Perro.eu: lick mat</a></li>
+    <li><a href="https://www.andreybusiness.com/espana/blog/woocommerce-vs-tiendanube-vs-shopify-dropshipping-2026">Shopify vs WooCommerce España 2026</a> · <a href="https://litextension.com/es/blog/alternativas-a-shopify">LitExtension: planes Shopify</a></li>
+    <li><a href="https://lawwwing.com/en/the-eu-pulls-the-plug-on-temu-and-shein-what-your-ecommerce-stands-to-gain-and-what-to-do-before-1-july/">Lawwwing: Reglamento UE 2026/382</a> · <a href="https://empresaexterior.com/art/100569/la-ue-aprueba-un-arancel-de-3-euros-a-los-paquetes-de-comercio-electronico-inferiores-a-150-euros-a-partir-de-julio-de-2026">Empresa Exterior: arancel 3 €</a></li>
+    <li><a href="https://www.billeo.es/blog/dropshipping-fiscalidad-espana">Billeo: fiscalidad dropshipping</a> · <a href="https://www.copyfy.io/es/blog/dropshipping-legal">Copyfy: legalidad</a> · <a href="https://easecert.com/es/blogs/perspectivas/cumplimiento-de-gpsr-para-dropshippers">Easecert: GPSR</a></li>
+    <li><a href="https://adligator.com/es/blog/cpm-facebook-por-pais-2026">Adligator: CPM por país 2026</a> · <a href="https://syntermedia.ai/benchmarks/2026-h1/meta-ads/cpc">Synter: CPC Meta</a> · <a href="https://contentstudio.io/blog/meta-ads-benchmarks">ContentStudio: benchmarks</a> · <a href="https://thunderbit.com/es/blog/ecommerce-conversion-statistics">Thunderbit: conversión</a></li>
+  </ul>
+</div>
+
+<script>
+(function(){
+  var ids=["pvp","coste","envio","arancel","pago","cpa","dev"];
+  var presets={
+    fuente:{pvp:34.9,coste:15,envio:4.5,arancel:0,pago:2.1,cpa:15,dev:5},
+    pack:{pvp:29.9,coste:6,envio:3.5,arancel:0,pago:2.1,cpa:12,dev:4},
+    hidratado:{pvp:42.9,coste:17,envio:4.5,arancel:0,pago:2.1,cpa:15,dev:5}
+  };
+  function v(id){var n=parseFloat(document.getElementById(id).value);return isNaN(n)?0:n}
+  function e(n){return n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"}
+  function calc(){
+    var pvp=v("pvp"),neto=pvp/1.21,cogs=v("coste")+v("envio")+v("arancel");
+    var fees=pvp*v("pago")/100+0.25+neto*v("dev")/100;
+    var mb=neto-cogs-fees,ben=mb-v("cpa");
+    document.getElementById("o-neto").textContent=e(neto);
+    document.getElementById("o-cogs").textContent=e(cogs);
+    document.getElementById("o-fees").textContent=e(fees);
+    document.getElementById("o-mb").textContent=e(mb);
+    document.getElementById("o-roas").textContent=mb>0?(pvp/mb).toFixed(2)+"×":"no rentable";
+    document.getElementById("o-cpamax").textContent=e(Math.max(mb,0));
+    var b=document.getElementById("o-ben");b.textContent=(ben>=0?"+":"")+e(ben);
+    b.className="big "+(ben>=0?"pos":"neg");
+  }
+  ids.forEach(function(id){document.getElementById(id).addEventListener("input",calc)});
+  document.querySelectorAll(".presets button").forEach(function(btn){
+    btn.addEventListener("click",function(){var p=presets[btn.dataset.p];ids.forEach(function(id){document.getElementById(id).value=p[id]});calc()});
+  });
+  calc();
+})();
+</script>
