@@ -1,0 +1,35 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-05T22:45:00Z"},
+  "lists": "css",
+  "title": "Composición bioquímica de la saliva",
+  "order": [
+    "cover", "indice",
+    "s1-definicion", "s1-glandulas", "s1-formacion",
+    "s2-composicion", "s2-estimulada",
+    "s3-electrolitos", "s3-calcio-fluor", "s3-ph",
+    "s4-proteinas", "s4-mucinas", "s4-enzimas", "s4-iga", "s4-antimicrobianos",
+    "s5-urea", "s5-moleculas", "s5-metabolismo",
+    "s6-funciones", "s6-remineralizacion",
+    "s7-fisiologicos", "s7-farmacos",
+    "s8-caries", "s8-xerostomia", "s8-erosion", "s8-diagnostico",
+    "s9-conclusiones", "s9-quiz", "s9-bibliografia", "s9-bibliografia-2", "s9-bibliografia-3"
+  ],
+  "sections": {
+    "s0": {"description": "Portada e índice de la presentación con el reparto entre Marta, Alba y Mar.", "start": "cover"},
+    "s1": {"description": "Introducción: qué es la saliva, qué glándulas la producen y cómo se forma.", "start": "s1-definicion"},
+    "s2": {"description": "Composición general: agua, solutos y diferencias entre saliva en reposo y estimulada.", "start": "s2-composicion"},
+    "s3": {"description": "Componentes inorgánicos: electrolitos, calcio, fosfato, fluoruro y capacidad tampón.", "start": "s3-electrolitos"},
+    "s4": {"description": "Componentes orgánicos: proteínas, mucinas, enzimas, IgA secretora y péptidos antimicrobianos.", "start": "s4-proteinas"},
+    "s5": {"description": "Otras moléculas: urea, ácido úrico, moléculas pequeñas y productos del metabolismo oral.", "start": "s5-urea"},
+    "s6": {"description": "Funciones bioquímicas de los componentes salivales.", "start": "s6-funciones"},
+    "s7": {"description": "Factores que modifican la composición salival.", "start": "s7-fisiologicos"},
+    "s8": {"description": "Importancia clínica en Odontología.", "start": "s8-caries"},
+    "s9": {"description": "Conclusiones, repaso interactivo y bibliografía.", "start": "s9-conclusiones"}
+  },
+  "faces": {
+    "fraunces": {"family": "Fraunces", "href": "https://fonts.googleapis.com/css2?family=Fraunces:wght@400..700&display=swap"},
+    "nunito-sans": {"family": "Nunito Sans", "href": "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"}
+  },
+  "designSystems": []
+}

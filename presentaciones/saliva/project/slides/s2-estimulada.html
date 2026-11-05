@@ -1,0 +1,40 @@
+<section id="s2-estimulada" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1C6E82">02 · Composición general</p><p style="font-size:24px;font-weight:700;background:#1C6E82;color:#F4F8F7;padding:6px 20px;border-radius:999px">Marta</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Saliva en reposo frente a estimulada</h2>
+<table style="font-size:26px;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;width:900px">
+<tr style="background:#0E2A3B"><th style="width:36%;color:#F4F8F7">Parámetro</th><th style="width:32%;color:#F4F8F7">En reposo</th><th style="width:32%;color:#F4F8F7">Estimulada</th></tr>
+<tr style="background:#FCFDFD"><td>Flujo</td><td>0,3–0,4 mL/min</td><td>1–3 mL/min (hasta 7)</td></tr>
+<tr style="background:#E4EFF1"><td>Glándula principal</td><td>Submandibular</td><td>Parótida</td></tr>
+<tr style="background:#FCFDFD"><td>pH</td><td>≈6,2–7,0</td><td>≈7,4–7,8</td></tr>
+<tr style="background:#E4EFF1"><td>Na⁺ y Cl⁻</td><td>Bajos</td><td>Aumentan</td></tr>
+<tr style="background:#FCFDFD"><td>HCO₃⁻ (tampón)</td><td>1–5 mmol/L</td><td>Hasta 40–60 mmol/L</td></tr>
+<tr style="background:#E4EFF1"><td>Fosfato</td><td>Más alto</td><td>Disminuye</td></tr>
+<tr style="background:#FCFDFD"><td>Viscosidad</td><td>Más mucosa</td><td>Más acuosa</td></tr>
+</table>
+<x-embed style="position:absolute;left:1100px;top:336px;width:692px;height:580px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#E4EFF1;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#0E2A3B;border-radius:16px;overflow:hidden}svg{display:block}</style></head><body><svg id="s" width="692" height="580" viewBox="0 0 692 580"></svg><script>
+var S=document.getElementById('s'),NS='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+var X0=90,X1=520,Y0=470,Y1=90,FM=4,CM=80;
+function x(f){return X0+(X1-X0)*f/FM}function y(c){return Y0-(Y0-Y1)*c/CM}
+var ions=[{n:'Na⁺',c:'#1C6E82',f:function(q){return 3+90*q/(q+1.5)}},{n:'HCO₃⁻',c:'#C2502F',f:function(q){return 2+55*q/(q+1.2)}},{n:'Cl⁻',c:'#0E2A3B',f:function(q){return 10+40*q/(q+1.5)}},{n:'K⁺',c:'#7A8C99',f:function(q){return 22-4*q/(q+1)}}];
+el('text',{x:24,y:48,'font-size':26,'font-weight':700,fill:'#0E2A3B'}).textContent='Iones (mmol/L) según el flujo';
+el('line',{x1:X0,y1:Y0,x2:X1,y2:Y0,stroke:'#3D5361','stroke-width':2});el('line',{x1:X0,y1:Y0,x2:X0,y2:Y1,stroke:'#3D5361','stroke-width':2});
+[0,40,80].forEach(function(c){el('text',{x:X0-14,y:y(c)+8,'font-size':24,'text-anchor':'end',fill:'#3D5361'}).textContent=c});
+[0,2,4].forEach(function(f){el('text',{x:x(f),y:Y0+36,'font-size':24,'text-anchor':'middle',fill:'#3D5361'}).textContent=f});
+el('text',{x:(X0+X1)/2,y:Y0+72,'font-size':24,'text-anchor':'middle',fill:'#3D5361'}).textContent='Flujo (mL/min)';
+var dots=[],labs=[];
+ions.forEach(function(i){var d='';for(var f=0;f<=FM+.001;f+=.1)d+=(f?'L':'M')+x(f).toFixed(1)+' '+y(i.f(f)).toFixed(1);el('path',{d:d,fill:'none',stroke:i.c,'stroke-width':5,'stroke-linecap':'round'});
+el('text',{x:X1+12,y:y(i.f(FM))+(i.n=='Cl⁻'?14:i.n=='HCO₃⁻'?4:8),'font-size':24,'font-weight':700,fill:i.c}).textContent=i.n;
+dots.push(el('circle',{r:9,fill:i.c,stroke:'#FCFDFD','stroke-width':3}))});
+var cur=el('line',{x1:0,y1:Y0,x2:0,y2:Y1,stroke:'#C2502F','stroke-width':2,'stroke-dasharray':'6 6'});
+var t=el('text',{x:24,y:560,'font-size':24,fill:'#0E2A3B'});
+var st=0;function frame(ts){if(!st)st=ts;var p=((ts-st)/9000)%1,q=FM*(0.5-0.5*Math.cos(p*2*Math.PI));
+cur.setAttribute('x1',x(q));cur.setAttribute('x2',x(q));
+ions.forEach(function(i,k){dots[k].setAttribute('cx',x(q));dots[k].setAttribute('cy',y(i.f(q)))});
+t.textContent=(q<0.6?'Reposo':'Estimulada')+' · '+q.toFixed(1).replace('.',',')+' mL/min · Na⁺ '+Math.round(ions[0].f(q))+' · HCO₃⁻ '+Math.round(ions[1].f(q));
+requestAnimationFrame(frame)}requestAnimationFrame(frame);
+</script></body></html></x-embed>
+<p style="position:absolute;left:1100px;top:292px;width:692px;font-size:24px;color:#5B6F7C">Animación: esquema ilustrativo, no datos de un estudio</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Dawes, 2008; Humphrey y Williamson, 2001 · 7</p>
+<aside>La animación recorre el flujo de reposo a máximo y muestra la tendencia de cada ion: al subir el flujo, los conductos reabsorben menos Na⁺ y Cl⁻ y secretan más bicarbonato, por eso la saliva estimulada es mejor tampón y más alcalina. El potasio se mantiene casi constante (unos 20 mmol/L). Las cifras de la tabla son rangos de referencia habituales en la literatura; los valores exactos dependen del método y del estímulo usado.</aside>
+</section>

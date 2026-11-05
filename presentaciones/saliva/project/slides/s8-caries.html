@@ -1,0 +1,35 @@
+<section id="s8-caries" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0E2A3B">08 · Importancia clínica</p><p style="font-size:24px;font-weight:700;background:#0E2A3B;color:#F4F8F7;padding:6px 20px;border-radius:999px">Mar</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Saliva y caries: la curva de Stephan</h2>
+<div style="display:flex;flex-direction:column;gap:20px;width:760px">
+<p style="font-size:28px;line-height:1.4">Tras ingerir azúcar, el pH de la placa cae en minutos por debajo del <b>pH crítico</b> y tarda 30–60 min en recuperarse.</p>
+<p style="font-size:28px;line-height:1.4">La saliva acorta ese tiempo: <b>diluye</b> el azúcar, <b>tampona</b> el ácido y aporta <b>iones</b> para reparar.</p>
+<p style="font-size:28px;line-height:1.4">Poco flujo o poca capacidad tampón = curva más profunda y larga = <b>más riesgo de caries</b>.</p>
+<p style="font-size:28px;line-height:1.4;background:#E4EFF1;border-radius:12px;padding:16px 20px">Pequeños y frecuentes picos de azúcar son peores que una sola toma.</p>
+</div>
+<x-embed style="position:absolute;left:960px;top:330px;width:832px;height:580px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#FCFDFD;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#0E2A3B;overflow:hidden}</style></head><body><svg id="s" width="832" height="580" viewBox="0 0 832 580"></svg><script>
+var S=document.getElementById('s'),NS='http://www.w3.org/2000/svg';
+function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);S.appendChild(e);return e}
+var X0=100,X1=790,Y0=470,Y1=80,T=60,PH0=4,PH1=7.5;
+function x(t){return X0+(X1-X0)*t/T}function y(p){return Y0-(Y0-Y1)*(p-PH0)/(PH1-PH0)}
+el('rect',{x:X0,y:y(5.5),width:X1-X0,height:Y0-y(5.5),fill:'#FBE3DB'});
+el('line',{x1:X0,y1:y(5.5),x2:X1,y2:y(5.5),stroke:'#C2502F','stroke-width':3,'stroke-dasharray':'10 8'});
+el('text',{x:X1-8,y:y(5.5)+32,'font-size':24,'text-anchor':'end',fill:'#A8462C','font-weight':700}).textContent='pH crítico 5,5 · desmineraliza';
+el('line',{x1:X0,y1:Y0,x2:X1,y2:Y0,stroke:'#3D5361','stroke-width':2});el('line',{x1:X0,y1:Y0,x2:X0,y2:Y1,stroke:'#3D5361','stroke-width':2});
+[4,5,6,7].forEach(function(p){el('text',{x:X0-14,y:y(p)+8,'font-size':24,'text-anchor':'end',fill:'#3D5361'}).textContent=p});
+[0,20,40,60].forEach(function(t){el('text',{x:x(t),y:Y0+34,'font-size':24,'text-anchor':'middle',fill:'#3D5361'}).textContent=t});
+el('text',{x:(X0+X1)/2,y:Y0+70,'font-size':24,'text-anchor':'middle',fill:'#3D5361'}).textContent='Minutos tras tomar azúcar';
+el('text',{x:24,y:44,'font-size':26,'font-weight':700,fill:'#0E2A3B'}).textContent='pH de la placa';
+function curve(t,depth,rec){if(t<2)return 6.8;var m=6.8-depth;if(t<7)return 6.8-(6.8-m)*(t-2)/5;return m+(6.8-m)*(1-Math.exp(-(t-7)/rec))}
+var A=el('path',{fill:'none',stroke:'#1C6E82','stroke-width':6,'stroke-linecap':'round'});
+var B=el('path',{fill:'none',stroke:'#C2502F','stroke-width':6,'stroke-linecap':'round','stroke-dasharray':'2 12'});
+el('line',{x1:440,y1:40,x2:480,y2:40,stroke:'#1C6E82','stroke-width':6});el('text',{x:490,y:48,'font-size':24,fill:'#0E2A3B'}).textContent='Saliva normal';
+el('line',{x1:440,y1:76,x2:480,y2:76,stroke:'#C2502F','stroke-width':6,'stroke-dasharray':'2 10'});el('text',{x:490,y:84,'font-size':24,fill:'#0E2A3B'}).textContent='Hiposalivación';
+var t0=0;function f(ts){if(!t0)t0=ts;var p=((ts-t0)/8000)%1.25,tm=Math.min(T,T*p);var a='',b='';
+for(var t=0;t<=tm;t+=.5){a+=(t?'L':'M')+x(t).toFixed(1)+' '+y(curve(t,2.2,9)).toFixed(1);b+=(t?'L':'M')+x(t).toFixed(1)+' '+y(curve(t,2.6,30)).toFixed(1)}
+A.setAttribute('d',a);B.setAttribute('d',b);requestAnimationFrame(f)}requestAnimationFrame(f);
+</script></body></html></x-embed>
+<p style="position:absolute;left:960px;top:292px;width:832px;font-size:24px;color:#5B6F7C">Animación: curvas ilustrativas basadas en el patrón de Stephan</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Stephan, 1944; Lingström et al., 2000; Pedersen y Belstrøm, 2019 · 23</p>
+<aside>Robert Stephan describió en 1944 cómo el pH de la placa cae tras un enjuague con glucosa y se recupera lentamente. La animación compara una persona con flujo normal (línea continua) con otra con hiposalivación (línea punteada): la caída es más profunda y la recuperación mucho más lenta, así que el esmalte pasa más tiempo por debajo del pH crítico. La caries es una enfermedad multifactorial dependiente de la dieta y del biofilm; la saliva es el principal factor protector del huésped.</aside>
+</section>
