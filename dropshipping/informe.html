@@ -76,7 +76,7 @@ a{color:var(--accent)}
     <ul>
       <li><strong>Comprar a 1 € y vender a 3 € funciona, pero nunca de uno en uno.</strong> Un pedido suelto de 3 € pierde unos 4 € aunque no gastes nada en anuncios: solo el envío cuesta 3,5–6 €.</li>
       <li><strong>El modelo que sale:</strong> juntar 3–5 piezas de ~1 € en una <em>caja temática</em> de 13–20 € (Kit Freidora, Kit Pelo, Kit Peludo). Deja <strong>+3 a +6 € por pedido</strong> según la caja, con stock importado a ~1,30 € por unidad. Y vender piezas de 1–3 € como complemento ("añade 3 por 5 €") en pedidos que ya pagan su envío.</li>
-      <li><strong>Esto ya no es dropshipping puro.</strong> Para que lo barato dé dinero hay que comprar stock al por mayor y enviarlo desde España. Desde China, cada paquete paga 3 € de arancel por tipo de artículo. Inversión inicial: unos <strong>500–550 €</strong> con 300 unidades, o 630–710 € contando los gastos del primer mes.</li>
+      <li><strong>Esto ya no es dropshipping puro.</strong> Para que lo barato dé dinero hay que comprar stock al por mayor y enviarlo desde España. Desde China, cada paquete paga 3 € de arancel por tipo de artículo. Con tu regla de <strong>comprar solo lo que se vende rápido</strong>, el primer pedido es de unos <strong>150–200 €</strong> (10 cajas de cada uno de los 2 modelos que mejor funcionen en la prueba) y se repone cada semana. El primer mes completo sale por unos 400–460 €.</li>
       <li><strong>Captación:</strong> contenido propio en TikTok e Instagram, más TikTok Shop o Amazon cuando haya tracción. Con anuncios de pago (6–12 € por pedido), ningún modelo barato es rentable.</li>
       <li><strong>Para Navidad:</strong> el barco desde China tarda 30–45 días. Para vender este año hay que comprar a mayoristas en España (polígono Cobo Calleja, en Fuenlabrada) o a almacenes europeos (BigBuy, CJ con stock en la UE). Ahí la unidad sale a 1,60–2 €, así que <strong>este año la caja de 19,90 € deja entre +0,70 y +2,70 €</strong>. El margen bueno llega en 2027, cuando se importe por barco. Los mayoristas de Cobo Calleja suelen pedir alta de autónomo: hay que hacerla esta semana.</li>
     </ul>
@@ -164,9 +164,9 @@ a{color:var(--accent)}
   <h3>Calculadora de stock: cuánto invertir y cuándo se recupera</h3>
   <div class="calc">
     <div>
-      <label class="field" for="stk">Unidades compradas<input id="stk" type="number" step="50" value="300"></label>
+      <label class="field" for="stk">Unidades compradas<input id="stk" type="number" step="50" value="100"></label>
       <label class="field" for="fij">Gastos fijos de arranque (€)<input id="fij" type="number" step="10" value="100"></label>
-      <label class="field" for="embStock">Embalaje comprado (€)<input id="embStock" type="number" step="10" value="30"></label>
+      <label class="field" for="embStock">Embalaje comprado (€)<input id="embStock" type="number" step="5" value="15"></label>
       <p style="font-size:.85rem;color:var(--muted);margin:4px 0 0">Usa el coste por unidad, las unidades por pedido y el beneficio por pedido de la calculadora de arriba.</p>
     </div>
     <div class="out" aria-live="polite">
@@ -206,9 +206,37 @@ a{color:var(--accent)}
       <tr><td><strong>Total del primer mes</strong></td><td class="num"><strong>~630–710 €</strong></td></tr>
     </tbody>
   </table></div>
-  <p>Con 300 unidades salen unos 60 pedidos de 5 piezas. Hay que vender alrededor del 75 % para recuperar la inversión. Lo prudente es empezar con 300, no con 500, y validar antes con muestras y un puesto de mercadillo.</p>
+  <p>Esta tabla supone un primer pedido grande de 300 unidades. Con la regla de la sección siguiente (comprar solo lo que se vende rápido), el primer pedido baja a unos 150–200 €.</p>
 
-  <h2>6. Correcciones a la versión 1 (revisión interna)</h2>
+  <h2>6. Comprar solo lo que se vende rápido</h2>
+  <p>Has decidido no comprar nada que vaya a quedarse en la estantería. Esto cambia el riesgo principal del plan: el stock sin vender. A cambio, cada unidad sale algo más cara, porque los lotes pequeños no tienen precio de volumen. Estas son las reglas.</p>
+  <ol class="steps">
+    <li><strong>Probar sin stock.</strong> Antes de comprar, cada caja se publica con fotos y vídeos hechos con <em>una sola muestra</em>. Los pedidos de prueba se sirven desde un almacén de la UE (CJ o BigBuy), aunque el margen sea menor, o se venden en un mercadillo. Lo que no vende en la prueba no se compra.</li>
+    <li><strong>Primer lote pequeño solo de lo que vendió.</strong> 10 cajas por modelo, y como mucho 2 modelos a la vez. Son unas 100 piezas: unos 180 € a precio de mayorista español.</li>
+    <li><strong>Piezas comodín primero.</strong> Coleteros, pinzas y rodillos sirven para varias cajas y para la promoción de 3 por 5 €. Si una caja no se vende, sus piezas se recolocan en otra.</li>
+    <li><strong>Reponer con un proveedor cercano.</strong> Un mayorista que sirva en 1–3 días permite tener stock para una semana y no para dos meses. La calculadora de abajo dice cuándo y cuánto pedir.</li>
+    <li><strong>Regla de corte.</strong> Si una caja vende menos de 1 al día durante 10 días seguidos, no se repone. Lo que queda se deshace en detalles para el 3 por 5 € o se vende en mercadillo.</li>
+    <li><strong>Indicador semanal:</strong> los días de stock (stock ÷ ventas diarias) tienen que estar por debajo de 14. Si pasan de 21, se para de comprar ese producto.</li>
+  </ol>
+
+  <h3>Calculadora de reposición</h3>
+  <div class="calc">
+    <div>
+      <label class="field" for="r-vd">Cajas vendidas al día (media de 7 días)<input id="r-vd" type="number" step="0.5" value="2"></label>
+      <label class="field" for="r-stock">Cajas en stock ahora<input id="r-stock" type="number" step="1" value="10"></label>
+      <label class="field" for="r-plazo">Días que tarda el proveedor<input id="r-plazo" type="number" step="1" value="2"></label>
+      <label class="field" for="r-seg">Días de colchón<input id="r-seg" type="number" step="1" value="2"></label>
+      <label class="field" for="r-cob">Días que debe cubrir cada pedido<input id="r-cob" type="number" step="1" value="7"></label>
+    </div>
+    <div class="out" aria-live="polite">
+      <div class="row"><span>Días de stock que tienes</span><span id="r-dias"></span></div>
+      <div class="row"><span>Pedir cuando queden</span><span id="r-punto"></span></div>
+      <div class="big" id="r-accion"></div>
+      <small id="r-nota"></small>
+    </div>
+  </div>
+
+  <h2>7. Correcciones a la versión 1 (revisión interna)</h2>
   <div class="scroll"><table>
     <thead><tr><th>Versión 1 decía</th><th>Lo correcto</th></tr></thead>
     <tbody>
@@ -226,18 +254,18 @@ a{color:var(--accent)}
     </tbody>
   </table></div>
 
-  <h2>7. Calendario</h2>
+  <h2>8. Calendario</h2>
   <ol class="steps">
     <li><strong>Esta semana (6–12 nov):</strong> gestor y alta de autónomo. No se puede retrasar: los mayoristas de Cobo Calleja suelen pedirla para venderte. Visita o pedido a mayoristas de Cobo Calleja (Fuenlabrada) y a CJ con stock en la UE para las muestras de las 4 cajas.</li>
-    <li><strong>13–22 nov:</strong> montar Shopify con el prototipo v2, fotos y vídeos de las cajas, fichas con los datos GPSR. Comprar el primer stock (300 unidades) a mayoristas españoles para llegar a Navidad.</li>
+    <li><strong>13–22 nov:</strong> montar Shopify con el prototipo v2, fotos y vídeos de las cajas, fichas con los datos GPSR. Comprar solo el primer lote pequeño (10 cajas de cada uno de los 2 modelos que mejor hayan funcionado en la prueba) a un mayorista español que sirva en 1–3 días.</li>
     <li><strong>23 nov–22 dic:</strong> vender las cajas como <em>regalo por menos de 20 €</em>: amigo invisible, calcetín de Navidad. Publicar a diario en TikTok y Reels y montar un puesto en un mercadillo navideño si es posible. Darse de alta en TikTok Shop para aprovechar el 4 % de comisión.</li>
     <li><strong>Enero 2027:</strong> con los datos de venta, pedir la caja que funcione a 1688 por barco (llega en 30–45 días, más barato) y dejar las que no.</li>
     <li><strong>Febrero–marzo:</strong> Amazon FBA para la caja ganadora y temporada de muda para el Kit Peludo.</li>
   </ol>
 
-  <h2>8. Lo que necesito que me digas</h2>
+  <h2>9. Lo que necesito que me digas</h2>
   <ol class="qs">
-    <li>¿Te parece bien <strong>comprar stock</strong> (unos 630–710 € el primer mes, de los que 500–550 € son stock y embalaje) en lugar de dropshipping puro? Es lo que hace viable vender barato.</li>
+    <li>¿Te parece bien <strong>comprar stock en lotes pequeños</strong> (unos 150–200 € el primer pedido y reposición semanal; unos 400–460 € el primer mes completo) en lugar de dropshipping puro? Es lo que hace viable vender barato.</li>
     <li>¿Tienes un sitio para guardar unas 300 piezas y preparar los pedidos (basta una estantería), o prefieres pagar un almacén logístico?</li>
     <li>¿Cuál de las 4 cajas te gusta más para empezar? Recomendamos Kit Freidora y Kit Pelo Perfecto para Navidad.</li>
     <li>¿Estás dispuesto a grabar vídeos cortos a diario? Sin eso, lo barato no se vende.</li>
@@ -302,5 +330,19 @@ a{color:var(--accent)}
   ["stk","fij","embStock"].forEach(function(id){document.getElementById(id).addEventListener("input",stock)});
   document.querySelectorAll("#presets1 button").forEach(function(btn){btn.addEventListener("click",function(){apply(btn.dataset.p)})});
   apply("caja");
+
+  function repo(){
+    var vd=v("r-vd"),st=v("r-stock"),pl=v("r-plazo"),sg=v("r-seg"),cob=v("r-cob");
+    var punto=Math.ceil(vd*(pl+sg));
+    set("r-dias",vd>0?(st/vd).toFixed(1)+" días":"sin ventas");
+    set("r-punto",punto+" cajas");
+    var a=document.getElementById("r-accion"),n=document.getElementById("r-nota");
+    if(vd<1){a.textContent="No reponer";a.className="big neg";n.textContent="Vende menos de 1 caja al día: aplica la regla de corte.";return}
+    if(st<=punto){var q=Math.max(0,Math.ceil(vd*cob+punto-st));a.textContent="Pide "+q+" cajas hoy";a.className="big pos";n.textContent="Con ese pedido cubres unos "+cob+" días de ventas más el colchón.";}
+    else{var d=Math.floor((st-punto)/vd);a.textContent="Aún no pidas";a.className="big";n.textContent="Te toca pedir en unos "+d+" día"+(d===1?"":"s")+".";}
+    if(vd>0&&st/vd>21)n.textContent+=" Tienes más de 21 días de stock: no compres más de este producto.";
+  }
+  ["r-vd","r-stock","r-plazo","r-seg","r-cob"].forEach(function(id){document.getElementById(id).addEventListener("input",repo)});
+  repo();
 })();
 </script>
