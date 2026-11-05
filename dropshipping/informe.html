@@ -167,7 +167,7 @@ a{color:var(--accent)}
       <label class="field" for="stk">Unidades compradas<input id="stk" type="number" step="50" value="100"></label>
       <label class="field" for="fij">Gastos fijos de arranque (€)<input id="fij" type="number" step="10" value="100"></label>
       <label class="field" for="embStock">Embalaje comprado (€)<input id="embStock" type="number" step="5" value="15"></label>
-      <p style="font-size:.85rem;color:var(--muted);margin:4px 0 0">Usa el coste por unidad, las unidades por pedido y el beneficio por pedido de la calculadora de arriba.</p>
+      <p style="font-size:.85rem;color:var(--muted);margin:4px 0 0">Usa el coste por unidad, las unidades por pedido y el beneficio por pedido de la calculadora de arriba. Con lotes pequeños, los gastos fijos no se recuperan con el primer lote, sino con las reposiciones.</p>
     </div>
     <div class="out" aria-live="polite">
       <div class="row"><span>Inversión total</span><span id="s-inv"></span></div>
@@ -235,6 +235,41 @@ a{color:var(--accent)}
       <small id="r-nota"></small>
     </div>
   </div>
+
+  <h3>Qué piezas se mueven más rápido ahora</h3>
+  <p>Ordenadas por la fuerza de la señal de venta. La conclusión: <strong>empezar solo con Kit Pelo Perfecto y Kit Freidora</strong>. Kit Peludo entra en la prueba sin stock y la Caja Orden queda solo como detalles sueltos.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Pieza</th><th>Señal de venta</th><th>Fuerza</th><th>Decisión</th></tr></thead>
+    <tbody>
+      <tr><td>Rizador sin calor de satén</td><td>Tendencia de crecimiento rápido en TikTok e Instagram en 2025–26, con ventas altas y estables en Amazon. Un set de referencia tiene 2.043 reseñas con 4,8. Encaja con amigo invisible</td><td><span class="pill p-good">Media-alta</span></td><td>Primer lote</td></tr>
+      <tr><td>Moldes y papel para freidora</td><td>Decenas de listados en ManoMano y recomendaciones en prensa (8,98 €). Las freidoras en oferta de Black Friday arrastran accesorios (est.)</td><td><span class="pill p-good">Media-alta</span></td><td>Primer lote</td></tr>
+      <tr><td>Pinzas de garra y coleteros</td><td>Demanda estable de reposición, ya no viral</td><td><span class="pill p-warn">Media</span></td><td>Comodín: va en el Kit Pelo y en el 3 por 5 €</td></tr>
+      <tr><td>Alfombra de lamer</td><td>Unas 7.100 búsquedas por semana en EE. UU. (marzo 2026). Un modelo de referencia tiene 17.200 reseñas, pero está en el puesto 315 de su categoría</td><td><span class="pill p-warn">Media</span></td><td>Prueba sin stock</td></tr>
+      <tr><td>Rodillo quitapelos y varita de plumas</td><td>Sin rankings públicos encontrados</td><td><span class="pill p-warn">Baja-media</span></td><td>Prueba sin stock</td></tr>
+      <tr><td>Piezas de la Caja Orden</td><td>Sin señal de tendencia</td><td><span class="pill p-bad">Baja</span></td><td>No comprar como caja</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.9rem;color:var(--muted)">No hay rankings públicos de Amazon.es de estas piezas. Antes de cada compra conviene mirar a mano los "más vendidos" de Amazon.es y el TikTok Creative Center.</p>
+
+  <h3>Proveedores para probar y reponer</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Proveedor</th><th>Pedido mínimo</th><th>Plazo</th><th>Para qué</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AliExpress Choice (almacén en España)</strong></td><td>Ninguno, a precio de minorista</td><td>1–3 días en ciudades grandes (dato de 2023)</td><td><span class="pill p-good">Probar</span> Lotes de 5–20 unidades. Pinza ~0,50–1 €, alfombra de lamer ~1,50–3 € (est.)</td></tr>
+      <tr><td><strong>CJdropshipping (almacén UE)</strong></td><td>Ninguno en dropshipping</td><td>5–10 días laborables (Alemania, Francia, Polonia)</td><td><span class="pill p-good">Probar sin stock</span> Hay que anunciar ese plazo en la ficha</td></tr>
+      <tr><td><strong>Cobo Calleja (Fuenlabrada)</strong></td><td>Por caja o docena en muchas naves; algunas venden desde 1 unidad</td><td>Inmediato</td><td><span class="pill p-good">Reponer</span> Lo más barato por unidad: pinza 0,30–0,80 €, ganchos 0,10–0,30 € (est.). Muchas naves piden alta de autónomo. Casi no venden online</td></tr>
+      <tr><td>Dropea (app de Shopify)</td><td>Sin stock</td><td>24–48 h</td><td><span class="pill p-warn">Alternativa</span> Producto ya en España, pensado para contra reembolso</td></tr>
+      <tr><td>BigBuy</td><td>Sin mínimo, pero 69–99 €/mes</td><td>24–72 h</td><td><span class="pill p-bad">No por ahora</span> No aparecieron rizador, alfombra de lamer ni pinzas de bolsa en su catálogo</td></tr>
+      <tr><td>Ankorstore</td><td>100 € el primer pedido</td><td>48–72 h</td><td><span class="pill p-warn">Más adelante</span> Marcas pequeñas europeas, más caras</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Cómo validar sin comprar</h3>
+  <ul>
+    <li><strong>Lista de espera "Avísame"</strong> en cada caja: mide el interés sin cobrar. Hace falta consentimiento claro para escribir después (RGPD y LSSI).</li>
+    <li><strong>Preventa:</strong> está permitida si la fecha de envío se muestra antes del pago y se cumple. Sin fecha pactada, el máximo es de 30 días. Si no llega a tiempo, el cliente puede cancelar.</li>
+    <li><strong>Mercadillo navideño:</strong> los ayuntamientos suelen pedir alta de autónomo, estar al corriente con Hacienda y la Seguridad Social y una memoria de productos. Las bases cambian en cada municipio.</li>
+  </ul>
+  <p><strong>Plan con tu regla:</strong> en las semanas 1–2, publicar las 4 cajas y comprar solo 5–10 unidades de cada pieza en AliExpress Choice o CJ (150–250 €). Antes del Black Friday (27 de noviembre), reponer en Cobo Calleja solo las 2 cajas que más hayan vendido, en lotes de 20–30.</p>
 
   <h2>7. Correcciones a la versión 1 (revisión interna)</h2>
   <div class="scroll"><table>
@@ -320,7 +355,7 @@ a{color:var(--accent)}
     var ped=Math.floor(stk/last.uds);
     var cash=last.ben+last.uds*last.cu+last.emb;
     set("s-inv",e(inv));set("s-ped",ped+" pedidos");
-    set("s-rec",cash>0?Math.ceil(inv/cash)+" pedidos ("+(ped?Math.round(Math.ceil(inv/cash)/ped*100):0)+" % del stock)":"nunca");
+    var need=cash>0?Math.ceil(inv/cash):0;set("s-rec",cash<=0?"nunca":(need>ped?need+" pedidos: hace falta reponer al menos una vez":need+" pedidos ("+Math.round(need/ped*100)+" % del stock)"));
     var tot=ped*cash-inv;
     var b=document.getElementById("s-ben");b.textContent=(tot>=0?"+":"")+e(tot);b.className="big "+(tot>=0?"pos":"neg");
   }
@@ -339,7 +374,7 @@ a{color:var(--accent)}
     var a=document.getElementById("r-accion"),n=document.getElementById("r-nota");
     if(vd<1){a.textContent="No reponer";a.className="big neg";n.textContent="Vende menos de 1 caja al día: aplica la regla de corte.";return}
     if(st<=punto){var q=Math.max(0,Math.ceil(vd*cob+punto-st));a.textContent="Pide "+q+" cajas hoy";a.className="big pos";n.textContent="Con ese pedido cubres unos "+cob+" días de ventas más el colchón.";}
-    else{var d=Math.floor((st-punto)/vd);a.textContent="Aún no pidas";a.className="big";n.textContent="Te toca pedir en unos "+d+" día"+(d===1?"":"s")+".";}
+    else{var d=Math.floor((st-punto)/vd);a.textContent="Aún no pidas";a.className="big";n.textContent=d<=1?"Te toca pedir mañana.":"Te toca pedir en unos "+d+" días.";}
     if(vd>0&&st/vd>21)n.textContent+=" Tienes más de 21 días de stock: no compres más de este producto.";
   }
   ["r-vd","r-stock","r-plazo","r-seg","r-cob"].forEach(function(id){document.getElementById(id).addEventListener("input",repo)});
