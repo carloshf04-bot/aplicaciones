@@ -75,6 +75,7 @@ section.blk .in{padding-block:56px}
 .card p{margin:0;color:var(--muted);font-size:.9rem}
 .card .meta{font-size:.76rem;color:var(--muted)}
 .card .price{justify-content:space-between}
+.card select,.pack select{width:100%}
 .card .price b{font-size:1.25rem}
 .chip{font-size:.72rem;font-weight:800;color:var(--moss);text-transform:uppercase;letter-spacing:.06em}
 .pending{background:var(--gold);color:#262019;padding:0 4px;border-radius:4px;font-weight:700}
@@ -124,19 +125,19 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
-<div class="promo g">Envío gratis desde 29 € · Entrega en 3–8 días laborables con seguimiento · Pide antes del 12 de diciembre para Navidad</div>
+<div class="promo g">Envío gratis desde 29 € · Entrega en 3–8 días laborables en total, con seguimiento · Pide antes del 9 de diciembre para Navidad</div>
 
 <header class="g"><div class="in">
   <div class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 18 Q16 30 28 18" fill="var(--brand)"/><path d="M3 17 Q16 24 29 17" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="13" r="4" fill="var(--gold)"/><circle cx="20" cy="13" r="4" fill="var(--oat)" stroke="var(--ink)" stroke-width="1.5"/></svg>Nido</div>
   <nav><a href="#packs">Packs</a><a href="#todo">Todo</a><a href="#ayuda">Envíos y ayuda</a></nav>
-  <button class="cartbtn" id="openCart" type="button">Carrito <span class="n" id="count">0</span></button>
+  <button class="cartbtn" id="openCart" type="button" aria-expanded="false" aria-controls="cart">Carrito <span class="n" id="count">0</span></button>
 </div></header>
 
 <section class="hero g"><div class="in">
   <div>
     <div class="kicker">Para el sofá, contigo y con tu mascota</div>
     <h1>Este invierno, <em>nadie se levanta</em> del sofá.</h1>
-    <p>La sudadera-manta de sherpa que abriga como un edredón y se lleva como una sudadera. Talla única, con capucha y bolsillo delantero.</p>
+    <p>La sudadera-manta de sherpa que abriga como un edredón y se lleva como una sudadera. Con capucha y bolsillo delantero.</p>
     <button class="cta" type="button" data-add="manta">Añadir la batamanta · 34,99 €</button><a class="ghost" href="#packs">Ver packs</a>
   </div>
   <div class="art" role="img" aria-label="Ilustración de una sudadera-manta">
@@ -146,8 +147,8 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
       <rect x="78" y="125" width="44" height="26" rx="8" fill="none" stroke="var(--ink)" stroke-width="3"/>
       <g fill="var(--bg)" opacity=".5"><circle cx="72" cy="110" r="2"/><circle cx="128" cy="110" r="2"/><circle cx="90" cy="165" r="2"/><circle cx="114" cy="163" r="2"/></g>
     </svg>
-    <div class="tag" style="top:7%;left:6%">Talla única<small>de la S a la XXL</small></div>
-    <div class="tag" style="bottom:7%;right:6%">Sherpa por dentro<small>lavable a 30 °C</small></div>
+    <div class="tag" style="top:7%;left:6%">Talla única<small>medidas en la ficha</small></div>
+    <div class="tag" style="bottom:7%;right:6%">Sherpa por dentro<small>con capucha</small></div>
   </div>
 </div></section>
 
@@ -155,7 +156,7 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><b>3–8 días laborables</b>península y Baleares</span></div>
   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg><span><b>14 días</b>para desistir</span></div>
   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg><span><b>Garantía de 3 años</b>la legal en España</span></div>
-  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><span><b>Pago seguro</b>tarjeta y otros métodos</span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v10H3z"/><path d="M3 7l9 6 9-6"/></svg><span><b>Envío gratis</b>desde 29 €</span></div>
 </div></div>
 
 <section class="blk g" id="packs"><div class="in">
@@ -172,17 +173,17 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
   <div class="head"><h2>Cómo llega tu pedido</h2></div>
   <ol class="steps">
     <li><b>Haces el pedido</b><span>Recibes un email de confirmación con el resumen y la factura.</span></li>
-    <li><b>Sale del almacén en 1–3 días</b><span>Desde nuestros almacenes en España o en la Unión Europea. Te enviamos el número de seguimiento.</span></li>
-    <li><b>Lo recibes en 3–8 días laborables</b><span>En casa o en un punto de recogida. Si un pedido lleva productos de dos almacenes, puede llegar en dos paquetes.</span></li>
+    <li><b>Sale del almacén</b><span>Desde nuestros almacenes en España o en la Unión Europea. Te enviamos el número de seguimiento.</span></li>
+    <li><b>Lo recibes en 3–8 días laborables en total</b><span>Contados desde el pedido. En casa o en un punto de recogida. Si un pedido lleva productos de dos almacenes, puede llegar en dos paquetes.</span></li>
   </ol>
 </div></section>
 
 <section class="blk g" id="ayuda" style="background:var(--surface)"><div class="in" style="max-width:780px">
   <div class="head"><h2>Preguntas frecuentes</h2></div>
-  <details open><summary>¿Cuánto tarda en llegar?</summary><p>Entre 3 y 8 días laborables a península y Baleares. Cada ficha indica su plazo. De momento no enviamos a Canarias, Ceuta ni Melilla.</p></details>
+  <details open><summary>¿Cuánto tarda en llegar?</summary><p>Entre 3 y 8 días laborables en total, desde que haces el pedido, a península y Baleares. Cada ficha indica su plazo. Para Navidad, pide antes del 9 de diciembre. De momento no enviamos a Canarias, Ceuta ni Melilla.</p></details>
   <details><summary>¿Puedo devolver un pedido?</summary><p>Tienes 14 días naturales desde la entrega para desistir. Te devolvemos el importe, incluido el envío inicial estándar. El envío de vuelta a nuestra dirección en España corre de tu cuenta, salvo que el producto llegue defectuoso. Por higiene, los rulos y los coleteros solo se aceptan precintados.</p></details>
   <details><summary>¿Cómo elijo la talla del arnés?</summary><p>Mide el contorno del pecho detrás de las patas delanteras y compáralo con la tabla de la ficha. Si queda entre dos tallas, elige la mayor.</p></details>
-  <details><summary>¿Quién fabrica los productos?</summary><p>Cada ficha indica el fabricante, la persona responsable en la Unión Europea, la composición textil y las advertencias de uso en castellano.</p></details>
+  <details><summary>¿Quién fabrica los productos?</summary><p>Cada ficha indica el fabricante, la persona responsable en la Unión Europea, la composición textil (en los productos textiles) y las advertencias de uso en castellano.</p></details>
 </div></section>
 
 <footer class="g"><div class="in">
@@ -207,8 +208,8 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
 </div></div>
 
 <div class="scrim" id="scrim" hidden></div>
-<aside class="cart" id="cart" hidden aria-label="Carrito" role="dialog" aria-modal="true">
-  <div class="top"><h3 style="font-size:1.4rem">Tu carrito</h3><button class="x" id="closeCart" type="button" aria-label="Cerrar carrito">×</button></div>
+<aside class="cart" id="cart" hidden aria-labelledby="cartTitle" role="dialog" aria-modal="true">
+  <div class="top"><h3 id="cartTitle" style="font-size:1.4rem">Tu carrito</h3><button class="x" id="closeCart" type="button" aria-label="Cerrar carrito">×</button></div>
   <div class="ship" id="ship"></div>
   <div class="items" id="items"></div>
   <div class="tot" id="tot"></div>
@@ -228,14 +229,17 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
   };
   var bg={manta:"var(--oat)",cama:"var(--moss-soft)",hamaca:"var(--sky)",rulos:"var(--oat)",arnes:"var(--moss-soft)",pinzas:"var(--oat)",mantam:"var(--sky)"};
   var P={
-    manta:{n:"Batamanta de sherpa",d:"Sudadera-manta con capucha y bolsillo. Talla única.",p:34.99,c:"Para ti",a:"manta",t:"3–6 días"},
-    cama:{n:"Cama calmante Donut",d:"Borde alto y pelo largo para que se acurruque. 50 o 60 cm.",p:34.99,c:"Perros y gatos",a:"cama",t:"3–6 días"},
-    hamaca:{n:"Hamaca de ventana para gato",d:"Se sujeta con 4 ventosas al cristal. Soporta hasta 15 kg.",p:27.99,c:"Gatos",a:"hamaca",t:"4–8 días"},
-    rulos:{n:"Rulos sin calor de satén",d:"Rizos mientras duermes, sin plancha. Incluye 2 coleteros.",p:19.99,c:"Para ti",a:"rulos",t:"3–6 días"},
-    arnes:{n:"Arnés antitirones",d:"Anilla delantera y bandas reflectantes. Con tabla de tallas.",p:24.99,c:"Perros",a:"arnes",t:"3–6 días"},
-    packinv:{n:"Pack Invierno del peludo",p:44.99,a:"cama",pack:1,inc:["Cama calmante Donut","Manta para mascota a juego"],pill:"Regalo de Navidad"},
-    packpelo:{n:"Pack Pelo sin calor",p:29.99,a:"rulos",pack:1,inc:["Rulos sin calor de satén con 2 coleteros","4 pinzas de garra grandes"],pill:"Amigo invisible"}
+    manta:{n:"Batamanta de sherpa",d:"Sudadera-manta con capucha y bolsillo. Talla única.",p:34.99,c:"Para ti",a:"manta",t:"3–6 días",tex:1},
+    cama:{n:"Cama calmante Donut",d:"Borde alto y pelo largo para que se acurruque.",p:34.99,c:"Perros y gatos",a:"cama",t:"3–6 días",tex:1,v:["50 cm","60 cm"],vl:"tamaño"},
+    hamaca:{n:"Hamaca de ventana para gato",d:"Se sujeta al cristal con ventosas. Peso máximo: <span class=\"pending\">[según ficha del fabricante]</span>.",p:27.99,c:"Gatos",a:"hamaca",t:"4–8 días"},
+    rulos:{n:"Rulos sin calor de satén",d:"Rizos mientras duermes, sin plancha. Incluye 2 coleteros. Por higiene, solo se aceptan devoluciones con el precinto intacto.",p:19.99,c:"Para ti",a:"rulos",t:"3–6 días",hyg:1},
+    arnes:{n:"Arnés antitirones",d:"Anilla delantera y bandas reflectantes. Mide el pecho y consulta la tabla de tallas.",p:24.99,c:"Perros",a:"arnes",t:"3–6 días",tex:1,v:["S","M","L","XL"],vl:"talla"},
+    packinv:{n:"Pack Invierno del peludo",p:44.99,a:"cama",pack:1,inc:["Cama calmante Donut","Manta para mascota a juego"],pill:"Regalo de Navidad",v:["50 cm","60 cm"],vl:"tamaño de la cama"},
+    packpelo:{n:"Pack Pelo sin calor",p:29.99,a:"rulos",pack:1,inc:["Rulos sin calor de satén con 2 coleteros","4 pinzas de garra grandes","Por higiene, solo se aceptan devoluciones con el precinto intacto"],pill:"Amigo invisible",hyg:1}
   };
+  function base(k){return k.split('|')[0]}
+  function vname(k){var b=base(k),vv=k.split('|')[1];return P[b].n+(vv?' · '+vv:'')}
+  function sel(k){var p=P[k];if(!p.v)return '';return '<label style="font-size:.85rem;font-weight:700" for="v-'+k+'">Elige '+p.vl+'</label><select id="v-'+k+'" style="padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit"><option value="">—</option>'+p.v.map(function(o){return '<option>'+o+'</option>'}).join('')+'</select>'}
   var FREE=29,SHIP=3.95;
   var cart={};
   try{cart=JSON.parse(localStorage.getItem("nido_cart")||"{}")||{}}catch(e){cart={}}
@@ -243,27 +247,29 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
   function eur(n){return n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"}
   function el(id){return document.getElementById(id)}
 
-  el("packGrid").innerHTML=["packinv","packpelo"].map(function(k){var p=P[k];return '<div class="pack"><span class="pill">'+p.pill+'</span><h3>'+p.n+'</h3><ul>'+p.inc.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul><div class="price"><b>'+eur(p.p)+'</b><small>IVA incluido · envío gratis</small></div><button class="add" type="button" data-add="'+k+'">Añadir pack</button></div>'}).join('');
-  el("prodGrid").innerHTML=["manta","cama","hamaca","rulos","arnes"].map(function(id){var p=P[id];return '<div class="card"><div class="img" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div class="body"><span class="chip">'+p.c+'</span><h3>'+p.n+'</h3><p>'+p.d+'</p><span class="meta">Llega en '+p.t+' laborables · Fabricante y responsable en la UE: <span class="pending">[pendiente]</span></span><div class="price"><b>'+eur(p.p)+'</b><button class="add" type="button" data-add="'+id+'">Añadir</button></div></div></div>'}).join('');
+  el("packGrid").innerHTML=["packinv","packpelo"].map(function(k){var p=P[k];return '<div class="pack"><span class="pill">'+p.pill+'</span><h3>'+p.n+'</h3><ul>'+p.inc.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul>'+sel(k)+'<div class="price"><b>'+eur(p.p)+'</b><small>IVA incluido · envío gratis</small></div><button class="add" type="button" data-add="'+k+'">Añadir pack</button></div>'}).join('');
+  el("prodGrid").innerHTML=["manta","cama","hamaca","rulos","arnes"].map(function(id){var p=P[id];return '<div class="card"><div class="img" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div class="body"><span class="chip">'+p.c+'</span><h3>'+p.n+'</h3><p>'+p.d+'</p><span class="meta">Llega en '+p.t+' laborables · '+(p.tex?'Composición: <span class="pending">[pendiente]</span> · ':'')+'Fabricante y responsable en la UE: <span class="pending">[pendiente]</span></span>'+sel(id)+'<div class="price"><b>'+eur(p.p)+'</b><button class="add" type="button" data-add="'+id+'">Añadir</button></div></div></div>'}).join('');
 
   function render(){
-    var ids=Object.keys(cart).filter(function(k){return cart[k]>0&&P[k]});
-    var n=0,sub=0;ids.forEach(function(k){n+=cart[k];sub+=cart[k]*P[k].p});
+    var ids=Object.keys(cart).filter(function(k){return cart[k]>0&&P[base(k)]});
+    var n=0,sub=0;ids.forEach(function(k){n+=cart[k];sub+=cart[k]*P[base(k)].p});
     el("count").textContent=n;
     var left=Math.max(0,FREE-sub);
     el("ship").innerHTML=(left>0?'Te faltan <b>'+eur(left)+'</b> para el envío gratis.':'<b>Tienes envío gratis.</b>')+'<div class="bar"><i style="width:'+Math.min(100,sub/FREE*100)+'%"></i></div>';
-    el("items").innerHTML=ids.length?ids.map(function(k){var p=P[k];return '<div class="item"><div class="th" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div><b style="font-size:.92rem">'+p.n+'</b><div class="qty"><button type="button" data-dec="'+k+'" aria-label="Quitar uno">−</button><span>'+cart[k]+'</span><button type="button" data-add="'+k+'" data-silent="1" aria-label="Añadir uno">+</button></div></div><b>'+eur(p.p*cart[k])+'</b></div>'}).join(''):'<div class="empty">Tu carrito está vacío.<br>Empieza por la batamanta o por un pack.</div>';
+    el("items").innerHTML=ids.length?ids.map(function(k){var p=P[base(k)];return '<div class="item"><div class="th" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div><b style="font-size:.92rem">'+vname(k)+'</b><div class="qty"><button type="button" data-dec="'+k+'" aria-label="Quitar uno de '+vname(k)+'">−</button><span>'+cart[k]+'</span><button type="button" data-add="'+k+'" data-silent="1" aria-label="Añadir uno de '+vname(k)+'">+</button></div>'+(p.hyg?'<small style="color:var(--muted)">Devolución solo con precinto intacto</small>':'')+'</div><b>'+eur(p.p*cart[k])+'</b></div>'}).join(''):'<div class="empty">Tu carrito está vacío.<br>Empieza por la batamanta o por un pack.</div>';
     var envio=sub===0||sub>=FREE?0:SHIP;
     el("tot").innerHTML=ids.length?'<div class="row"><span>Subtotal</span><span>'+eur(sub)+'</span></div><div class="row"><span>Envío</span><span>'+(envio?eur(envio):'Gratis')+'</span></div><div class="row big"><span>Total</span><span>'+eur(sub+envio)+'</span></div><small style="color:var(--muted)">IVA incluido · península y Baleares · puede llegar en varios paquetes</small><button class="cta checkout" id="pay" type="button">Finalizar compra</button><div class="msg" id="paymsg" hidden>Esto es un prototipo: el pago real se conecta al pasar la tienda a Shopify.</div>':'';
     var pay=el("pay");if(pay)pay.onclick=function(){el("paymsg").hidden=false};
   }
   var lastFocus;
-  function open(){lastFocus=document.activeElement;el("cart").hidden=false;el("scrim").hidden=false;el("closeCart").focus()}
-  function close(){el("cart").hidden=true;el("scrim").hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+  function open(){lastFocus=document.activeElement;el("cart").hidden=false;el("scrim").hidden=false;el("openCart").setAttribute("aria-expanded","true");el("closeCart").focus()}
+  function close(){el("cart").hidden=true;el("scrim").hidden=true;el("openCart").setAttribute("aria-expanded","false");if(lastFocus&&lastFocus.focus)lastFocus.focus()}
   var tt;function toast(t){var x=el("toast");x.textContent=t;x.hidden=false;clearTimeout(tt);tt=setTimeout(function(){x.hidden=true},2000)}
   document.addEventListener("click",function(e){
     var a=e.target.closest("[data-add]"),d=e.target.closest("[data-dec]");
-    if(a){var k=a.dataset.add;cart[k]=(cart[k]||0)+1;save();render();if(!a.dataset.silent){toast("Añadido: "+P[k].n);open()}}
+    if(a){var k=a.dataset.add;
+      if(!a.dataset.silent&&P[k]&&P[k].v){var s=el("v-"+k);if(!s.value){toast("Elige "+P[k].vl+" antes de añadir");s.focus();return}k=k+"|"+s.value}
+      cart[k]=(cart[k]||0)+1;save();render();if(!a.dataset.silent){toast("Añadido: "+vname(k));open()}}
     if(d){var k2=d.dataset.dec;cart[k2]=Math.max(0,(cart[k2]||0)-1);var gone=!cart[k2];if(gone)delete cart[k2];save();render();if(gone)el("closeCart").focus()}
     var ck=e.target.closest("[data-ck]");if(ck){el("cookies").hidden=true;try{localStorage.setItem("nido_ck",ck.dataset.ck)}catch(err){}}
   });
@@ -271,7 +277,7 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
   document.addEventListener("keydown",function(e){
     if(el("cart").hidden)return;
     if(e.key==="Escape")close();
-    if(e.key==="Tab"){var f=el("cart").querySelectorAll("button");if(!f.length)return;var first=f[0],last=f[f.length-1];
+    if(e.key==="Tab"){var f=el("cart").querySelectorAll("button,a[href],select,input");if(!f.length)return;var first=f[0],last=f[f.length-1];
       if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
   });
   try{if(localStorage.getItem("nido_ck"))el("cookies").hidden=true}catch(e){}
