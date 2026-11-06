@@ -1,0 +1,36 @@
+<section id="s4-enzimas" data-transition="fade" style="background:radial-gradient(circle at 88% 12%, #FFC9B8 0%, #FFF4E0 55%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">04 · Componentes orgánicos</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Enzimas salivales: amilasa y lipasa</h2>
+<div style="position:absolute;left:142px;top:334px;width:1000px;height:600px;background:#FFC93C;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:128px;top:320px;width:1000px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="1000" height="600" viewBox="0 0 1000 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:1000,height:600,rx:24,fill:'#1B1035'});
+tx(30,52,28,'#F4F8F7','La α-amilasa corta los enlaces α-1,4 del almidón',{'font-weight':800});
+var cap=tx(30,92,24,'#BFD8DE','');
+function hex(g){var d='';for(var i=0;i<6;i++){var a=i/6*6.283+.52;d+=(i?'L':'M')+(22*Math.cos(a)).toFixed(1)+' '+(22*Math.sin(a)).toFixed(1)}el('path',{d:d+'Z',fill:'#F2C14E',stroke:'#0E2A3B','stroke-width':3},g)}
+var G=[],n=18;for(var i=0;i<n;i++){var g=el('g',{});hex(g);G.push({g:g,x:70+i*48,y:230,vy:0,cut:0})}
+var bonds=[];for(i=0;i<n-1;i++)bonds.push(el('line',{stroke:'#F2C14E','stroke-width':5}));
+var pac=el('path',{fill:'#E4785C'});var eye=el('circle',{r:5,fill:'#0E2A3B'});
+var mlab=[];tx(30,575,26,'#9FD3DE','Productos: maltosa, maltotriosa y dextrinas',{'font-weight':700});
+var st=0;function F(ts){if(!st)st=ts;var t=(ts-st)/1000;if(t>11){st=ts;t=0;G.forEach(function(q,i){q.x=70+i*48;q.y=230;q.vy=0;q.cut=0})}
+var px=20+t*95,mo=.35*Math.abs(Math.sin(t*10));
+pac.setAttribute('d','M0 0 L'+(38*Math.cos(mo)).toFixed(1)+' '+(-38*Math.sin(mo)).toFixed(1)+' A38 38 0 1 0 '+(38*Math.cos(mo)).toFixed(1)+' '+(38*Math.sin(mo)).toFixed(1)+' Z');
+pac.setAttribute('transform','translate('+px.toFixed(1)+' 300)');eye.setAttribute('cx',px+6);eye.setAttribute('cy',280);
+G.forEach(function(q,i){if(i%2==1&&!q.cut&&px>q.x+24){q.cut=1}});
+var grp=0;G.forEach(function(q,i){var pairCut=G[i-(i%2)+1]&&G[i-(i%2)+1].cut;if(pairCut){q.vy+=.15;q.y=Math.min(470,q.y+q.vy)}q.g.setAttribute('transform','translate('+q.x+' '+q.y.toFixed(1)+')')});
+bonds.forEach(function(b,i){var a=G[i],c=G[i+1];var broken=(i%2==1)&&a.cut;b.setAttribute('x1',a.x);b.setAttribute('y1',a.y);b.setAttribute('x2',c.x);b.setAttribute('y2',c.y);b.setAttribute('opacity',broken?0:1)});
+cap.textContent=t<1.5?'Cadena de glucosas (almidón)':'Cada corte libera maltosa (2 glucosas)';
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="left 1" style="position:absolute;left:1168px;top:320px;width:624px;height:290px;display:flex;gap:20px;align-items:center;background:#FCFDFD;border-radius:16px;padding:20px 24px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C"><img src="/_blob/f65bcdb8d56e474b546da2dc54ffa15b" alt="Estructura tridimensional de la alfa-amilasa salival humana en cintas" style="width:180px;height:244px;object-fit:contain"><div style="flex:1;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:800;color:#0E2A3B">α-amilasa</h3><p style="font-size:24px;line-height:1.4">La enzima más abundante; sobre todo de la parótida. pH óptimo ≈7; activada por Cl⁻.</p></div></div>
+<div data-build-in="left 2" style="position:absolute;left:1168px;top:630px;width:624px;height:290px;display:flex;flex-direction:column;gap:10px;background:#FCFDFD;border-radius:16px;padding:24px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #D9A520"><h3 style="font-size:32px;font-weight:800;color:#0E2A3B">Lipasa lingual</h3><ul style="font-size:24px;line-height:1.45"><li>Glándulas de von Ebner</li><li>Triglicéridos → ácidos grasos; pH óptimo ácido</li><li>Papel menor en adultos; mayor en lactantes</li></ul></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Pedersen et al., 2018; Hamosh, 1990 · Estructura: PDB 1SMD, dominio público · 14</p>
+<aside>La imagen de la tarjeta es la estructura real de la amilasa salival humana, obtenida por cristalografía (PDB 1SMD). La amilasa (en coral) recorre la cadena de almidón y corta enlaces alfa-1,4; las parejas de glucosas que caen representan la maltosa. Dato contrastado: en adultos la lipasa lingual tiene poca actividad; buena parte de la lipólisis gástrica se debe a la lipasa gástrica, por eso decimos que su papel es menor en adultos y más relevante en recién nacidos. La amilasa también se une a estreptococos y forma parte de la película adquirida.</aside>
+</section>

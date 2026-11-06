@@ -1,0 +1,48 @@
+<section id="s5-urea" data-transition="fade" style="background:radial-gradient(circle at 88% 12%, #FFC9B8 0%, #FFF4E0 55%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">05 · Otras moléculas</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Urea y ácido úrico</h2>
+<div style="position:absolute;left:142px;top:334px;width:808px;height:400px;background:#FF6B4A;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:128px;top:320px;width:808px;height:400px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="808" height="400" viewBox="0 0 808 400"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:808,height:400,rx:24,fill:'#1B1035'});
+tx(30,52,28,'#F4F8F7','Urea → 2 NH₃ + CO₂ (ureasa bacteriana)',{'font-weight':800});
+var bac=el('g',{transform:'translate(330 210)'});el('rect',{x:-70,y:-36,width:140,height:72,rx:36,fill:'#7A5BA6'},bac);var bl=el('text',{x:0,y:9,'font-size':24,'font-weight':800,fill:'#F4F8F7','text-anchor':'middle'},bac);bl.textContent='ureasa';
+el('rect',{x:700,y:90,width:50,height:270,rx:25,fill:'#2A1B5C'});var bar=el('rect',{x:706,width:38,rx:19});var phl=tx(620,385,26,'#F4F8F7','',{'font-weight':800});
+var M=[];function chip(s,c,x,y){var g=el('g',{});el('rect',{x:-40,y:-20,width:80,height:40,rx:20,fill:c},g);var t=el('text',{x:0,y:8,'font-size':24,'font-weight':800,fill:'#0E2A3B','text-anchor':'middle'},g);t.textContent=s;return{g:g,x:x,y:y}}
+var last=0,ph=5.4;function F(ts){var t=ts/1000;
+if(t-last>1.2){last=t;var u=chip('Urea','#F2C14E',40,120+Math.random()*180);u.k='u';M.push(u)}
+for(var i=M.length-1;i>=0;i--){var m=M[i];if(m.k=='u'){m.x+=3;m.y+=(210-m.y)*.04;if(m.x>250){m.g.remove();M.splice(i,1);var a=chip('NH₃','#9FD3DE',400,190);a.k='n';a.vy=-1.2;M.push(a);var b=chip('NH₃','#9FD3DE',400,230);b.k='n';b.vy=1.2;M.push(b);var c=chip('CO₂','#F4F8F7',400,210);c.k='c';c.vy=0;M.push(c);ph=Math.min(7.4,ph+.12);continue}}
+else{m.x+=2.2;m.y+=m.vy||(-.6);if(m.x>660){m.g.remove();M.splice(i,1);continue}}
+m.g.setAttribute('transform','translate('+m.x.toFixed(1)+' '+m.y.toFixed(1)+')')}
+var cc=(t%10)/10;ph=5.4+1.9*Math.min(1,cc*1.4);var h=(ph-4)/4*260;bar.setAttribute('y',(355-h).toFixed(1));bar.setAttribute('height',h.toFixed(1));bar.setAttribute('fill',ph<5.5?'#E4785C':'#2A9DB5');phl.textContent='pH '+ph.toFixed(1).replace('.',',');
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div style="position:absolute;left:998px;top:334px;width:808px;height:400px;background:#2EC4B6;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:984px;top:320px;width:808px;height:400px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="808" height="400" viewBox="0 0 808 400"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:808,height:400,rx:24,fill:'#FFF4E0'});
+tx(30,52,28,'#0E2A3B','El ácido úrico neutraliza radicales libres',{'font-weight':800});
+for(var i=0;i<10;i++)el('rect',{x:i*82,y:330,width:78,height:70,rx:16,fill:'#F2A58F'});
+tx(30,385,24,'#0E2A3B','Mucosa oral',{'font-weight':800});
+var U=[];for(i=0;i<5;i++){var g=el('g',{});el('circle',{r:26,fill:'#D9A520'},g);var l=el('text',{x:0,y:8,'font-size':24,'font-weight':800,fill:'#0E2A3B','text-anchor':'middle'},g);l.textContent='AU';U.push({g:g,x:120+i*140,y:240,ph:i})}
+var R=[];function star(){var g=el('g',{});var d='';for(var k=0;k<10;k++){var a=k/10*6.283,r=k%2?8:20;d+=(k?'L':'M')+(r*Math.cos(a)).toFixed(1)+' '+(r*Math.sin(a)).toFixed(1)}el('path',{d:d+'Z',fill:'#C2502F'},g);return{g:g,x:60+Math.random()*690,y:90,v:1.5+Math.random(),dead:0}}
+var cnt=0,c=tx(520,100,24,'#5B6F7C','');var last=0;function F(ts){var t=ts/1000;if(t-last>.8){last=t;R.push(star())}
+U.forEach(function(u){u.x2=u.x+30*Math.sin(t*1.4+u.ph);u.g.setAttribute('transform','translate('+u.x2.toFixed(1)+' '+u.y+')')});
+for(var i=R.length-1;i>=0;i--){var r=R[i];if(!r.dead){r.y+=r.v;U.forEach(function(u){if(Math.hypot(u.x2-r.x,u.y-r.y)<50){r.dead=1;cnt++}});}else{r.y-=.5}
+r.g.setAttribute('transform','translate('+r.x.toFixed(1)+' '+r.y.toFixed(1)+') rotate('+(t*90%360).toFixed(0)+')');r.g.setAttribute('opacity',r.dead?Math.max(0,(r.op=(r.op||1)-.03)).toFixed(2):1);if(r.y>320||(r.dead&&r.op<=0)){r.g.remove();R.splice(i,1)}}
+c.textContent='Radicales neutralizados: '+cnt;requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="rise 1" style="position:absolute;left:128px;top:744px;width:808px;height:176px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #D9A520"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Urea · ≈2–6 mmol/L</p><p style="font-size:24px;line-height:1.4">Pasa desde la sangre (sube en la insuficiencia renal). El amoníaco que genera <b>neutraliza ácidos</b> de la placa.</p></div>
+<div data-build-in="rise 2" style="position:absolute;left:984px;top:744px;width:808px;height:176px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #C2502F"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Ácido úrico · ≈0,1–0,3 mmol/L</p><p style="font-size:24px;line-height:1.4">Final del catabolismo de purinas; <b>≈70 % de la capacidad antioxidante</b> de la saliva.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Moore et al., 1994; Kaufman y Lamster, 2002 · 17</p>
+<aside>Izquierda: las moléculas de urea llegan a una bacteria con ureasa y salen convertidas en amoníaco y CO₂; el pH de la barra sube. Derecha: el ácido úrico (AU) intercepta radicales libres (estrellas) antes de que lleguen a la mucosa. Dato contrastado: el 70 % de la capacidad antioxidante procede de Moore y colaboradores (1994); otros trabajos dan cifras algo distintas, pero coinciden en que el ácido úrico es el antioxidante dominante. La urea salival se ha estudiado como marcador no invasivo de enfermedad renal.</aside>
+</section>

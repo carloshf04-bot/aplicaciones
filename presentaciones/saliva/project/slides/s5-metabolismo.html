@@ -1,0 +1,38 @@
+<section id="s5-metabolismo" data-transition="push" style="background:radial-gradient(circle at 12% 88%, #BFF0EA 0%, #FFF4E0 60%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">05 · Otras moléculas</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Productos del metabolismo oral</h2>
+<div style="position:absolute;left:142px;top:334px;width:1000px;height:600px;background:#E84A8A;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:128px;top:320px;width:1000px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="1000" height="600" viewBox="0 0 1000 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:1000,height:600,rx:24,fill:'#1B1035'});
+tx(30,52,28,'#F4F8F7','La balanza de la placa: ácidos frente a álcalis',{'font-weight':800});
+var cap=tx(30,92,24,'#BFD8DE','');
+el('path',{d:'M500 470 L460 540 L540 540 Z',fill:'#9FB5BF'});
+var beam=el('g',{});el('rect',{x:-340,y:-8,width:680,height:16,rx:8,fill:'#F4F8F7'},beam);
+var L=el('g',{},beam),R=el('g',{},beam);
+function pan(g,x,c,label){el('line',{x1:x,y1:0,x2:x,y2:60,stroke:'#F4F8F7','stroke-width':3},g);el('path',{d:'M'+(x-110)+' 60 L'+(x+110)+' 60 L'+(x+80)+' 100 L'+(x-80)+' 100 Z',fill:c},g);var t=el('text',{x:x,y:140,'font-size':26,'font-weight':800,fill:c,'text-anchor':'middle'},g);t.textContent=label}
+pan(L,-260,'#E4785C','Ácidos');pan(R,260,'#2A9DB5','Álcalis');
+var ac=[],al=[];for(var i=0;i<5;i++){ac.push(el('circle',{cx:-320+i*30,cy:80,r:13,fill:'#E4785C'},beam));al.push(el('circle',{cx:200+i*30,cy:80,r:13,fill:'#2A9DB5'},beam))}
+tx(60,580,24,'#F2A58F','Láctico, acético, propiónico ← azúcares');tx(560,580,24,'#9FD3DE','NH₃ ← urea y arginina');
+var phl=tx(860,92,30,'#F4F8F7','',{'font-weight':800});
+function F(ts){var t=ts/1000,c=(t%12)/12;var na=c<.15?1:c<.45?1+Math.round((c-.15)/.3*4):c<.85?5-Math.round((c-.45)/.4*4):1;var nl=c<.45?2:c<.85?2+Math.round((c-.45)/.4*3):2;
+ac.forEach(function(e,i){e.setAttribute('opacity',i<na?1:0)});al.forEach(function(e,i){e.setAttribute('opacity',i<nl?1:0)});
+var ang=(na-nl)*-3.2;beam.setAttribute('transform','translate(500 '+400+') rotate('+ang.toFixed(1)+')');
+var ph=6.9-(na-nl)*.45;phl.textContent='pH '+ph.toFixed(1).replace('.',',');phl.setAttribute('fill',ph<5.5?'#F2A58F':'#9FD3DE');
+cap.textContent=c<.15?'En reposo: equilibrio':c<.45?'Tras comer azúcar: fermentación → ácidos':c<.85?'La saliva aporta urea: amoníaco y tampón':'Equilibrio recuperado';
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="left 1" style="position:absolute;left:1168px;top:320px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-radius:16px;padding:16px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Ácidos orgánicos · bajan el pH</p><p style="font-size:24px">Fermentación de azúcares</p></div>
+<div data-build-in="left 2" style="position:absolute;left:1168px;top:476px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-radius:16px;padding:16px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #2A9DB5"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Amoníaco · sube el pH</p><p style="font-size:24px">Ureasa y arginina deiminasa</p></div>
+<div data-build-in="left 3" style="position:absolute;left:1168px;top:632px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-radius:16px;padding:16px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #7A5BA6"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Compuestos azufrados</p><p style="font-size:24px">H₂S y metilmercaptano: halitosis</p></div>
+<div data-build-in="left 4" style="position:absolute;left:1168px;top:788px;width:624px;height:130px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#FCFDFD;border-radius:16px;padding:16px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #0E2A3B"><p style="font-size:28px;font-weight:800;color:#0E2A3B">Nitrito y poliaminas</p><p style="font-size:24px">Putrescina y cadaverina en periodontitis</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Marsh et al., 2016; Takahashi, 2015 · 19</p>
+<aside>La balanza resume la idea: tras comer azúcar, las bacterias fermentan y producen ácidos que inclinan la balanza y bajan el pH. La saliva aporta urea y arginina, de las que las bacterias obtienen amoníaco, que junto con el tampón devuelve el equilibrio. Cuando domina la fermentación se seleccionan bacterias acidógenas y acidúricas (S. mutans, lactobacilos): es la hipótesis ecológica de la caries de Marsh. El estudio de estos metabolitos se llama metabolómica salival.</aside>
+</section>

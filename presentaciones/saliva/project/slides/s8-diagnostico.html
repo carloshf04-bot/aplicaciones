@@ -1,0 +1,38 @@
+<section id="s8-diagnostico" data-transition="push" style="background:radial-gradient(circle at 88% 12%, #FFC9B8 0%, #FFF4E0 55%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">08 · Importancia clínica</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">La saliva como herramienta diagnóstica</h2>
+<x-embed style="position:absolute;left:720px;top:320px;width:480px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="480" height="600" viewBox="0 0 480 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+var TB='M170 70 L310 70 L310 470 A70 70 0 0 1 170 470 Z';var df=el('defs',{});var cp=el('clipPath',{id:'c'},df);el('path',{d:TB},cp);
+el('rect',{x:150,y:40,width:180,height:40,rx:10,fill:'#0E2A3B'});
+el('path',{d:TB,fill:'#FCFDFD',stroke:'#1C6E82','stroke-width':5});
+var g=el('g',{'clip-path':'url(#c)'});el('rect',{x:160,y:250,width:160,height:320,fill:'#9FD3DE'},g);
+var M=[];var C=['#E4785C','#7A5BA6','#D9A520','#1C6E82','#0E2A3B'];for(var i=0;i<16;i++)M.push({e:el('circle',{r:8+Math.random()*6,fill:C[i%5]},g),x:185+Math.random()*110,y:270+Math.random()*260,s:Math.random()*6});
+var scan=el('rect',{x:150,width:180,height:6,fill:'#E4785C',opacity:.9});var glow=el('rect',{x:150,width:180,height:40,fill:'#E4785C',opacity:.15});
+var lab=tx(240,590,26,'#0E2A3B','',{'font-weight':800,'text-anchor':'middle'});var names=['Cortisol','Anticuerpos VIH','ADN/ARN viral','MMP-8','IL-8','Glucosa','Urea'];
+function F(ts){var t=ts/1000;M.forEach(function(m){m.e.setAttribute('cx',(m.x+8*Math.sin(t+m.s)).toFixed(1));m.e.setAttribute('cy',(m.y+6*Math.cos(t*1.2+m.s)).toFixed(1))});
+var y=250+(Math.sin(t*1.3)*.5+.5)*280;scan.setAttribute('y',y.toFixed(1));glow.setAttribute('y',(y-17).toFixed(1));lab.textContent='Detectando: '+names[Math.floor(t/1.6)%names.length];
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<p data-build-in="fade 1" style="position:absolute;left:128px;top:320px;width:560px;font-size:28px;font-weight:800;color:#1C6E82">EN USO</p>
+<p data-build-in="left 1" style="position:absolute;left:128px;top:372px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #1C6E82"><b>Riesgo de caries:</b> flujo, tampón, S. mutans y lactobacilos</p>
+<p data-build-in="left 1" style="position:absolute;left:128px;top:486px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #1C6E82"><b>Cortisol nocturno</b> (síndrome de Cushing)</p>
+<p data-build-in="left 1" style="position:absolute;left:128px;top:568px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #1C6E82">Anticuerpos frente al <b>VIH</b> (test rápido)</p>
+<p data-build-in="left 1" style="position:absolute;left:128px;top:650px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #1C6E82">Drogas, fármacos y PCR de virus</p>
+<p data-build-in="left 3" style="position:absolute;left:128px;top:764px;width:560px;font-size:24px;line-height:1.35;background:#1C6E82;color:#F4F8F7;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #7B4BC4"><b>Ventajas:</b> no invasiva, barata y repetible</p>
+<p data-build-in="fade 2" style="position:absolute;left:1232px;top:320px;width:560px;font-size:28px;font-weight:800;color:#A8462C">EN INVESTIGACIÓN</p>
+<p data-build-in="right 2" style="position:absolute;left:1232px;top:372px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C"><b>Periodontitis:</b> MMP-8, IL-1β</p>
+<p data-build-in="right 2" style="position:absolute;left:1232px;top:454px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C"><b>Cáncer oral:</b> IL-8, ARNm, microARN</p>
+<p data-build-in="right 2" style="position:absolute;left:1232px;top:536px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C">Diabetes, enfermedad renal</p>
+<p data-build-in="right 2" style="position:absolute;left:1232px;top:618px;width:560px;font-size:24px;line-height:1.35;background:#FCFDFD;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C">Proteómica y metabolómica</p>
+<p data-build-in="right 3" style="position:absolute;left:1232px;top:764px;width:560px;font-size:24px;line-height:1.35;background:#E4785C;color:#0E2A3B;border-radius:12px;padding:14px 20px;border:4px solid #1B1035;box-shadow:10px 10px 0px #FFC93C"><b>Límites:</b> concentraciones bajas y poca estandarización</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Kaufman y Lamster, 2002; Zhang et al., 2016 · 28</p>
+<aside>La animación muestra un tubo de saliva que se analiza: contiene moléculas que llegan desde la sangre, por eso refleja parte del estado sistémico. Ejemplos validados: el cortisol salival nocturno se usa en el cribado del síndrome de Cushing y existen test rápidos de anticuerpos frente al VIH en fluido oral. En la consulta dental, la sialometría y la capacidad tampón ayudan a valorar el riesgo de caries. Muchos biomarcadores, como los del cáncer oral, siguen en investigación y no sustituyen a la biopsia.</aside>
+</section>

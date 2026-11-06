@@ -1,0 +1,42 @@
+<section id="s1-formacion" data-transition="push" style="background:radial-gradient(circle at 88% 12%, #FFC9B8 0%, #FFF4E0 55%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">01 · Introducción a la saliva</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Formación en dos etapas</h2>
+<div style="position:absolute;left:142px;top:334px;width:1664px;height:420px;background:#2EC4B6;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:128px;top:320px;width:1664px;height:420px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="1664" height="420" viewBox="0 0 1664 420"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:1664,height:420,rx:24,fill:'#FFF4E0'});
+var CY=230,T0=360,T1=1480,R=48;
+for(var i=0;i<8;i++){var a=i/8*6.283;el('circle',{cx:220+105*Math.cos(a),cy:CY+105*Math.sin(a),r:52,fill:'#9FD3DE',stroke:'#1C6E82','stroke-width':3})}
+el('circle',{cx:220,cy:CY,r:50,fill:'#FCFDFD'});
+el('rect',{x:T0-60,y:CY-R-14,width:T1-T0+60,height:2*R+28,rx:20,fill:'#F2A58F',opacity:.55});
+el('rect',{x:T0-60,y:CY-R,width:T1-T0+60,height:2*R,fill:'#FCFDFD'});
+el('path',{d:'M1490 '+(CY-30)+' L1560 '+CY+' L1490 '+(CY+30)+' Z',fill:'#0E2A3B'});
+tx(1500,CY+90,26,'#0E2A3B','Boca',{'font-weight':700});
+tx(110,48,26,'#0E2A3B','1 · Acino: saliva primaria isotónica',{'font-weight':800});
+tx(620,48,26,'#0E2A3B','2 · Conducto estriado: reabsorbe Na⁺ y Cl⁻, secreta K⁺ y HCO₃⁻',{'font-weight':800});
+tx(1240,400,26,'#A8462C','Saliva final hipotónica',{'font-weight':800});
+var K=[['Na⁺','#1C6E82'],['Cl⁻','#0E2A3B'],['K⁺','#D9A520'],['HCO₃⁻','#C2502F']];
+K.forEach(function(k,i){el('circle',{cx:40+i*150,cy:392,r:12,fill:k[1]});tx(60+i*150,400,24,'#0E2A3B',k[0],{'font-weight':700})});
+var P=[];function spawn(type,x,y,vy){var e=el('circle',{r:type==4?5:11,fill:type==4?'#9FD3DE':K[type][1]});P.push({t:type,x:x,y:y,vy:vy||0,e:e,out:0,th:T0+80+Math.random()*(T1-T0-200)})}
+var last=0;function F(ts){var t=ts/1000;
+if(t-last>.18){last=t;var r=Math.random();spawn(r<.38?0:r<.7?1:4,220,CY+(Math.random()-.5)*60);if(Math.random()<.35)spawn(Math.random()<.5?2:3,T0+150+Math.random()*(T1-T0-260),Math.random()<.5?CY-R-20:CY+R+20,0)}
+for(var i=P.length-1;i>=0;i--){var p=P[i];
+if(p.vy===0&&(p.t==2||p.t==3)&&Math.abs(p.y-CY)>R-8){p.y+=(CY-p.y)*.06;if(Math.abs(p.y-CY)<R-12)p.vy=0.0001}
+else if(p.out){p.y+=p.out;p.x+=1}
+else{p.x+=p.x<T0-40?2.2:3;p.y+=(Math.random()-.5)*1.5;p.y=Math.max(CY-R+12,Math.min(CY+R-12,p.y));if((p.t==0||p.t==1)&&p.x>p.th&&Math.random()<.5)p.out=p.y<CY?-1.6:1.6}
+p.e.setAttribute('cx',p.x.toFixed(1));p.e.setAttribute('cy',p.y.toFixed(1));p.e.setAttribute('opacity',p.out?Math.max(0,1-Math.abs(p.y-CY)/120).toFixed(2):1);
+if(p.x>1540||Math.abs(p.y-CY)>130){p.e.remove();P.splice(i,1)}}
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<p data-build-in="rise 1" style="position:absolute;left:128px;top:772px;width:808px;font-size:26px;line-height:1.4;background:#1C6E82;color:#F4F8F7;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E84A8A"><b>Parasimpático</b> (acetilcolina, receptor M3, Ca²⁺): mucho volumen, saliva acuosa.</p>
+<p data-build-in="rise 2" style="position:absolute;left:984px;top:772px;width:808px;font-size:26px;line-height:1.4;background:#E4785C;color:#0E2A3B;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #FF6B4A"><b>Simpático</b> (noradrenalina, receptor β1, AMPc): poco volumen, rica en proteínas.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Proctor, 2016; Pedersen et al., 2018 · 6</p>
+<aside>Animación: el acino produce una saliva primaria parecida al plasma (agua, sodio y cloruro). Al recorrer el conducto estriado, el sodio y el cloruro salen a través de la pared (se reabsorben) y entran potasio y bicarbonato. Como el conducto es poco permeable al agua, la saliva sale hipotónica. Cuanto más rápido fluye, menos tiempo hay para reabsorber, por eso la saliva estimulada tiene más Na⁺ y Cl⁻ y más bicarbonato. Ambos sistemas nerviosos estimulan la secreción; no son antagonistas.</aside>
+</section>

@@ -1,0 +1,39 @@
+<section id="s3-ph" data-transition="push" style="background:radial-gradient(circle at 12% 88%, #BFF0EA 0%, #FFF4E0 60%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">03 · Componentes inorgánicos</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Regulación del pH y capacidad tampón</h2>
+<div style="position:absolute;left:142px;top:334px;width:920px;height:600px;background:#7B4BC4;border:4px solid #1B1035;border-radius:28px"></div>
+<x-embed style="position:absolute;left:128px;top:320px;width:920px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="920" height="600" viewBox="0 0 920 600"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
+el('rect',{width:920,height:600,rx:24,fill:'#1B1035'});
+tx(30,56,28,'#F4F8F7','H⁺ + HCO₃⁻ → H₂CO₃ → H₂O + CO₂↑',{'font-weight':800});
+tx(30,94,24,'#BFD8DE','La anhidrasa carbónica VI acelera la reacción; el CO₂ escapa');
+el('rect',{x:30,y:120,width:690,height:450,rx:18,fill:'#2A1B5C'});
+el('rect',{x:770,y:150,width:60,height:400,rx:30,fill:'#2A1B5C'});
+for(var p=4;p<=8;p++){var yy=550-(p-4)*100;tx(840,yy+8,24,'#BFD8DE',''+p);el('line',{x1:770,y1:yy,x2:830,y2:yy,stroke:'#3D5361','stroke-width':2})}
+var bar=el('rect',{x:778,width:44,rx:22,fill:'#2A9DB5'});var phl=tx(752,136,28,'#F4F8F7','',{'font-weight':800});
+var H=[],C=[],B=[];function newC(){return{x:70+Math.random()*610,y:290+Math.random()*200,e:null,busy:0}}
+for(var i=0;i<12;i++){var c=newC();c.g=el('g',{});el('circle',{r:24,fill:'#2A9DB5'},c.g);var lt=el('text',{x:0,y:8,'font-size':24,'font-weight':800,fill:'#F4F8F7','text-anchor':'middle'},c.g);lt.textContent='B';C.push(c)}
+var leg=[['H⁺','#E4785C'],['HCO₃⁻ (B)','#2A9DB5'],['CO₂','#F4F8F7']];leg.forEach(function(l,i){el('circle',{cx:60+i*220,cy:540,r:12,fill:l[1]});tx(80+i*220,548,24,'#F4F8F7',l[0],{'font-weight':700})});
+var last=0,ph=7.2;function F(ts){var t=ts/1000;
+if(t-last>.7){last=t;var free=C.filter(function(c){return !c.busy});if(free.length){var tg=free[Math.floor(Math.random()*free.length)];tg.busy=1;var g=el('g',{});el('circle',{r:20,fill:'#E4785C'},g);var l=el('text',{x:0,y:8,'font-size':24,'font-weight':800,fill:'#0E2A3B','text-anchor':'middle'},g);l.textContent='H⁺';H.push({x:70+Math.random()*610,y:130,g:g,tg:tg})}}
+for(var i=H.length-1;i>=0;i--){var h=H[i];var dx=h.tg.x-h.x,dy=h.tg.y-h.y,d=Math.hypot(dx,dy);if(d<8){h.g.remove();H.splice(i,1);var tg=h.tg;tg.g.setAttribute('opacity',0);
+var bg=el('g',{});el('circle',{r:18,fill:'none',stroke:'#F4F8F7','stroke-width':3},bg);var bl=el('text',{x:28,y:8,'font-size':24,'font-weight':700,fill:'#F4F8F7'},bg);bl.textContent='CO₂';B.push({x:tg.x,y:tg.y,g:bg});
+(function(c){setTimeout(function(){var n=newC();c.x=n.x;c.y=n.y;c.busy=0;c.g.setAttribute('opacity',1)},1800)})(tg)}else{h.x+=dx/d*3.2;h.y+=dy/d*3.2;h.g.setAttribute('transform','translate('+h.x.toFixed(1)+' '+h.y.toFixed(1)+')')}}
+for(i=B.length-1;i>=0;i--){var b=B[i];b.y-=2;b.g.setAttribute('transform','translate('+(b.x+8*Math.sin(b.y/20)).toFixed(1)+' '+b.y.toFixed(1)+')');b.g.setAttribute('opacity',Math.max(0,Math.min(1,(b.y-110)/80)).toFixed(2));if(b.y<110){b.g.remove();B.splice(i,1)}}
+C.forEach(function(c){c.x+=Math.sin(t+c.y)*.3;c.g.setAttribute('transform','translate('+c.x.toFixed(1)+' '+c.y.toFixed(1)+')')});
+var target=7.3-.18*H.length;ph+=(target-ph)*.03;var hh=(ph-4)*100;bar.setAttribute('y',(550-hh).toFixed(1));bar.setAttribute('height',hh.toFixed(1));phl.textContent='pH '+ph.toFixed(1).replace('.',',');
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<div data-build-in="left 1" style="position:absolute;left:1088px;top:320px;width:704px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #2A9DB5"><p style="font-size:30px;font-weight:800;color:#0E2A3B">Bicarbonato · ≈85 %</p><p style="font-size:24px;line-height:1.4">Principal tampón de la saliva estimulada; sistema abierto porque el CO₂ se escapa.</p></div>
+<div data-build-in="left 2" style="position:absolute;left:1088px;top:528px;width:704px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #1C6E82"><p style="font-size:30px;font-weight:800;color:#0E2A3B">Fosfato · pKa ≈6,8</p><p style="font-size:24px;line-height:1.4">H₂PO₄⁻ ⇌ HPO₄²⁻ + H⁺. Más importante en reposo, con poco bicarbonato.</p></div>
+<div data-build-in="left 3" style="position:absolute;left:1088px;top:736px;width:704px;height:184px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:#FCFDFD;border-radius:16px;padding:20px 28px;border:4px solid #1B1035;box-shadow:10px 10px 0px #E4785C"><p style="font-size:30px;font-weight:800;color:#0E2A3B">Proteínas y urea · aporte menor</p><p style="font-size:24px;line-height:1.4">Histatinas y sialina; la urea libera amoníaco que sube el pH.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6F7C">Fuentes: Bardow et al., 2000; Kivelä et al., 1999; Dawes et al., 2015 · 11</p>
+<aside>En la animación los protones (H⁺, en coral) llegan desde arriba y cada uno se une a un bicarbonato (B, en azul). Se forma ácido carbónico, que se descompone en agua y CO₂; las burbujas de CO₂ suben y escapan. Por eso el pH, en la barra de la derecha, apenas baja. El sistema bicarbonato es eficaz porque es abierto: al perder CO₂ el equilibrio se desplaza. El 85 % procede de Bardow y colaboradores (2000) y se refiere a saliva estimulada. La anhidrasa carbónica VI se adhiere a la película adquirida y neutraliza el ácido de la placa.</aside>
+</section>

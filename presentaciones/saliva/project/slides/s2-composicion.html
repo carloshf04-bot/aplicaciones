@@ -1,0 +1,27 @@
+<section id="s2-composicion" data-transition="fade" style="background:radial-gradient(circle at 82% 18%, #5B2DA8 0%, #1B1035 62%), #1B1035;color:#BFD8DE;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.35"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">02 · Composición general</p></div>
+<x-embed style="position:absolute;left:128px;top:250px;width:640px;height:670px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="640" height="670" viewBox="0 0 640 670"></svg><script>
+var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
+var Q=[],sz=54,gp=8;for(var i=0;i<100;i++){var r=Math.floor(i/10),c=i%10;var g=el('g',{transform:'translate('+(10+c*(sz+gp))+' '+(10+r*(sz+gp))+')'});var b=el('rect',{width:sz,height:sz,rx:10,fill:'#2A1B5C'},g);var f=el('rect',{width:sz,height:sz,rx:10,fill:'#2A9DB5',opacity:0},g);Q.push({f:f,g:g})}
+Q[99].f.setAttribute('width',sz/2);var half=el('rect',{x:10+9*(sz+gp)+sz/2,y:10+9*(sz+gp),width:sz/2,height:sz,fill:'#E4785C',opacity:0});
+var lab=el('text',{x:10,y:660,'font-size':28,'font-weight':700,fill:'#F2A58F'});
+var st=0;function F(ts){if(!st)st=ts;var t=((ts-st)/1000)%11;
+Q.forEach(function(q,i){var on=t>i*.03;q.f.setAttribute('opacity',on?1:0)});
+var h=t>3.4;half.setAttribute('opacity',h?1:0);half.setAttribute('transform',h?'translate(0 0)':'');
+var pulse=1+.08*Math.sin(t*6);Q[99].g.setAttribute('transform','translate('+(10+9*(sz+gp))+' '+(10+9*(sz+gp))+')');
+lab.textContent=t>3.6?'■ medio cuadrado = 0,5 % de solutos':'';half.setAttribute('opacity',h?(.75+.25*Math.sin(t*5)).toFixed(2):0);
+requestAnimationFrame(F)}requestAnimationFrame(F);
+</script></body></html></x-embed>
+<p data-build-in="fade 1" style="position:absolute;left:840px;top:250px;width:952px;font-family:'Fraunces', Georgia, serif;font-size:160px;font-weight:600;line-height:1;color:#F4F8F7">99,5 %</p>
+<p data-build-in="fade 1" style="position:absolute;left:840px;top:430px;width:952px;font-size:36px;line-height:1.35;color:#F4F8F7">agua, que actúa como disolvente. El resto (≈5 g/L) son solutos:</p>
+<div data-build-in="rise 2" style="position:absolute;left:840px;top:560px;width:464px;height:360px;display:flex;flex-direction:column;gap:12px;background:#2A1B5C;border-radius:16px;padding:32px;border:4px solid #FFC93C;box-shadow:10px 10px 0px #9FD3DE"><h3 style="font-size:36px;font-weight:700;color:#9FD3DE">Inorgánicos</h3><p style="font-size:28px;line-height:1.45;color:#F4F8F7">Na⁺, K⁺, Cl⁻, HCO₃⁻, Ca²⁺, fosfatos, F⁻, SCN⁻, Mg²⁺, I⁻</p></div>
+<div data-build-in="rise 3" style="position:absolute;left:1328px;top:560px;width:464px;height:360px;display:flex;flex-direction:column;gap:12px;background:#2A1B5C;border-radius:16px;padding:32px;border:4px solid #FFC93C;box-shadow:10px 10px 0px #F2A58F"><h3 style="font-size:36px;font-weight:700;color:#F2A58F">Orgánicos</h3><p style="font-size:28px;line-height:1.45;color:#F4F8F7">Proteínas (1–3 g/L), mucinas, enzimas, IgA, urea, ácido úrico, lípidos, glucosa, hormonas</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#9FB5BF">Fuentes: Humphrey y Williamson, 2001; Edgar, 1992 · 7</p>
+<aside>La cuadrícula se llena: cada cuadrado es un 1 % de la saliva. Solo medio cuadrado, el 0,5 %, son solutos, y en esa pequeña fracción hay más de 2000 proteínas identificadas por proteómica. Para comparar: el plasma tiene unos 70 g/L de proteína; la saliva, entre 1 y 3 g/L. La composición no es fija: depende de la glándula, del flujo y del estímulo.</aside>
+</section>
