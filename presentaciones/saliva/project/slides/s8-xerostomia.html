@@ -1,16 +1,22 @@
-<section id="s8-xerostomia" data-transition="fade" style="background:#F4F8F7;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0E2A3B">08 · Importancia clínica</p></div>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.15;color:#0E2A3B">Hiposalivación y xerostomía</h2>
+<section id="s8-xerostomia" data-transition="fade" style="background:radial-gradient(circle at 88% 12%, #FFC9B8 0%, #FFF4E0 55%), #FFF4E0;color:#3D5361;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0px;top:0px;width:440px;height:92px;background:repeating-linear-gradient(-45deg, #FF6B4A 0px, #FF6B4A 14px, transparent 14px, transparent 28px);opacity:0.55"></div>
+<x-shape kind="ellipse" style="position:absolute;left:1580px;top:24px;width:320px;height:320px;background:#FFC93C;opacity:0.6"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1690px;top:860px;width:180px;height:180px;background:transparent;border:8px solid #7B4BC4;opacity:0.8"></x-shape>
+<x-shape kind="diamond" style="position:absolute;left:1836px;top:520px;width:56px;height:56px;background:#E84A8A"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:24px;top:930px;width:120px;height:120px;background:#2EC4B6;opacity:0.5"></x-shape>
+<div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1B1035;background:#FFC93C;padding:8px 22px;border:3px solid #1B1035;border-radius:999px;transform:rotate(-2deg)">08 · Importancia clínica</p></div>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:800;line-height:1.15;color:#0E2A3B;text-shadow:5px 5px 0px #FF6B4A">Hiposalivación y xerostomía</h2>
+<div style="position:absolute;left:142px;top:334px;width:700px;height:600px;background:#FFC93C;border:4px solid #1B1035;border-radius:28px"></div>
 <x-embed style="position:absolute;left:128px;top:320px;width:700px;height:600px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;overflow:hidden}</style></head><body><svg id="s" width="700" height="600" viewBox="0 0 700 600"></svg><script>
 var S=document.getElementById('s'),N='http://www.w3.org/2000/svg';
 function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e}
 function tx(x,y,z,c,s,o){var e=el('text',{x:x,y:y,'font-size':z,fill:c});if(o)for(var k in o)e.setAttribute(k,o[k]);e.textContent=s;return e}
-el('rect',{width:700,height:600,rx:24,fill:'#0E2A3B'});
+el('rect',{width:700,height:600,rx:24,fill:'#1B1035'});
 tx(30,52,28,'#F4F8F7','Sialometría: saliva en reposo, 5 minutos',{'font-weight':800});
 var clock=tx(30,92,26,'#BFD8DE','');
 var T=[{x:150,r:.35,c:'#2A9DB5',n:'Normal'},{x:450,r:.07,c:'#E4785C',n:'Hiposalivación'}];
 var TOP=150,BOT=500,ML=2.5;function yv(v){return BOT-(BOT-TOP)*v/ML}
-T.forEach(function(t){el('rect',{x:t.x,y:TOP,width:100,height:BOT-TOP,rx:10,fill:'#163B50',stroke:'#BFD8DE','stroke-width':3});for(var v=.5;v<=2.5;v+=.5){el('line',{x1:t.x,y1:yv(v),x2:t.x+24,y2:yv(v),stroke:'#BFD8DE','stroke-width':2});tx(t.x+112,yv(v)+8,24,'#BFD8DE',(''+v).replace('.',','))}
+T.forEach(function(t){el('rect',{x:t.x,y:TOP,width:100,height:BOT-TOP,rx:10,fill:'#2A1B5C',stroke:'#BFD8DE','stroke-width':3});for(var v=.5;v<=2.5;v+=.5){el('line',{x1:t.x,y1:yv(v),x2:t.x+24,y2:yv(v),stroke:'#BFD8DE','stroke-width':2});tx(t.x+112,yv(v)+8,24,'#BFD8DE',(''+v).replace('.',','))}
 t.liq=el('rect',{x:t.x+4,width:92,rx:6,fill:t.c});t.lab=tx(t.x+50,545,26,'#F4F8F7','',{'text-anchor':'middle','font-weight':800});tx(t.x+50,585,24,t.c,t.n,{'text-anchor':'middle','font-weight':700})});
 var st=0;function F(ts){if(!st)st=ts;var s=((ts-st)/1000)%10,m=Math.min(5,s*.75);clock.textContent='Minuto '+m.toFixed(1).replace('.',',')+' de 5';
 T.forEach(function(t){var v=t.r*m;t.liq.setAttribute('y',yv(v).toFixed(1));t.liq.setAttribute('height',Math.max(0,BOT-4-yv(v)).toFixed(1));t.lab.textContent=v.toFixed(2).replace('.',',')+' mL'});
