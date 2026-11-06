@@ -1,20 +1,20 @@
-<title>La Cajita</title>
+<title>Nido</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;800&display=swap">
 <style>
-/* Layout: tienda de una página. Barra de envío, cabecera fija, hero de cajas regalo, rejilla de cajas, tira de complementos "3 por 5 €", cómo funciona, FAQ, pie legal y carrito lateral */
+/* Layout: tienda de una página para dropshipping. Barra de envío, cabecera fija, hero con la batamanta, packs, catálogo, cómo llega, FAQ, pie legal y carrito lateral */
 :root{
-  --bg:#fbf6ef; --surface:#ffffff; --ink:#2b2220; --muted:#6e605a; --line:#ebded2;
-  --brand:#c8442f; --brand-ink:#ffffff; --pine:#2f5d4a; --pine-soft:#e2ece6; --gold:#e9b949; --blush:#f5ddd3; --sky:#dbe7f2;
+  --bg:#f7f3ee; --surface:#ffffff; --ink:#262019; --muted:#6c6157; --line:#e7ddd2;
+  --brand:#b5532f; --brand-ink:#ffffff; --moss:#4d6b4f; --moss-soft:#e3ebe2; --oat:#efe4d4; --sky:#dfe8ef; --gold:#e3b04b;
   --display:"Fraunces",Georgia,serif; --body:"Nunito Sans",ui-sans-serif,system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#1a1614; --surface:#241e1b; --ink:#f4ece5; --muted:#b9aaa1; --line:#3a312c;
-  --brand:#ea6f57; --brand-ink:#1a1614; --pine:#8cc2a6; --pine-soft:#22332b; --gold:#e3b445; --blush:#3a2822; --sky:#22303c; color-scheme:dark}}
+  --bg:#1a1714; --surface:#24201c; --ink:#f3ece4; --muted:#b8aa9c; --line:#3a332c;
+  --brand:#e27a52; --brand-ink:#1a1714; --moss:#9cc39e; --moss-soft:#25322a; --oat:#3a3027; --sky:#23303a; --gold:#ddb04e; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#1a1614; --surface:#241e1b; --ink:#f4ece5; --muted:#b9aaa1; --line:#3a312c;
-  --brand:#ea6f57; --brand-ink:#1a1614; --pine:#8cc2a6; --pine-soft:#22332b; --gold:#e3b445; --blush:#3a2822; --sky:#22303c; color-scheme:dark}
+  --bg:#1a1714; --surface:#24201c; --ink:#f3ece4; --muted:#b8aa9c; --line:#3a332c;
+  --brand:#e27a52; --brand-ink:#1a1714; --moss:#9cc39e; --moss-soft:#25322a; --oat:#3a3027; --sky:#23303a; --gold:#ddb04e; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
@@ -24,10 +24,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
 button{font-family:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.promo{background:var(--pine);color:var(--bg);font-size:.85rem;font-weight:600;text-align:center;padding-block:8px}
+.promo{background:var(--moss);color:var(--bg);font-size:.85rem;font-weight:600;text-align:center;padding-block:8px}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 header .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.logo{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
 .logo svg{width:30px;height:30px}
 nav{display:flex;gap:22px;font-weight:600;font-size:.95rem}
 nav a{color:var(--ink);text-decoration:none} nav a:hover{color:var(--brand)}
@@ -36,48 +36,48 @@ nav a{color:var(--ink);text-decoration:none} nav a:hover{color:var(--brand)}
 .cartbtn .n{background:var(--brand);color:var(--brand-ink);border-radius:99px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:.8rem}
 .hero .in{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding-block:48px}
 @media (max-width:820px){.hero .in{grid-template-columns:1fr;padding-block:28px}}
-.kicker{font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pine)}
+.kicker{font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--moss)}
 .hero h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800;letter-spacing:-.03em;margin-top:10px}
 .hero h1 em{font-style:normal;color:var(--brand)}
 .hero p{font-size:1.15rem;color:var(--muted);max-width:46ch;margin:18px 0 26px}
 .cta{display:inline-flex;gap:10px;align-items:center;background:var(--brand);color:var(--brand-ink);border:0;border-radius:12px;padding:15px 26px;font-weight:800;font-size:1.05rem;cursor:pointer;transition:transform .15s;text-decoration:none}
 .cta:hover{transform:translateY(-2px)}
 .ghost{display:inline-block;color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:13px 22px;font-weight:800;margin-left:8px;text-decoration:none}
-.stack{position:relative;aspect-ratio:1/1;max-width:100%;background:var(--blush);border-radius:28px;overflow:hidden}
-.stack svg{position:absolute}
+.art{position:relative;aspect-ratio:1/1;max-width:100%;background:var(--oat);border-radius:28px;overflow:hidden;display:grid;place-items:center}
+.art svg{width:80%;height:auto}
 .tag{position:absolute;background:var(--surface);border-radius:14px;padding:10px 14px;font-size:.85rem;font-weight:800;box-shadow:0 6px 24px rgba(0,0,0,.08)}
 .tag small{display:block;font-weight:400;color:var(--muted)}
 .trust{border-block:1px solid var(--line);background:var(--surface)}
 .trust .in{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:18px;font-size:.9rem}
 @media (max-width:720px){.trust .in{grid-template-columns:repeat(2,1fr)}}
 .trust div{display:flex;gap:10px;align-items:center} .trust b{display:block}
-.trust svg{flex:none;width:28px;height:28px;color:var(--pine)}
+.trust svg{flex:none;width:28px;height:28px;color:var(--moss)}
 section.blk .in{padding-block:56px}
 .head{margin-bottom:24px}
 .head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800}
 .head p{color:var(--muted);margin:6px 0 0;max-width:60ch}
-.boxes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.box{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-.box .img{aspect-ratio:4/3;display:grid;place-items:center;max-width:100%}
-.box .img svg{width:62%;height:auto}
-.box .body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
-.box h3{font-size:1.35rem}
-.box ul{margin:0;padding-left:18px;color:var(--muted);font-size:.92rem}
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.pack{background:var(--moss-soft);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.pill{align-self:flex-start;background:var(--gold);color:#262019;font-weight:800;font-size:.72rem;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em}
+.pack h3{font-size:1.4rem}
+.pack ul{margin:0;padding-left:18px;color:var(--muted);font-size:.95rem}
 .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:auto}
 .price b{font-size:1.5rem;font-family:var(--display)}
 .price small{color:var(--muted)}
 .add{background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:11px 16px;font-weight:800;cursor:pointer}
 .add:hover{background:var(--brand);color:var(--brand-ink)}
-.pill{align-self:flex-start;background:var(--gold);color:#2b2220;font-weight:800;font-size:.72rem;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em}
-.minis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
-.mini{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
-.mini .dot{width:48px;height:48px;border-radius:14px;display:grid;place-items:center}
-.mini .dot svg{width:30px;height:30px}
-.mini h3{font-family:var(--body);font-weight:800;font-size:.98rem}
-.mini .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-.mini .add{padding:7px 12px;font-size:.85rem}
-.deal{display:flex;gap:14px;align-items:center;background:var(--pine-soft);border-radius:16px;padding:14px 18px;margin-bottom:18px;font-weight:600}
-.deal b{font-family:var(--display);font-size:1.6rem;color:var(--pine)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.card .img{aspect-ratio:4/3;display:grid;place-items:center;max-width:100%}
+.card .img svg{width:58%;height:auto}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:1.1rem;font-family:var(--body);font-weight:800}
+.card p{margin:0;color:var(--muted);font-size:.9rem}
+.card .meta{font-size:.76rem;color:var(--muted)}
+.card .price{justify-content:space-between}
+.card .price b{font-size:1.25rem}
+.chip{font-size:.72rem;font-weight:800;color:var(--moss);text-transform:uppercase;letter-spacing:.06em}
+.pending{background:var(--gold);color:#262019;padding:0 4px;border-radius:4px;font-weight:700}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;list-style:none;padding:0;margin:0;counter-reset:s}
 @media (max-width:820px){.steps{grid-template-columns:1fr}}
 .steps li{counter-increment:s;background:var(--surface);border-radius:18px;padding:20px;border:1px solid var(--line)}
@@ -92,7 +92,6 @@ footer .in{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px;padding-block
 @media (max-width:720px){footer .in{grid-template-columns:1fr}}
 footer a{color:var(--bg);opacity:.85;display:block;margin-bottom:6px}
 footer .legal{opacity:.75;font-size:.8rem}
-.pending{background:var(--gold);color:#2b2220;padding:0 4px;border-radius:4px;font-weight:700}
 .news{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .news input[type=email]{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:0;font-size:.95rem}
 .news button{background:var(--brand);color:var(--brand-ink);border:0;border-radius:10px;padding:11px 16px;font-weight:800;cursor:pointer}
@@ -101,25 +100,21 @@ footer .legal{opacity:.75;font-size:.8rem}
 aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);background:var(--bg);z-index:50;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 18px;box-shadow:-10px 0 40px rgba(0,0,0,.15)}
 .cart .top{display:flex;justify-content:space-between;align-items:center}
 .cart .x{background:none;border:0;font-size:1.6rem;color:var(--ink);cursor:pointer;line-height:1}
-.ship{background:var(--pine-soft);border-radius:12px;padding:12px;margin:14px 0;font-size:.88rem}
+.ship{background:var(--moss-soft);border-radius:12px;padding:12px;margin:14px 0;font-size:.88rem}
 .bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:8px}
-.bar i{display:block;height:100%;background:var(--pine);transition:width .3s}
+.bar i{display:block;height:100%;background:var(--moss);transition:width .3s}
 .items{flex:1;overflow-y:auto;display:grid;gap:10px;align-content:start}
-.item{display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:center;background:var(--surface);border-radius:12px;padding:10px}
-.item .th{width:48px;height:48px;border-radius:10px;display:grid;place-items:center}
-.item .th svg{width:70%}
+.item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;background:var(--surface);border-radius:12px;padding:10px}
+.item .th{width:52px;height:52px;border-radius:10px;display:grid;place-items:center}
+.item .th svg{width:72%}
 .qty{display:flex;gap:6px;align-items:center;margin-top:4px}
 .qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
-.upsell{border:1px dashed var(--line);border-radius:12px;padding:10px;font-size:.85rem}
-.upsell .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.upsell button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 10px;font-size:.8rem;font-weight:700;cursor:pointer}
 .empty{color:var(--muted);text-align:center;padding:40px 0}
 .tot{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:6px}
 .tot .row{display:flex;justify-content:space-between}
-.tot .disc{color:var(--pine);font-weight:700}
 .tot .row.big{font-weight:800;font-size:1.2rem}
 .checkout{margin-top:10px;width:100%;justify-content:center}
-.msg{background:var(--gold);color:#2b2220;border-radius:10px;padding:10px;font-size:.85rem;font-weight:600}
+.msg{background:var(--gold);color:#262019;border-radius:10px;padding:10px;font-size:.85rem;font-weight:600}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:99px;font-weight:700;z-index:60;font-size:.9rem;max-width:calc(100% - 32px);text-align:center}
 .cookies{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--surface);border-top:1px solid var(--line);padding-block:14px calc(14px + env(safe-area-inset-bottom,0px))}
 .cookies .in{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:.88rem}
@@ -129,81 +124,80 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
-<div class="promo g">Envío gratis desde 19,90 € · Sale desde España en 24–48 h laborables · Pide antes del 15 de diciembre para recibirlo antes de Navidad</div>
+<div class="promo g">Envío gratis desde 29 € · Entrega en 3–8 días laborables con seguimiento · Pide antes del 12 de diciembre para Navidad</div>
 
 <header class="g"><div class="in">
-  <div class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="12" width="24" height="16" rx="3" fill="var(--brand)"/><rect x="2" y="8" width="28" height="6" rx="2" fill="var(--gold)"/><rect x="14" y="8" width="4" height="20" fill="var(--pine)"/><path d="M16 8 C10 2 6 6 10 8 M16 8 C22 2 26 6 22 8" stroke="var(--pine)" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>La Cajita</div>
-  <nav><a href="#cajas">Cajas</a><a href="#detalles">Detalles desde 1,99 €</a><a href="#ayuda">Ayuda</a></nav>
+  <div class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 18 Q16 30 28 18" fill="var(--brand)"/><path d="M3 17 Q16 24 29 17" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="13" r="4" fill="var(--gold)"/><circle cx="20" cy="13" r="4" fill="var(--oat)" stroke="var(--ink)" stroke-width="1.5"/></svg>Nido</div>
+  <nav><a href="#packs">Packs</a><a href="#todo">Todo</a><a href="#ayuda">Envíos y ayuda</a></nav>
   <button class="cartbtn" id="openCart" type="button">Carrito <span class="n" id="count">0</span></button>
 </div></header>
 
 <section class="hero g"><div class="in">
   <div>
-    <div class="kicker">Regalos de menos de 20 €</div>
-    <h1>Cajas pequeñas que <em>sí se usan</em>.</h1>
-    <p>Cuatro cajas temáticas con todo lo necesario para la cocina, el pelo, la mascota o el orden de casa. Listas para regalar, desde 12,99 €.</p>
-    <a class="cta" href="#cajas">Ver las cajas</a><a class="ghost" href="#detalles">Detalles desde 1,99 €</a>
+    <div class="kicker">Para el sofá, contigo y con tu mascota</div>
+    <h1>Este invierno, <em>nadie se levanta</em> del sofá.</h1>
+    <p>La sudadera-manta de sherpa que abriga como un edredón y se lleva como una sudadera. Talla única, con capucha y bolsillo delantero.</p>
+    <button class="cta" type="button" data-add="manta">Añadir la batamanta · 34,99 €</button><a class="ghost" href="#packs">Ver packs</a>
   </div>
-  <div class="stack" role="img" aria-label="Ilustración de cajas regalo apiladas">
-    <svg viewBox="0 0 200 200" style="inset:0;width:100%;height:100%">
-      <rect x="30" y="100" width="90" height="70" rx="8" fill="var(--pine)"/><rect x="24" y="88" width="102" height="18" rx="6" fill="var(--gold)"/><rect x="70" y="88" width="10" height="82" fill="var(--brand)"/>
-      <rect x="110" y="70" width="64" height="100" rx="8" fill="var(--brand)"/><rect x="104" y="58" width="76" height="16" rx="6" fill="var(--pine)"/><rect x="137" y="58" width="10" height="112" fill="var(--gold)"/>
-      <path d="M142 58 C126 38 116 50 132 58 M142 58 C158 38 168 50 152 58" stroke="var(--gold)" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <rect x="54" y="52" width="46" height="36" rx="6" fill="var(--sky)" stroke="var(--ink)" stroke-width="2"/><rect x="74" y="52" width="6" height="36" fill="var(--brand)"/>
+  <div class="art" role="img" aria-label="Ilustración de una sudadera-manta">
+    <svg viewBox="0 0 200 200">
+      <path d="M60 60 Q100 30 140 60 L170 120 L150 130 L140 100 L140 175 L60 175 L60 100 L50 130 L30 120 Z" fill="var(--brand)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M75 62 Q100 45 125 62 Q118 85 100 88 Q82 85 75 62Z" fill="var(--oat)" stroke="var(--ink)" stroke-width="3"/>
+      <rect x="78" y="125" width="44" height="26" rx="8" fill="none" stroke="var(--ink)" stroke-width="3"/>
+      <g fill="var(--bg)" opacity=".5"><circle cx="72" cy="110" r="2"/><circle cx="128" cy="110" r="2"/><circle cx="90" cy="165" r="2"/><circle cx="114" cy="163" r="2"/></g>
     </svg>
-    <div class="tag" style="top:7%;left:6%">4 cajas<small>de 12,99 € a 19,99 €</small></div>
-    <div class="tag" style="bottom:7%;right:6%">3 por 5 €<small>en detalles pequeños</small></div>
+    <div class="tag" style="top:7%;left:6%">Talla única<small>de la S a la XXL</small></div>
+    <div class="tag" style="bottom:7%;right:6%">Sherpa por dentro<small>lavable a 30 °C</small></div>
   </div>
 </div></section>
 
 <div class="trust g"><div class="in">
-  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><b>Sale en 24–48 h laborables</b>desde España, península y Baleares</span></div>
-  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg><span><b>14 días</b>para desistir de la compra</span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><b>3–8 días laborables</b>península y Baleares</span></div>
+  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg><span><b>14 días</b>para desistir</span></div>
   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg><span><b>Garantía de 3 años</b>la legal en España</span></div>
   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><span><b>Pago seguro</b>tarjeta y otros métodos</span></div>
 </div></div>
 
-<section class="blk g" id="cajas"><div class="in">
-  <div class="head"><h2>Las cajas</h2><p>Cada caja resuelve una cosa concreta. Si compraras las piezas una a una, pagarías más y te faltaría alguna.</p></div>
-  <div class="boxes" id="boxGrid"></div>
+<section class="blk g" id="packs"><div class="in">
+  <div class="head"><h2>Packs para regalar</h2><p>Dos cosas que van juntas, en un solo envío.</p></div>
+  <div class="packs" id="packGrid"></div>
 </div></section>
 
-<section class="blk g" id="detalles" style="background:var(--surface)"><div class="in">
-  <div class="head"><h2>Detalles desde 1,99 €</h2><p>Para completar el pedido o el calcetín de Navidad.</p></div>
-  <div class="deal"><b>3 por 5 €</b><span>Elige tres detalles cualesquiera y pagas 5 €. Se agrupan de tres en tres, empezando por los más caros, y el descuento se aplica solo en el carrito. Si devuelves uno, se recalcula el precio del resto. Oferta válida hasta el 6 de enero de 2027 o fin de existencias.</span></div>
-  <div class="minis" id="miniGrid"></div>
+<section class="blk g" id="todo" style="background:var(--surface)"><div class="in">
+  <div class="head"><h2>Todo</h2><p>Pocas cosas, elegidas para estar a gusto en casa.</p></div>
+  <div class="grid" id="prodGrid"></div>
 </div></section>
 
 <section class="blk g"><div class="in">
-  <div class="head"><h2>Cómo funciona</h2></div>
+  <div class="head"><h2>Cómo llega tu pedido</h2></div>
   <ol class="steps">
-    <li><b>Elige una caja</b><span>O varias. Desde 19,90 € el envío es gratis.</span></li>
-    <li><b>Añade detalles</b><span>Tres por 5 €. Caben en la misma caja y no pagan envío aparte.</span></li>
-    <li><b>Lo preparamos en 24–48 h</b><span>Sale desde España con seguimiento. Entrega habitual en 2–4 días laborables.</span></li>
+    <li><b>Haces el pedido</b><span>Recibes un email de confirmación con el resumen y la factura.</span></li>
+    <li><b>Sale del almacén en 1–3 días</b><span>Desde nuestros almacenes en España o en la Unión Europea. Te enviamos el número de seguimiento.</span></li>
+    <li><b>Lo recibes en 3–8 días laborables</b><span>En casa o en un punto de recogida. Si un pedido lleva productos de dos almacenes, puede llegar en dos paquetes.</span></li>
   </ol>
 </div></section>
 
 <section class="blk g" id="ayuda" style="background:var(--surface)"><div class="in" style="max-width:780px">
   <div class="head"><h2>Preguntas frecuentes</h2></div>
-  <details open><summary>¿Cuánto tarda en llegar?</summary><p>Preparamos el pedido en 24–48 h laborables y la entrega habitual es de 2–4 días laborables en península. Baleares, 3–6 días. De momento no enviamos a Canarias, Ceuta ni Melilla.</p></details>
-  <details><summary>¿Puedo devolver un pedido?</summary><p>Tienes 14 días naturales desde la entrega para desistir, sin dar explicaciones. Te devolvemos el importe, incluido el envío inicial estándar. El envío de vuelta corre de tu cuenta, salvo que el producto llegue defectuoso. Encontrarás el formulario de desistimiento en las condiciones de venta. Por higiene, los coleteros y la lima de uñas solo se pueden devolver si siguen precintados.</p></details>
-  <details><summary>¿Las cajas vienen listas para regalar?</summary><p>Sí. Cada caja va cerrada y sin precio dentro, para que puedas regalarla directamente.</p></details>
-  <details><summary>¿Quién fabrica los productos?</summary><p>Cada ficha indica el fabricante, la persona responsable en la Unión Europea y las advertencias de uso en castellano, como exige el Reglamento General de Seguridad de los Productos.</p></details>
+  <details open><summary>¿Cuánto tarda en llegar?</summary><p>Entre 3 y 8 días laborables a península y Baleares. Cada ficha indica su plazo. De momento no enviamos a Canarias, Ceuta ni Melilla.</p></details>
+  <details><summary>¿Puedo devolver un pedido?</summary><p>Tienes 14 días naturales desde la entrega para desistir. Te devolvemos el importe, incluido el envío inicial estándar. El envío de vuelta a nuestra dirección en España corre de tu cuenta, salvo que el producto llegue defectuoso. Por higiene, los rulos y los coleteros solo se aceptan precintados.</p></details>
+  <details><summary>¿Cómo elijo la talla del arnés?</summary><p>Mide el contorno del pecho detrás de las patas delanteras y compáralo con la tabla de la ficha. Si queda entre dos tallas, elige la mayor.</p></details>
+  <details><summary>¿Quién fabrica los productos?</summary><p>Cada ficha indica el fabricante, la persona responsable en la Unión Europea, la composición textil y las advertencias de uso en castellano.</p></details>
 </div></section>
 
 <footer class="g"><div class="in">
   <div>
-    <div class="logo" style="color:var(--bg)">La Cajita</div>
-    <p style="opacity:.85;max-width:42ch">Cajas temáticas y pequeños detalles para regalar o regalarte. Te avisamos cuando haya cajas nuevas.</p>
+    <div class="logo" style="color:var(--bg)">Nido</div>
+    <p style="opacity:.85;max-width:42ch">Cosas para estar a gusto en casa, contigo y con tu mascota.</p>
     <form class="news" id="news">
       <input id="email" type="email" placeholder="tu@email.com" aria-label="Tu email" required><button type="submit">Avisadme</button>
-      <label class="consent" for="rgpd"><input id="rgpd" type="checkbox" required><span>Acepto recibir emails de La Cajita. Responsable: <span class="pending">[nombre]</span>. Finalidad: enviarte novedades. Puedes darte de baja cuando quieras. Más información en la <a href="#ayuda" style="display:inline;margin:0;text-decoration:underline">política de privacidad</a>.</span></label>
+      <label class="consent" for="rgpd"><input id="rgpd" type="checkbox" required><span>Acepto recibir emails de Nido. Responsable: <span class="pending">[nombre]</span>. Finalidad: enviarte novedades. Puedes darte de baja cuando quieras. Más información en la <a href="#ayuda" style="display:inline;margin:0;text-decoration:underline">política de privacidad</a>.</span></label>
     </form>
   </div>
-  <div><b>Tienda</b><br><br><a href="#cajas">Cajas</a><a href="#detalles">Detalles</a><a href="#ayuda">Envíos y devoluciones</a></div>
+  <div><b>Tienda</b><br><br><a href="#packs">Packs</a><a href="#todo">Todo</a><a href="#ayuda">Envíos y devoluciones</a></div>
   <div><b>Legal</b><br><br>
     <a href="#ayuda">Aviso legal</a><a href="#ayuda">Condiciones de venta y desistimiento</a><a href="#ayuda">Privacidad y cookies</a>
-    <p class="legal">Titular: <span class="pending">[nombre y apellidos]</span> · NIF <span class="pending">[NIF]</span> · <span class="pending">[dirección]</span> · <span class="pending">[email de contacto]</span><br>Precios con IVA incluido. Prototipo de diseño: los textos legales y los datos del titular se completan antes de abrir.</p>
+    <p class="legal">Titular: <span class="pending">[nombre y apellidos]</span> · NIF <span class="pending">[NIF]</span> · <span class="pending">[dirección]</span> · <span class="pending">[email]</span><br>Precios con IVA incluido. Prototipo de diseño: los textos legales, los datos del titular y los de cada fabricante se completan antes de abrir.</p>
   </div>
 </div></footer>
 
@@ -223,63 +217,44 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
 
 <script>
 (function(){
-  function box(c1,c2,c3){return '<svg viewBox="0 0 100 100"><rect x="16" y="40" width="68" height="46" rx="6" fill="'+c1+'"/><rect x="11" y="30" width="78" height="14" rx="4" fill="'+c2+'"/><rect x="45" y="30" width="10" height="56" fill="'+c3+'"/><path d="M50 30 C38 16 30 24 42 30 M50 30 C62 16 70 24 58 30" stroke="'+c3+'" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'}
-  var ic={
-    pelo:'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="9" fill="none" stroke="var(--brand)" stroke-width="5"/></svg>',
-    pinza:'<svg viewBox="0 0 32 32"><path d="M6 20 Q16 4 26 20" fill="none" stroke="var(--pine)" stroke-width="4" stroke-linecap="round"/><path d="M8 22 L8 28 M14 18 L14 28 M20 18 L20 28 M24 22 L24 28" stroke="var(--pine)" stroke-width="3" stroke-linecap="round"/></svg>',
-    peg:'<svg viewBox="0 0 32 32"><path d="M16 4 L19.5 12 L28 12.5 L21.5 18 L23.5 27 L16 22 L8.5 27 L10.5 18 L4 12.5 L12.5 12Z" fill="var(--gold)"/></svg>',
-    movil:'<svg viewBox="0 0 32 32"><rect x="9" y="3" width="14" height="26" rx="3" fill="none" stroke="var(--ink)" stroke-width="3"/><circle cx="16" cy="20" r="4" fill="none" stroke="var(--brand)" stroke-width="3"/></svg>',
-    cable:'<svg viewBox="0 0 32 32"><path d="M4 16 q3 -6 6 0 t6 0 t6 0 t6 0" fill="none" stroke="var(--pine)" stroke-width="3.5" stroke-linecap="round"/></svg>',
-    gato:'<svg viewBox="0 0 32 32"><circle cx="11" cy="18" r="6" fill="var(--brand)"/><circle cx="22" cy="14" r="5" fill="var(--gold)"/><circle cx="22" cy="14" r="1.5" fill="var(--ink)"/></svg>',
-    perro:'<svg viewBox="0 0 32 32"><rect x="8" y="6" width="16" height="20" rx="8" fill="var(--pine)"/><circle cx="16" cy="16" r="3" fill="var(--bg)"/></svg>',
-    lima:'<svg viewBox="0 0 32 32"><rect x="14" y="2" width="5" height="28" rx="2.5" fill="var(--sky)" stroke="var(--ink)" stroke-width="2" transform="rotate(30 16 16)"/></svg>'
+  var art={
+    manta:'<svg viewBox="0 0 100 100"><path d="M30 30 Q50 15 70 30 L85 60 L75 65 L70 50 L70 88 L30 88 L30 50 L25 65 L15 60 Z" fill="var(--brand)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/><path d="M38 31 Q50 23 62 31 Q58 43 50 44 Q42 43 38 31Z" fill="var(--oat)" stroke="var(--ink)" stroke-width="2.5"/></svg>',
+    cama:'<svg viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="40" ry="24" fill="var(--oat)" stroke="var(--ink)" stroke-width="2.5"/><ellipse cx="50" cy="58" rx="24" ry="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/><g stroke="var(--muted)" stroke-width="1.5" fill="none"><path d="M16 56 q4 -4 8 0"/><path d="M76 56 q4 -4 8 0"/><path d="M30 78 q4 -4 8 0"/><path d="M62 78 q4 -4 8 0"/></g></svg>',
+    hamaca:'<svg viewBox="0 0 100 100"><rect x="12" y="12" width="76" height="56" rx="4" fill="var(--sky)" stroke="var(--ink)" stroke-width="2.5"/><line x1="50" y1="12" x2="50" y2="68" stroke="var(--ink)" stroke-width="2"/><circle cx="26" cy="52" r="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><circle cx="74" cy="52" r="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M22 56 Q50 92 78 56" fill="var(--moss)" stroke="var(--ink)" stroke-width="2.5"/></svg>',
+    rulos:'<svg viewBox="0 0 100 100"><path d="M20 70 Q50 10 80 70" fill="none" stroke="var(--brand)" stroke-width="12" stroke-linecap="round"/><path d="M20 70 Q50 10 80 70" fill="none" stroke="var(--oat)" stroke-width="3" stroke-dasharray="4 6"/><circle cx="26" cy="80" r="8" fill="none" stroke="var(--moss)" stroke-width="5"/><circle cx="74" cy="80" r="8" fill="none" stroke="var(--gold)" stroke-width="5"/></svg>',
+    arnes:'<svg viewBox="0 0 100 100"><path d="M22 40 Q50 20 78 40 L72 70 Q50 82 28 70 Z" fill="var(--moss)" stroke="var(--ink)" stroke-width="2.5"/><path d="M22 40 Q50 52 78 40" fill="none" stroke="var(--gold)" stroke-width="4"/><circle cx="50" cy="66" r="7" fill="none" stroke="var(--ink)" stroke-width="3"/></svg>',
+    pinzas:'<svg viewBox="0 0 100 100"><path d="M20 55 Q50 15 80 55" fill="none" stroke="var(--brand)" stroke-width="8" stroke-linecap="round"/><g stroke="var(--brand)" stroke-width="6" stroke-linecap="round"><line x1="28" y1="60" x2="28" y2="82"/><line x1="42" y1="52" x2="42" y2="82"/><line x1="58" y1="52" x2="58" y2="82"/><line x1="72" y1="60" x2="72" y2="82"/></g></svg>',
+    mantam:'<svg viewBox="0 0 100 100"><rect x="16" y="24" width="68" height="52" rx="10" fill="var(--sky)" stroke="var(--ink)" stroke-width="2.5"/><g fill="var(--brand)"><circle cx="38" cy="46" r="4"/><circle cx="62" cy="46" r="4"/><circle cx="50" cy="58" r="5"/></g></svg>'
   };
+  var bg={manta:"var(--oat)",cama:"var(--moss-soft)",hamaca:"var(--sky)",rulos:"var(--oat)",arnes:"var(--moss-soft)",pinzas:"var(--oat)",mantam:"var(--sky)"};
   var P={
-    freidora:{n:"Kit Freidora",p:16.99,food:1,inc:["3 moldes de silicona aptos para freidora de aire","Pulverizador de aceite rellenable","100 papeles de horno precortados"],pill:"Regalo estrella",img:box("var(--pine)","var(--gold)","var(--brand)"),bg:"var(--pine-soft)"},
-    pelo:{n:"Kit Pelo Perfecto",p:14.99,inc:["Rizador sin calor de satén","2 coleteros de satén","4 pinzas de garra"],pill:"Amigo invisible",img:box("var(--brand)","var(--blush)","var(--gold)"),bg:"var(--blush)"},
-    peludo:{n:"Kit Peludo",p:19.99,inc:["Alfombra de lamer con espátula","Varita de plumas con 5 recambios","Rodillo quitapelos reutilizable"],pill:"Para perros y gatos",img:box("var(--gold)","var(--pine)","var(--brand)"),bg:"var(--sky)"},
-    orden:{n:"Caja Orden",p:12.99,inc:["10 pinzas para cerrar bolsas","10 ganchos adhesivos","10 protectores de cable","Cepillo para botellas"],pill:"Más barata",img:box("var(--sky)","var(--brand)","var(--pine)"),bg:"var(--pine-soft)"},
-    m_scr:{n:"Coletero de satén",p:1.99,mini:1,i:"pelo",bg:"var(--blush)"},
-    m_pin:{n:"Pinza de garra",p:2.49,mini:1,i:"pinza",bg:"var(--pine-soft)"},
-    m_peg:{n:"50 pegatinas ilustradas",p:2.99,mini:1,i:"peg",bg:"var(--sky)"},
-    m_mov:{n:"Anillo soporte para móvil",p:2.49,mini:1,i:"movil",bg:"var(--blush)"},
-    m_cab:{n:"10 protectores de cable",p:1.99,mini:1,i:"cable",bg:"var(--pine-soft)"},
-    m_gat:{n:"5 pelotas con cascabel",p:2.49,mini:1,i:"gato",bg:"var(--sky)"},
-    m_per:{n:"Dispensador de bolsas para perro",p:2.49,mini:1,i:"perro",bg:"var(--pine-soft)"},
-    m_lim:{n:"Lima de uñas de cristal",p:2.99,mini:1,i:"lima",bg:"var(--blush)"}
+    manta:{n:"Batamanta de sherpa",d:"Sudadera-manta con capucha y bolsillo. Talla única.",p:34.99,c:"Para ti",a:"manta",t:"3–6 días"},
+    cama:{n:"Cama calmante Donut",d:"Borde alto y pelo largo para que se acurruque. 50 o 60 cm.",p:34.99,c:"Perros y gatos",a:"cama",t:"3–6 días"},
+    hamaca:{n:"Hamaca de ventana para gato",d:"Se sujeta con 4 ventosas al cristal. Soporta hasta 15 kg.",p:27.99,c:"Gatos",a:"hamaca",t:"4–8 días"},
+    rulos:{n:"Rulos sin calor de satén",d:"Rizos mientras duermes, sin plancha. Incluye 2 coleteros.",p:19.99,c:"Para ti",a:"rulos",t:"3–6 días"},
+    arnes:{n:"Arnés antitirones",d:"Anilla delantera y bandas reflectantes. Con tabla de tallas.",p:24.99,c:"Perros",a:"arnes",t:"3–6 días"},
+    packinv:{n:"Pack Invierno del peludo",p:44.99,a:"cama",pack:1,inc:["Cama calmante Donut","Manta para mascota a juego"],pill:"Regalo de Navidad"},
+    packpelo:{n:"Pack Pelo sin calor",p:29.99,a:"rulos",pack:1,inc:["Rulos sin calor de satén con 2 coleteros","4 pinzas de garra grandes"],pill:"Amigo invisible"}
   };
-  var boxes=["freidora","pelo","peludo","orden"],minis=Object.keys(P).filter(function(k){return P[k].mini});
-  var FREE=19.9,SHIP=3.95;
+  var FREE=29,SHIP=3.95;
   var cart={};
-  try{cart=JSON.parse(localStorage.getItem("lc_cart")||"{}")||{}}catch(e){cart={}}
-  function save(){try{localStorage.setItem("lc_cart",JSON.stringify(cart))}catch(e){}}
+  try{cart=JSON.parse(localStorage.getItem("nido_cart")||"{}")||{}}catch(e){cart={}}
+  function save(){try{localStorage.setItem("nido_cart",JSON.stringify(cart))}catch(e){}}
   function eur(n){return n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"}
   function el(id){return document.getElementById(id)}
-  function thumb(k){var p=P[k];return p.mini?ic[p.i]:p.img}
 
-  el("boxGrid").innerHTML=boxes.map(function(k){var p=P[k];return '<div class="box"><div class="img" style="background:'+p.bg+'">'+p.img+'</div><div class="body"><span class="pill">'+p.pill+'</span><h3>'+p.n+'</h3><ul>'+p.inc.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul><p style="margin:0;font-size:.78rem;color:var(--muted)">'+(p.food?'Apto para contacto con alimentos (declaración de conformidad del fabricante). ':'')+'Fabricante y responsable en la UE: <span class="pending">[pendiente]</span> · Advertencias de uso en castellano</p><div class="price"><b>'+eur(p.p)+'</b><small>IVA incluido</small></div><button class="add" type="button" data-add="'+k+'">Añadir caja</button></div></div>'}).join('');
-  el("miniGrid").innerHTML=minis.map(function(k){var p=P[k];return '<div class="mini"><div class="dot" style="background:'+p.bg+'">'+ic[p.i]+'</div><h3>'+p.n+'</h3><div class="row"><b>'+eur(p.p)+'</b><button class="add" type="button" data-add="'+k+'">Añadir</button></div></div>'}).join('');
+  el("packGrid").innerHTML=["packinv","packpelo"].map(function(k){var p=P[k];return '<div class="pack"><span class="pill">'+p.pill+'</span><h3>'+p.n+'</h3><ul>'+p.inc.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul><div class="price"><b>'+eur(p.p)+'</b><small>IVA incluido · envío gratis</small></div><button class="add" type="button" data-add="'+k+'">Añadir pack</button></div>'}).join('');
+  el("prodGrid").innerHTML=["manta","cama","hamaca","rulos","arnes"].map(function(id){var p=P[id];return '<div class="card"><div class="img" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div class="body"><span class="chip">'+p.c+'</span><h3>'+p.n+'</h3><p>'+p.d+'</p><span class="meta">Llega en '+p.t+' laborables · Fabricante y responsable en la UE: <span class="pending">[pendiente]</span></span><div class="price"><b>'+eur(p.p)+'</b><button class="add" type="button" data-add="'+id+'">Añadir</button></div></div></div>'}).join('');
 
-  function totals(){
-    var ids=Object.keys(cart).filter(function(k){return cart[k]>0&&P[k]});
-    var sub=0,n=0,miniPrices=[];
-    ids.forEach(function(k){n+=cart[k];sub+=cart[k]*P[k].p;if(P[k].mini)for(var i=0;i<cart[k];i++)miniPrices.push(P[k].p)});
-    miniPrices.sort(function(a,b){return b-a});
-    var disc=0;for(var i=0;i+2<miniPrices.length;i+=3){disc+=miniPrices[i]+miniPrices[i+1]+miniPrices[i+2]-5}
-    var after=sub-disc;
-    return {ids:ids,n:n,sub:sub,disc:disc,after:after,miniCount:miniPrices.length,ship:after===0||after>=FREE?0:SHIP};
-  }
   function render(){
-    var t=totals();
-    el("count").textContent=t.n;
-    var left=Math.max(0,FREE-t.after);
-    el("ship").innerHTML=(left>0?'Te faltan <b>'+eur(left)+'</b> para el envío gratis.':'<b>Tienes envío gratis.</b>')+'<div class="bar"><i style="width:'+Math.min(100,t.after/FREE*100)+'%"></i></div>';
-    var rows=t.ids.map(function(k){var p=P[k];return '<div class="item"><div class="th" style="background:'+p.bg+'">'+thumb(k)+'</div><div><b style="font-size:.92rem">'+p.n+'</b><div class="qty"><button type="button" data-dec="'+k+'" aria-label="Quitar uno">−</button><span>'+cart[k]+'</span><button type="button" data-add="'+k+'" data-silent="1" aria-label="Añadir uno">+</button></div></div><b>'+eur(p.p*cart[k])+'</b></div>'}).join('');
-    var rest=t.miniCount%3, need=rest?3-rest:3;
-    var sugg=minis.filter(function(k){return !cart[k]}).slice(0,4);
-    var up=t.ids.length&&sugg.length?'<div class="upsell">'+(rest?'Añade <b>'+need+' detalle'+(need>1?'s':'')+' más</b> y se aplica el 3 por 5 €.':'¿Un detalle más? <b>3 por 5 €</b>.')+'<div class="chips">'+sugg.map(function(k){return '<button type="button" data-add="'+k+'" data-silent="1">+ '+P[k].n+'</button>'}).join('')+'</div></div>':'';
-    el("items").innerHTML=t.ids.length?rows+up:'<div class="empty">Tu carrito está vacío.<br>Empieza por una caja o tres detalles por 5 €.</div>';
-    el("tot").innerHTML=t.ids.length?'<div class="row"><span>Subtotal</span><span>'+eur(t.sub)+'</span></div>'+(t.disc>0?'<div class="row disc"><span>3 por 5 € en detalles</span><span>−'+eur(t.disc)+'</span></div>':'')+'<div class="row"><span>Envío</span><span>'+(t.ship?eur(t.ship):'Gratis')+'</span></div><div class="row big"><span>Total</span><span>'+eur(t.after+t.ship)+'</span></div><small style="color:var(--muted)">IVA incluido · península y Baleares</small><button class="cta checkout" id="pay" type="button">Finalizar compra</button><div class="msg" id="paymsg" hidden>Esto es un prototipo: el pago real se conecta al pasar la tienda a Shopify.</div>':'';
+    var ids=Object.keys(cart).filter(function(k){return cart[k]>0&&P[k]});
+    var n=0,sub=0;ids.forEach(function(k){n+=cart[k];sub+=cart[k]*P[k].p});
+    el("count").textContent=n;
+    var left=Math.max(0,FREE-sub);
+    el("ship").innerHTML=(left>0?'Te faltan <b>'+eur(left)+'</b> para el envío gratis.':'<b>Tienes envío gratis.</b>')+'<div class="bar"><i style="width:'+Math.min(100,sub/FREE*100)+'%"></i></div>';
+    el("items").innerHTML=ids.length?ids.map(function(k){var p=P[k];return '<div class="item"><div class="th" style="background:'+bg[p.a]+'">'+art[p.a]+'</div><div><b style="font-size:.92rem">'+p.n+'</b><div class="qty"><button type="button" data-dec="'+k+'" aria-label="Quitar uno">−</button><span>'+cart[k]+'</span><button type="button" data-add="'+k+'" data-silent="1" aria-label="Añadir uno">+</button></div></div><b>'+eur(p.p*cart[k])+'</b></div>'}).join(''):'<div class="empty">Tu carrito está vacío.<br>Empieza por la batamanta o por un pack.</div>';
+    var envio=sub===0||sub>=FREE?0:SHIP;
+    el("tot").innerHTML=ids.length?'<div class="row"><span>Subtotal</span><span>'+eur(sub)+'</span></div><div class="row"><span>Envío</span><span>'+(envio?eur(envio):'Gratis')+'</span></div><div class="row big"><span>Total</span><span>'+eur(sub+envio)+'</span></div><small style="color:var(--muted)">IVA incluido · península y Baleares · puede llegar en varios paquetes</small><button class="cta checkout" id="pay" type="button">Finalizar compra</button><div class="msg" id="paymsg" hidden>Esto es un prototipo: el pago real se conecta al pasar la tienda a Shopify.</div>':'';
     var pay=el("pay");if(pay)pay.onclick=function(){el("paymsg").hidden=false};
   }
   var lastFocus;
@@ -290,7 +265,7 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
     var a=e.target.closest("[data-add]"),d=e.target.closest("[data-dec]");
     if(a){var k=a.dataset.add;cart[k]=(cart[k]||0)+1;save();render();if(!a.dataset.silent){toast("Añadido: "+P[k].n);open()}}
     if(d){var k2=d.dataset.dec;cart[k2]=Math.max(0,(cart[k2]||0)-1);var gone=!cart[k2];if(gone)delete cart[k2];save();render();if(gone)el("closeCart").focus()}
-    var ck=e.target.closest("[data-ck]");if(ck){el("cookies").hidden=true;try{localStorage.setItem("lc_ck",ck.dataset.ck)}catch(err){}}
+    var ck=e.target.closest("[data-ck]");if(ck){el("cookies").hidden=true;try{localStorage.setItem("nido_ck",ck.dataset.ck)}catch(err){}}
   });
   el("openCart").onclick=open;el("closeCart").onclick=close;el("scrim").onclick=close;
   document.addEventListener("keydown",function(e){
@@ -299,7 +274,7 @@ aside.cart{position:fixed;top:0;right:0;bottom:0;width:min(410px,100%);backgroun
     if(e.key==="Tab"){var f=el("cart").querySelectorAll("button");if(!f.length)return;var first=f[0],last=f[f.length-1];
       if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
   });
-  try{if(localStorage.getItem("lc_ck"))el("cookies").hidden=true}catch(e){}
+  try{if(localStorage.getItem("nido_ck"))el("cookies").hidden=true}catch(e){}
   el("news").addEventListener("submit",function(e){e.preventDefault();toast("Apuntado. En la tienda real recibirías un email de confirmación.");e.target.reset()});
   render();
 })();

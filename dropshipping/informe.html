@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: informe de una columna legible; tablas anchas con scroll propio; dos calculadoras (pedido y stock) */
+/* Layout: informe de una columna legible; tablas anchas con scroll propio; una calculadora por pedido */
 :root{
   --bg:#f6f7f4; --surface:#ffffff; --fg:#1d2420; --muted:#5b6660; --line:#d9ded8;
   --accent:#1f6f5c; --accent-soft:#e1efe9; --warn:#a85a12; --warn-soft:#f8ecdd; --bad:#a3302b; --good:#2a7a3e;
@@ -53,331 +53,217 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 .presets button:hover,.presets button:focus-visible{border-color:var(--accent);color:var(--accent)}
 .presets button[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 ol.steps{padding-left:22px} ol.steps li,.qs li{margin-bottom:10px}
-.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:16px}
-.team div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);font-size:.92rem}
-.team b{font-family:var(--display);font-weight:500;display:block}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+@media (max-width:640px){.flow{grid-template-columns:1fr 1fr}}
+.flow div{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface);font-size:.9rem}
+.flow b{font-family:var(--display);font-weight:500;display:block;color:var(--accent)}
 .sources{font-size:.85rem;color:var(--muted)} .sources a{color:var(--accent);word-break:break-word}
 a{color:var(--accent)}
 </style>
 
 <div class="wrap">
-  <div class="eyebrow">Oficina de proyecto · versión 2 · 5 nov 2026</div>
-  <h1>Productos baratos que sí dejan dinero</h1>
-  <p class="lede">Has pedido productos más baratos, de los que se compran a 1 € y se venden a 3 €. Esta versión explica cómo hacerlo sin perder dinero. Incluye además las correcciones de la revisión interna a la versión 1.</p>
-
-  <div class="team">
-    <div><b>Investigador de producto</b>27 productos de 1–20 € con señales de demanda en España</div>
-    <div><b>Analista</b>Canales, costes de envío 2026 y beneficio por pedido de cada modelo</div>
-    <div><b>Revisor</b>12 errores encontrados en la versión 1, ya corregidos aquí</div>
-  </div>
+  <div class="eyebrow">Oficina de proyecto · versión 3 · dropshipping puro · 6 nov 2026</div>
+  <h1>Dropshipping puro: qué vender y cómo ganar dinero sin tocar la mercancía</h1>
+  <p class="lede">Elegiste no comprar stock nunca. Este informe sustituye a los anteriores, que proponían cajas con stock propio. Lo han preparado un investigador de producto y un analista financiero y legal. Al final hay un historial de los cambios.</p>
 
   <div class="verdict">
     <h3>La respuesta corta</h3>
     <ul>
-      <li><strong>Comprar a 1 € y vender a 3 € funciona, pero nunca de uno en uno.</strong> Un pedido suelto de 3 € pierde unos 4 € aunque no gastes nada en anuncios: solo el envío cuesta 3,5–6 €.</li>
-      <li><strong>El modelo que sale:</strong> juntar 3–5 piezas de ~1 € en una <em>caja temática</em> de 13–20 € (Kit Freidora, Kit Pelo, Kit Peludo). Deja <strong>+3 a +6 € por pedido</strong> según la caja, con stock importado a ~1,30 € por unidad. Y vender piezas de 1–3 € como complemento ("añade 3 por 5 €") en pedidos que ya pagan su envío.</li>
-      <li><strong>Esto ya no es dropshipping puro.</strong> Para que lo barato dé dinero hay que comprar stock al por mayor y enviarlo desde España. Desde China, cada paquete paga 3 € de arancel por tipo de artículo. Con tu regla de <strong>comprar solo lo que se vende rápido</strong>, el primer pedido es de unos <strong>150–200 €</strong> (10 cajas de cada uno de los 2 modelos que mejor funcionen en la prueba) y se repone cada semana. El primer mes completo sale por unos 400–460 €.</li>
-      <li><strong>Captación:</strong> contenido propio en TikTok e Instagram, más TikTok Shop o Amazon cuando haya tracción. Con anuncios de pago (6–12 € por pedido), ningún modelo barato es rentable.</li>
-      <li><strong>Para Navidad:</strong> el barco desde China tarda 30–45 días. Para vender este año hay que comprar a mayoristas en España (polígono Cobo Calleja, en Fuenlabrada) o a almacenes europeos (BigBuy, CJ con stock en la UE). Ahí la unidad sale a 1,60–2 €, así que <strong>este año la caja de 19,90 € deja entre +0,70 y +2,70 €</strong>. El margen bueno llega en 2027, cuando se importe por barco. Los mayoristas de Cobo Calleja suelen pedir alta de autónomo: hay que hacerla esta semana.</li>
+      <li><strong>Vender productos de 30–45 €, nunca baratos.</strong> Con dropshipping cada pedido paga su propio envío, de 3 a 6 €. Por debajo de 25 € no queda margen para captar clientes.</li>
+      <li><strong>Los 5 mejores:</strong> sudadera-manta (batamanta), cama calmante tipo donut para mascotas, hamaca de ventana para gato, rulos sin calor de satén y arnés antitirones. Dejan unos 10–13 € por pedido antes de captar al cliente. Con packs de 2, entre 12 y 15 €.</li>
+      <li><strong>Proveedor:</strong> mejor uno que envíe desde España (BigBuy o Dropea): llega en 1–3 días y permite vender en TikTok Shop. CJ desde su almacén europeo tarda 4–8 días; úsalo solo para lo que no tengan los españoles.</li>
+      <li><strong>Captación:</strong> vídeos propios y TikTok Shop. Los anuncios de Meta dirigidos a gente que no conoce la tienda cuestan unos 70 € por venta, y el máximo que se puede pagar es de 10–18 €.</li>
+      <li><strong>Sin stock, el primer mes cuesta 500–900 €</strong>, contando autónomo, gestoría, muestras y una prueba pequeña de anuncios en TikTok.</li>
+      <li><strong>Lo que tienes que hacer tú:</strong> abrir una cuenta en CJ (gratis) y en BigBuy o Dropea para ver los costes reales. Sus webs piden registro para mostrar precios de almacén, y no podemos saltarlo.</li>
     </ul>
   </div>
 
-  <h2>1. Por qué 3 € suelto no funciona y una caja de 19,90 € sí</h2>
-  <p>Producto de 1 € en fábrica, que sale a 1,30 € ya puesto en España, con envío nacional de 3,50 € sin IVA. La venta suelta desde China lleva 2 € de envío internacional más 3 € de arancel. Todo sin anuncios, es decir, en el mejor caso. Si se devuelve un pedido, se reembolsa el dinero, se paga el envío de vuelta y el producto se da por perdido. Es el mismo método que usa la calculadora.</p>
-  <div class="scroll"><table>
-    <thead><tr><th>Modelo</th><th>PVP</th><th>Ingreso sin IVA</th><th>Costes totales</th><th>Beneficio por pedido</th><th></th></tr></thead>
-    <tbody>
-      <tr><td>1 unidad desde China (1 € + 2 € envío + 3 € arancel)</td><td class="num">3,00 €</td><td class="num">2,48 €</td><td class="num">6,54 €</td><td class="num">−4,06 €</td><td><span class="pill p-bad">Inviable</span></td></tr>
-      <tr><td>"Elige 5 por 14,90 €", stock en España</td><td class="num">14,90 €</td><td class="num">12,31 €</td><td class="num">11,65 €</td><td class="num">+0,66 €</td><td><span class="pill p-warn">Muy justo</span></td></tr>
-      <tr><td><strong>Caja temática de 5 piezas</strong>, stock importado (1,30 €/ud)</td><td class="num">19,90 €</td><td class="num">16,45 €</td><td class="num">12,27 €</td><td class="num"><strong>+4,18 €</strong></td><td><span class="pill p-good">Recomendado</span></td></tr>
-      <tr><td>Misma caja con stock de mayorista español (1,80 €/ud): Navidad 2026</td><td class="num">19,90 €</td><td class="num">16,45 €</td><td class="num">14,77 €</td><td class="num">+1,68 €</td><td><span class="pill p-warn">Margen corto este año</span></td></tr>
-      <tr><td>Caja en TikTok Shop con afiliados (9 % + 15 %)</td><td class="num">19,90 €</td><td class="num">16,45 €</td><td class="num">16,38 €</td><td class="num">+0,07 €</td><td><span class="pill p-warn">Solo para dar visibilidad</span></td></tr>
-      <tr><td>Caja en Amazon FBA (15 % + logística)</td><td class="num">19,90 €</td><td class="num">16,45 €</td><td class="num">13,99 €</td><td class="num">+2,46 €</td><td><span class="pill p-good">Segundo canal</span></td></tr>
-      <tr><td>Pack de 5 en Amazon FBA</td><td class="num">14,90 €</td><td class="num">12,31 €</td><td class="num">13,02 €</td><td class="num">−0,71 €</td><td><span class="pill p-bad">Pierde</span></td></tr>
-    </tbody>
-  </table></div>
-  <p>La clave es el <strong>valor percibido</strong>. Cinco pinzas sueltas valen 5 €. Las mismas cinco piezas en una caja llamada "Kit Pelo Perfecto, listo para regalar" se venden a 15–20 €. El margen sale de la temática y la presentación, no de añadir más unidades.</p>
+  <h2>1. Cómo funciona un pedido</h2>
+  <div class="flow">
+    <div><b>1. El cliente compra</b>en tu tienda o en TikTok Shop, a 34,99 €</div>
+    <div><b>2. Tú pides al proveedor</b>la app lo hace sola y pagas ~16 € (producto + envío)</div>
+    <div><b>3. El proveedor envía</b>directo a casa del cliente con seguimiento</div>
+    <div><b>4. Te quedas la diferencia</b>menos IVA, comisiones y devoluciones: ~10 €</div>
+  </div>
+  <p>Para el cliente, el vendedor eres tú. Respondes de los 14 días de desistimiento, de la garantía de 3 años y de la factura, aunque nunca veas el paquete.</p>
 
-  <h2>2. Las cajas que proponemos</h2>
-  <p>Costes de proveedor <strong>estimados</strong> a partir de 1688, AliExpress y Alibaba con pedido mínimo de más de 100 unidades. Hay que confirmarlos antes de comprar.</p>
+  <h2>2. Productos</h2>
+  <div class="note"><strong>Qué está comprobado:</strong> los precios de Zooplus se consultaron hoy, 6/11/2026. Los de Amazon salen de comparadores de ofertas y pueden haber cambiado. <strong>Los costes de proveedor son estimaciones</strong>: CJ pide una verificación antirrobots para ver precios y almacenes, y no la hemos saltado. Se confirman en minutos con tu cuenta.</div>
   <div class="scroll"><table>
-    <thead><tr><th>Caja</th><th>Contenido</th><th>Coste est.</th><th>PVP</th><th>Por qué se vende</th></tr></thead>
+    <thead><tr><th>Producto</th><th>Coste + envío (est.)</th><th>Precio en España</th><th>PVP</th><th>Margen por pedido (est.)</th><th>Por qué</th></tr></thead>
     <tbody>
-      <tr><td><strong>Kit Freidora</strong></td><td>3 moldes de silicona, pulverizador de aceite (PET), 100 papeles</td><td class="num">4–5 €</td><td class="num">16,99 €</td><td>Los moldes aparecen en mínimos históricos de Chollómetro. El pulverizador sale como "más vendido" en Amazon.es a 13,99 €</td></tr>
-      <tr><td><strong>Kit Pelo Perfecto</strong></td><td>Rizador sin calor de satén, 2 coleteros, 4 pinzas, caja regalo</td><td class="num">3–4,5 €</td><td class="num">14,99 €</td><td>El rizado sin calor es tendencia en vídeo corto en 2026. Encaja como regalo de amigo invisible</td></tr>
-      <tr><td><strong>Kit Peludo</strong></td><td>Lamedera con espátula, varita de plumas con recambios, rodillo quitapelos</td><td class="num">4–6 €</td><td class="num">19,99 €</td><td>Hay un rodillo quitapelos con más de 80.000 valoraciones en Amazon. Mantiene la idea de mascotas de la versión 1</td></tr>
-      <tr><td><strong>Caja Orden</strong></td><td>10 pinzas para bolsas, 10 ganchos adhesivos, 10 protectores de cable, cepillo de botellas</td><td class="num">1,5–2 €</td><td class="num">12,99 €</td><td>Utilidad diaria. Pesa muy poco: unos 150 g</td></tr>
+      <tr><td><strong>Sudadera-manta sherpa (batamanta)</strong></td><td class="num">11 + 5 €</td><td>Amazon 23,99–29,99 €</td><td class="num">34,99 €</td><td class="num">~10 €</td><td>Talla única, pocas devoluciones. Regalo de Navidad. Se ve muy bien en vídeo</td></tr>
+      <tr><td><strong>Cama calmante donut 50–60 cm</strong></td><td class="num">9 + 6 €</td><td>Zooplus 22,49–44,99 €</td><td class="num">34,99 €</td><td class="num">~11 €</td><td>Viaja envasada al vacío. El vídeo del perro tumbándose funciona solo</td></tr>
+      <tr><td><strong>Hamaca de ventana para gato</strong></td><td class="num">7 + 4,5 €</td><td>Zooplus 21,99–59,99 €</td><td class="num">27,99 €</td><td class="num">~9 €</td><td>Vídeos de gatos con mucho alcance. Riesgo: ventosas que fallan</td></tr>
+      <tr><td><strong>Rulos sin calor de satén + coleteros</strong></td><td class="num">3,5 + 2,5 €</td><td>Amazon ~10–18 € (est.)</td><td class="num">19,99 €</td><td class="num">~8,50 €</td><td>Muy ligero, tutorial de 15 s. Mejor venderlo en pack (ver abajo)</td></tr>
+      <tr><td><strong>Arnés antitirones con guía de tallas</strong></td><td class="num">5 + 3,5 €</td><td>Zooplus 22,49–32,09 €</td><td class="num">24,99 €</td><td class="num">~10 €</td><td>Lo compran quienes estrenan cachorro en Navidad. Cuidar la guía de tallas</td></tr>
+      <tr><td>Hamaca de radiador para gato</td><td class="num">6 + 4,5 €</td><td>Zooplus 15,29–44,09 €</td><td class="num">24,99 €</td><td class="num">~8 €</td><td>Temporada de invierno</td></tr>
+      <tr><td>Calientapiés de pelo sin electricidad</td><td class="num">7 + 4,5 €</td><td>Versiones eléctricas 28–60 €</td><td class="num">24,99 €</td><td class="num">~8 €</td><td>Sin cable no necesita registro de aparatos eléctricos</td></tr>
+      <tr><td>Organizador de maletero plegable</td><td class="num">8 + 5,5 €</td><td>25,49–47,99 €</td><td class="num">27,99 €</td><td class="num">~7,5 €</td><td>Todo el año, pico en Semana Santa</td></tr>
+      <tr><td>Fundas de sofá elásticas</td><td class="num">12 + 5 €</td><td>Amazon ~25–45 € (est.)</td><td class="num">34,99 €</td><td class="num">~9 €</td><td><span class="pill p-warn">Medidas</span> Muchas devoluciones si no se explica cómo medir</td></tr>
+      <tr><td>Bandas de resistencia de tela (3) + bolsa</td><td class="num">4 + 2,5 €</td><td>Amazon ~12–20 € (est.)</td><td class="num">19,99 €</td><td class="num">~8 €</td><td>Propósitos de año nuevo, en enero</td></tr>
     </tbody>
   </table></div>
-  <h3>Complementos de 1–3 € para añadir al carrito</h3>
-  <p>No se venden solos. Aparecen en el carrito como "añade 3 por 5 €" y suben el ticket medio sin coste de envío extra.</p>
-  <div class="scroll"><table>
-    <thead><tr><th>Producto</th><th>Coste/ud est.</th><th>Referencia en España</th><th>PVP</th><th>Peso</th></tr></thead>
-    <tbody>
-      <tr><td>Coletero de satén (scrunchie)</td><td class="num">0,17 €</td><td>Action: 8 piezas a 1,99 €</td><td class="num">1,99 €</td><td class="num">20 g</td></tr>
-      <tr><td>Pinza de garra mediana</td><td class="num">0,20–0,40 €</td><td>Action 1,69 €</td><td class="num">2,49 €</td><td class="num">35 g</td></tr>
-      <tr><td>Pack de 50 pegatinas (diseño propio)</td><td class="num">0,30–0,60 €</td><td>Temu/Amazon 2–5 €</td><td class="num">2,99 €</td><td class="num">30 g</td></tr>
-      <tr><td>Anillo o soporte adhesivo para móvil</td><td class="num">0,15–0,40 €</td><td>2–5 €</td><td class="num">2,49 €</td><td class="num">15 g</td></tr>
-      <tr><td>Protectores de cable (10 espirales)</td><td class="num">0,20 €</td><td>3–5 €</td><td class="num">1,99 €</td><td class="num">15 g</td></tr>
-      <tr><td>5 pelotas o ratones con cascabel para gato</td><td class="num">0,30–0,50 €</td><td>3–6 €</td><td class="num">2,49 €</td><td class="num">50 g</td></tr>
-      <tr><td>Dispensador de bolsas para perro + rollo</td><td class="num">0,30–0,60 €</td><td>3–5 €</td><td class="num">2,49 €</td><td class="num">50 g</td></tr>
-      <tr><td>Lima de uñas de cristal</td><td class="num">0,30–0,60 €</td><td>3–6 €</td><td class="num">2,99 €</td><td class="num">20 g</td></tr>
-    </tbody>
-  </table></div>
-  <div class="note"><strong>Competencia a tener en cuenta:</strong> Action vende unos 1.500 artículos por menos de 1 €, Amazon Haul ya está en España y AliExpress lanzó "Bundle Deals" para absorber el arancel. Si vendemos piezas sueltas, perdemos frente a ellos. Con las cajas temáticas y un contenido que se diferencie, sí podemos competir. Nada de llaveros que imiten personajes con licencia como Labubu: hay riesgo de propiedad intelectual.</div>
+  <p style="font-size:.9rem;color:var(--muted)">El margen por pedido ya descuenta el IVA, la pasarela de pago (2,1 % + 0,25 €) y un 6 % de devoluciones con 5 € de envío de vuelta. No descuenta lo que cueste captar al cliente.</p>
 
-  <h3>Productos de 7–20 € que siguen siendo buenos (para venta individual)</h3>
-  <p>Los cinco mejores para el investigador: kit rizador de satén (8/10), rodillo quitapelos (8/10), pack freidora (7/10), bolsas de vacío con bomba manual (7/10, temporada de cambio de armario) y paraguas plegable antiviento (7/10, entre los más vendidos de TikTok Shop en agosto de 2026 y temporada de lluvias). Hemos quitado de la versión 1 la fuente eléctrica, la cama y el arnés: tienen problemas legales (fuente), de volumen (cama) o de devoluciones por talla (arnés).</p>
+  <h3>Packs de 2 para subir el ticket</h3>
+  <ul>
+    <li><strong>Invierno del peludo:</strong> cama donut y manta para mascota a juego, 44,99 €. Margen de unos 14,50 €. Los dos productos tienen que salir del mismo almacén para que vayan en un solo envío.</li>
+    <li><strong>Pelo de salón sin calor:</strong> rulos de satén y 4 pinzas de garra, 29,99 €. Margen de unos 12 €. Sirve para Navidad, Reyes y amigo invisible.</li>
+    <li><strong>Gato en la ventana:</strong> hamaca de ventana y túnel plegable, 44,99 €, si están en el mismo almacén.</li>
+  </ul>
 
   <h2>3. Calculadora por pedido</h2>
-  <p>Precios con IVA incluido. En un pedido devuelto se reembolsa el dinero, se paga el envío de vuelta y el producto se da por perdido. La comisión de plataforma es la de TikTok Shop o Amazon; pon 0 si vendes en tu propia tienda.</p>
+  <p>Precio con IVA incluido. En un pedido devuelto se reembolsa el dinero, se pagan 5 € de envío de vuelta y el producto no se recupera, porque devolverlo al proveedor no compensa. La comisión de plataforma es la de TikTok Shop; pon 0 si vendes en tu web.</p>
   <div class="calc">
     <div>
       <div class="presets" role="group" aria-label="Ejemplos" id="presets1">
-        <button type="button" data-p="caja" aria-pressed="true">Caja 19,90 €</button>
-        <button type="button" data-p="cinco">Elige 5 por 14,90 €</button>
-        <button type="button" data-p="suelto">Suelto 3 € desde China</button>
-        <button type="button" data-p="tiktok">Caja en TikTok Shop</button>
-        <button type="button" data-p="navidad">Caja Navidad (mayorista 1,80 €)</button>
+        <button type="button" data-p="manta" aria-pressed="true">Batamanta 34,99 €</button>
+        <button type="button" data-p="cama">Cama donut 34,99 €</button>
+        <button type="button" data-p="packcama">Pack invierno 44,99 €</button>
+        <button type="button" data-p="rulos">Rulos 19,99 €</button>
+        <button type="button" data-p="tiktok">Batamanta en TikTok Shop</button>
       </div>
       <label class="field" for="pvp">PVP con IVA (€)<input id="pvp" type="number" step="0.1"></label>
-      <label class="field" for="uds">Unidades por pedido<input id="uds" type="number" step="1" min="1"></label>
-      <label class="field" for="cu">Coste por unidad puesto (€)<input id="cu" type="number" step="0.05"></label>
-      <label class="field" for="env">Envío sin IVA (€)<input id="env" type="number" step="0.1"></label>
-      <label class="field" for="emb">Embalaje (€)<input id="emb" type="number" step="0.1"></label>
-      <label class="field" for="ara">Arancel (€)<input id="ara" type="number" step="0.5"></label>
+      <label class="field" for="cu">Coste del producto (€)<input id="cu" type="number" step="0.1"></label>
+      <label class="field" for="env">Envío del proveedor (€)<input id="env" type="number" step="0.1"></label>
       <label class="field" for="plat">Comisión plataforma (%)<input id="plat" type="number" step="0.5"></label>
       <label class="field" for="dev">Pedidos devueltos (%)<input id="dev" type="number" step="0.5"></label>
+      <label class="field" for="vuelta">Envío de vuelta (€)<input id="vuelta" type="number" step="0.5"></label>
       <label class="field" for="cpa">Coste de captación (€)<input id="cpa" type="number" step="0.5"></label>
     </div>
     <div class="out" aria-live="polite">
       <div class="row"><span>Ingreso sin IVA</span><span id="o-neto"></span></div>
-      <div class="row"><span>Producto + envío + embalaje + arancel</span><span id="o-cogs"></span></div>
+      <div class="row"><span>Producto + envío</span><span id="o-cogs"></span></div>
       <div class="row"><span>Pasarela + plataforma</span><span id="o-fees"></span></div>
       <div class="row"><span>Coste medio de devoluciones</span><span id="o-dev"></span></div>
       <div class="row"><span>Máximo que puedes pagar por captar un pedido</span><span id="o-cpamax"></span></div>
+      <div class="row"><span>Ventas por cada euro de anuncios para no perder</span><span id="o-roas"></span></div>
       <div class="big" id="o-ben"></div>
       <small>beneficio por pedido, después de captación y antes de impuestos</small>
     </div>
   </div>
-
-  <h3>Calculadora de stock: cuánto invertir y cuándo se recupera</h3>
-  <div class="calc">
-    <div>
-      <label class="field" for="stk">Unidades compradas<input id="stk" type="number" step="50" value="100"></label>
-      <label class="field" for="fij">Gastos fijos de arranque (€)<input id="fij" type="number" step="10" value="100"></label>
-      <label class="field" for="embStock">Embalaje comprado (€)<input id="embStock" type="number" step="5" value="15"></label>
-      <p style="font-size:.85rem;color:var(--muted);margin:4px 0 0">Usa el coste por unidad, las unidades por pedido y el beneficio por pedido de la calculadora de arriba. Con lotes pequeños, los gastos fijos no se recuperan con el primer lote, sino con las reposiciones.</p>
-    </div>
-    <div class="out" aria-live="polite">
-      <div class="row"><span>Inversión total</span><span id="s-inv"></span></div>
-      <div class="row"><span>Pedidos posibles con ese stock</span><span id="s-ped"></span></div>
-      <div class="row"><span>Pedidos para recuperar la inversión</span><span id="s-rec"></span></div>
-      <div class="big" id="s-ben"></div>
-      <small>beneficio si se vende todo el stock</small>
-    </div>
-  </div>
+  <p style="font-size:.9rem;color:var(--muted)">Referencia del analista con coste de producto + envío del 35 % del PVP: a 24,90 € quedan 9,56 €, a 34,90 € quedan 13,61 € y a 44,90 € quedan 17,67 € antes de captación. Para no perder, cada euro de anuncios tiene que traer unos 2,6 € en ventas.</p>
 
   <h2>4. Dónde vender</h2>
   <div class="scroll"><table>
-    <thead><tr><th>Canal</th><th>Coste por venta</th><th>Uso recomendado</th></tr></thead>
+    <thead><tr><th>Canal</th><th>Coste por venta</th><th>¿Encaja con dropshipping?</th></tr></thead>
     <tbody>
-      <tr><td><strong>Contenido propio en TikTok/Reels → tienda propia</strong></td><td>0 € en anuncios, pero hay que publicar 1–3 vídeos al día</td><td><span class="pill p-good">Principal</span> Es el único canal donde lo barato deja margen</td></tr>
-      <tr><td><strong>TikTok Shop España</strong></td><td>9 % de comisión (4 % los primeros 60 días para vendedores nuevos) + 10–20 % para creadores afiliados</td><td><span class="pill p-good">Sí</span> Para que los creadores muevan las cajas. Exige envío rápido desde España o la UE</td></tr>
-      <tr><td><strong>Amazon.es (FBA)</strong></td><td>~15 % + logística de 3–4,5 € (est.) + recargo del 1,5 % desde abril de 2026</td><td><span class="pill p-warn">Después</span> Para cajas, cuando una venda más de 5 al día</td></tr>
-      <tr><td>Mercadillos y ferias de Navidad</td><td>Puesto, sin envío</td><td><span class="pill p-good">Sí</span> Perfecto para piezas de 1–3 € y para probar qué se vende antes de invertir más</td></tr>
-      <tr><td>Anuncios de Meta</td><td>12–50 € por pedido</td><td><span class="pill p-bad">No</span> Solo para retargeting más adelante</td></tr>
-      <tr><td>Contra reembolso</td><td>Recargo de 1–3 € y más del 20 % de pedidos rechazados (est.)</td><td><span class="pill p-bad">No</span> Cada rechazo cuesta unos 6 €</td></tr>
+      <tr><td><strong>TikTok Shop España</strong></td><td>4 % los primeros 60 días, luego 9 %. Más 10–20 % si vende un creador afiliado</td><td><span class="pill p-good">Sí, con proveedor en España</span> Exige despachar en 24–48 h con seguimiento y entregar en unos 5 días hábiles (según terceros; confirmar en el panel de vendedor). Con CJ a 7–10 días es arriesgado</td></tr>
+      <tr><td><strong>Vídeos propios → tienda Shopify</strong></td><td>0 € en anuncios; tiempo de grabar 1–3 vídeos al día</td><td><span class="pill p-good">Sí</span> Admite los plazos de CJ si se anuncian claramente</td></tr>
+      <tr><td>Anuncios de TikTok sobre vídeos que ya funcionan</td><td>Variable</td><td><span class="pill p-warn">Prueba pequeña</span> 200–400 € el primer mes, solo para empujar vídeos con tracción</td></tr>
+      <tr><td>Meta (Facebook/Instagram) a público frío</td><td>33–155 € por venta; ~70 € de media</td><td><span class="pill p-bad">No</span> Solo para volver a impactar a quien ya visitó la tienda</td></tr>
+      <tr><td>Amazon.es enviando tú (FBM)</td><td>~15 % + competir contra Prime</td><td><span class="pill p-bad">No</span> Solo permite dropshipping si en el paquete y la factura apareces tú y no el proveedor. Los paquetes de CJ suelen llevar rastros del proveedor, y eso puede suspender la cuenta</td></tr>
     </tbody>
   </table></div>
-  <p><strong>Para subir el ticket medio:</strong> packs con un 15–20 % de descuento (+20–35 % de ticket), una oferta de un clic tras el pago (la aceptan el 15–25 % de los clientes) y el envío gratis un 15–25 % por encima del ticket medio. Con cajas de 13–20 €, el envío gratis va a partir de 19,90 €, para que la caja más cara y una caja de 14,99 € con tres detalles lo alcancen. Son datos de proveedores de software: tómalos como orientación.</p>
 
-  <h2>5. Dinero para empezar</h2>
+  <h2>5. Proveedores</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Proveedor</th><th>Envía desde</th><th>Plazo</th><th>Coste fijo</th><th>IVA y papeles</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BigBuy</strong></td><td>Valencia</td><td class="num">24–72 h</td><td class="num">69–120 €/mes + alta (est.)</td><td>Factura española con 21 % deducible. Lo más sencillo</td><td><span class="pill p-good">Principal si tiene el producto</span></td></tr>
+      <tr><td><strong>Dropea</strong> (app de Shopify)</td><td>España</td><td class="num">24–48 h</td><td>Según plan</td><td>Proveedor español</td><td><span class="pill p-good">Alternativa española</span></td></tr>
+      <tr><td><strong>CJdropshipping</strong> (almacén UE)</td><td>Alemania, Polonia, a veces España</td><td class="num">4–8 días (est.)</td><td class="num">Gratis</td><td>Hay que confirmar qué empresa factura y con qué NIF europeo</td><td><span class="pill p-warn">Para lo que no tengan los españoles</span></td></tr>
+      <tr><td>CJ / AliExpress desde China</td><td>China</td><td class="num">7–15 días</td><td class="num">Gratis</td><td>3 € de arancel por tipo de artículo</td><td><span class="pill p-bad">No</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Que CJ tenga almacén en Alemania no significa que cada producto esté allí. Hay que filtrar por país de envío en su panel. Las <strong>devoluciones</strong> no se mandan a CJ: el cliente devuelve a tu dirección en España, pagas el envío y el producto se queda como outlet.</p>
+
+  <h2>6. Legal y fiscal del dropshipping puro</h2>
+  <div class="note">Resumen para llevar al gestor. El analista no pudo abrir la web de la AEAT ni el BOE; se apoya en asesorías y en la Directiva del IVA.</div>
+  <ul>
+    <li><strong>Alta:</strong> autónomo (tarifa plana, unos 88,64 €/mes con el MEI) y, si compras a CJ desde otro país de la UE, alta en el <strong>ROI</strong>, el registro de operadores intracomunitarios (modelo 036). Sin el ROI, CJ puede cobrarte IVA alemán o polaco que no podrás deducir.</li>
+    <li><strong>IVA:</strong> vendes a clientes españoles con 21 % desde el primer euro, en el modelo 303. La compra a CJ desde la UE se declara también en el 303 y en el 349, y el efecto neto es cero. <strong>No necesitas la ventanilla única OSS</strong> mientras vendas solo en España.</li>
+    <li><strong>Seguridad de producto (GPSR):</strong> eres distribuidor. En cada ficha van el fabricante, la persona responsable en la UE, la identificación del producto y las advertencias en castellano. Si el proveedor no te da esos datos, no se vende. Si le pones tu marca, pasas a ser fabricante.</li>
+    <li><strong>Envases:</strong> al traer producto envasado desde otro país de la UE, lo más probable es que seas "productor de producto". Eso obliga a inscribirse en el registro de envases y a adherirse a un sistema como Ecoembes. Con BigBuy, el envasador es español: pídele su número de registro.</li>
+    <li><strong>Textil:</strong> la batamanta, la cama, el abrigo y las fundas deben llevar etiqueta de composición (Reglamento UE 1007/2011).</li>
+    <li><strong>Higiene:</strong> los rulos y los coleteros abiertos no admiten desistimiento. Hay que avisarlo en la ficha.</li>
+    <li><strong>Web:</strong> datos del titular (LSSI), condiciones de venta, formulario de desistimiento, privacidad y cookies. No usar reseñas inventadas ni precios tachados que nunca existieron.</li>
+    <li><strong>Sin electrónica ni cosméticos:</strong> nos ahorramos el registro de aparatos eléctricos y el registro europeo de cosméticos.</li>
+  </ul>
+
+  <h2>7. Dinero para empezar (sin stock)</h2>
   <div class="scroll"><table>
     <thead><tr><th>Concepto</th><th>Importe</th></tr></thead>
     <tbody>
-      <tr><td>Muestras de 4 cajas (antes de comprar stock)</td><td class="num">40–60 €</td></tr>
-      <tr><td>Stock: 300 unidades a ~1,30 € puestas en España</td><td class="num">~390 €</td></tr>
-      <tr><td>Embalaje y cajas regalo</td><td class="num">30–60 €</td></tr>
-      <tr><td>Shopify Basic (24 €/mes con pago anual, 32 €/mes con pago mensual, sin IVA; confirmar)</td><td class="num">~30 €</td></tr>
-      <tr><td>Dominio</td><td class="num">~12 €</td></tr>
-      <tr><td>Autónomo: tarifa plana de 80 € (unos 88,64 € con el MEI)</td><td class="num">~89 €/mes</td></tr>
-      <tr><td>Gestoría online</td><td class="num">40–70 €/mes</td></tr>
-      <tr><td><strong>Total del primer mes</strong></td><td class="num"><strong>~630–710 €</strong></td></tr>
+      <tr><td>Autónomo, tarifa plana</td><td class="num">88,64 €</td></tr>
+      <tr><td>Shopify Basic con IVA</td><td class="num">~39 €</td></tr>
+      <tr><td>Dominio y apps</td><td class="num">15–30 €</td></tr>
+      <tr><td>Muestras de 3–5 productos para grabar vídeos</td><td class="num">60–120 €</td></tr>
+      <tr><td>Gestoría (alta en el ROI, IVA, envases)</td><td class="num">40–70 €</td></tr>
+      <tr><td>Registro de envases y Ecoembes (est.)</td><td class="num">0–50 €</td></tr>
+      <tr><td>Muestras para creadores de TikTok</td><td class="num">50–100 €</td></tr>
+      <tr><td>Prueba de anuncios en TikTok o retargeting</td><td class="num">200–400 €</td></tr>
+      <tr><td>Cuota de BigBuy, si se usa</td><td class="num">69–120 €</td></tr>
+      <tr><td><strong>Total del primer mes</strong></td><td class="num"><strong>~500–900 €</strong></td></tr>
     </tbody>
   </table></div>
-  <p>Esta tabla supone un primer pedido grande de 300 unidades. Con la regla de la sección siguiente (comprar solo lo que se vende rápido), el primer pedido baja a unos 150–200 €.</p>
-
-  <h2>6. Comprar solo lo que se vende rápido</h2>
-  <p>Has decidido no comprar nada que vaya a quedarse en la estantería. Esto cambia el riesgo principal del plan: el stock sin vender. A cambio, cada unidad sale algo más cara, porque los lotes pequeños no tienen precio de volumen. Estas son las reglas.</p>
-  <ol class="steps">
-    <li><strong>Probar sin stock.</strong> Antes de comprar, cada caja se publica con fotos y vídeos hechos con <em>una sola muestra</em>. Los pedidos de prueba se sirven desde un almacén de la UE (CJ o BigBuy), aunque el margen sea menor, o se venden en un mercadillo. Lo que no vende en la prueba no se compra.</li>
-    <li><strong>Primer lote pequeño solo de lo que vendió.</strong> 10 cajas por modelo, y como mucho 2 modelos a la vez. Son unas 100 piezas: unos 180 € a precio de mayorista español.</li>
-    <li><strong>Piezas comodín primero.</strong> Coleteros, pinzas y rodillos sirven para varias cajas y para la promoción de 3 por 5 €. Si una caja no se vende, sus piezas se recolocan en otra.</li>
-    <li><strong>Reponer con un proveedor cercano.</strong> Un mayorista que sirva en 1–3 días permite tener stock para una semana y no para dos meses. La calculadora de abajo dice cuándo y cuánto pedir.</li>
-    <li><strong>Regla de corte.</strong> Si una caja vende menos de 1 al día durante 10 días seguidos, no se repone. Lo que queda se deshace en detalles para el 3 por 5 € o se vende en mercadillo.</li>
-    <li><strong>Indicador semanal:</strong> los días de stock (stock ÷ ventas diarias) tienen que estar por debajo de 14. Si pasan de 21, se para de comprar ese producto.</li>
-  </ol>
-
-  <h3>Calculadora de reposición</h3>
-  <div class="calc">
-    <div>
-      <label class="field" for="r-vd">Cajas vendidas al día (media de 7 días)<input id="r-vd" type="number" step="0.5" value="2"></label>
-      <label class="field" for="r-stock">Cajas en stock ahora<input id="r-stock" type="number" step="1" value="10"></label>
-      <label class="field" for="r-plazo">Días que tarda el proveedor<input id="r-plazo" type="number" step="1" value="2"></label>
-      <label class="field" for="r-seg">Días de colchón<input id="r-seg" type="number" step="1" value="2"></label>
-      <label class="field" for="r-cob">Días que debe cubrir cada pedido<input id="r-cob" type="number" step="1" value="7"></label>
-    </div>
-    <div class="out" aria-live="polite">
-      <div class="row"><span>Días de stock que tienes</span><span id="r-dias"></span></div>
-      <div class="row"><span>Pedir cuando queden</span><span id="r-punto"></span></div>
-      <div class="big" id="r-accion"></div>
-      <small id="r-nota"></small>
-    </div>
-  </div>
-
-  <h3>Qué piezas se mueven más rápido ahora</h3>
-  <p>Ordenadas por la fuerza de la señal de venta. La conclusión: <strong>empezar solo con Kit Pelo Perfecto y Kit Freidora</strong>. Kit Peludo entra en la prueba sin stock y la Caja Orden queda solo como detalles sueltos.</p>
-  <div class="scroll"><table>
-    <thead><tr><th>Pieza</th><th>Señal de venta</th><th>Fuerza</th><th>Decisión</th></tr></thead>
-    <tbody>
-      <tr><td>Rizador sin calor de satén</td><td>Tendencia de crecimiento rápido en TikTok e Instagram en 2025–26, con ventas altas y estables en Amazon. Un set de referencia tiene 2.043 reseñas con 4,8. Encaja con amigo invisible</td><td><span class="pill p-good">Media-alta</span></td><td>Primer lote</td></tr>
-      <tr><td>Moldes y papel para freidora</td><td>Decenas de listados en ManoMano y recomendaciones en prensa (8,98 €). Las freidoras en oferta de Black Friday arrastran accesorios (est.)</td><td><span class="pill p-good">Media-alta</span></td><td>Primer lote</td></tr>
-      <tr><td>Pinzas de garra y coleteros</td><td>Demanda estable de reposición, ya no viral</td><td><span class="pill p-warn">Media</span></td><td>Comodín: va en el Kit Pelo y en el 3 por 5 €</td></tr>
-      <tr><td>Alfombra de lamer</td><td>Unas 7.100 búsquedas por semana en EE. UU. (marzo 2026). Un modelo de referencia tiene 17.200 reseñas, pero está en el puesto 315 de su categoría</td><td><span class="pill p-warn">Media</span></td><td>Prueba sin stock</td></tr>
-      <tr><td>Rodillo quitapelos y varita de plumas</td><td>Sin rankings públicos encontrados</td><td><span class="pill p-warn">Baja-media</span></td><td>Prueba sin stock</td></tr>
-      <tr><td>Piezas de la Caja Orden</td><td>Sin señal de tendencia</td><td><span class="pill p-bad">Baja</span></td><td>No comprar como caja</td></tr>
-    </tbody>
-  </table></div>
-  <p style="font-size:.9rem;color:var(--muted)">No hay rankings públicos de Amazon.es de estas piezas. Antes de cada compra conviene mirar a mano los "más vendidos" de Amazon.es y el TikTok Creative Center.</p>
-
-  <h3>Proveedores para probar y reponer</h3>
-  <div class="scroll"><table>
-    <thead><tr><th>Proveedor</th><th>Pedido mínimo</th><th>Plazo</th><th>Para qué</th></tr></thead>
-    <tbody>
-      <tr><td><strong>AliExpress Choice (almacén en España)</strong></td><td>Ninguno, a precio de minorista</td><td>1–3 días en ciudades grandes (dato de 2023)</td><td><span class="pill p-good">Probar</span> Lotes de 5–20 unidades. Pinza ~0,50–1 €, alfombra de lamer ~1,50–3 € (est.)</td></tr>
-      <tr><td><strong>CJdropshipping (almacén UE)</strong></td><td>Ninguno en dropshipping</td><td>5–10 días laborables (Alemania, Francia, Polonia)</td><td><span class="pill p-good">Probar sin stock</span> Hay que anunciar ese plazo en la ficha</td></tr>
-      <tr><td><strong>Cobo Calleja (Fuenlabrada)</strong></td><td>Por caja o docena en muchas naves; algunas venden desde 1 unidad</td><td>Inmediato</td><td><span class="pill p-good">Reponer</span> Lo más barato por unidad: pinza 0,30–0,80 €, ganchos 0,10–0,30 € (est.). Muchas naves piden alta de autónomo. Casi no venden online</td></tr>
-      <tr><td>Dropea (app de Shopify)</td><td>Sin stock</td><td>24–48 h</td><td><span class="pill p-warn">Alternativa</span> Producto ya en España, pensado para contra reembolso</td></tr>
-      <tr><td>BigBuy</td><td>Sin mínimo, pero 69–99 €/mes</td><td>24–72 h</td><td><span class="pill p-bad">No por ahora</span> No aparecieron rizador, alfombra de lamer ni pinzas de bolsa en su catálogo</td></tr>
-      <tr><td>Ankorstore</td><td>100 € el primer pedido</td><td>48–72 h</td><td><span class="pill p-warn">Más adelante</span> Marcas pequeñas europeas, más caras</td></tr>
-    </tbody>
-  </table></div>
-  <h3>Cómo validar sin comprar</h3>
-  <ul>
-    <li><strong>Lista de espera "Avísame"</strong> en cada caja: mide el interés sin cobrar. Hace falta consentimiento claro para escribir después (RGPD y LSSI).</li>
-    <li><strong>Preventa:</strong> está permitida si la fecha de envío se muestra antes del pago y se cumple. Sin fecha pactada, el máximo es de 30 días. Si no llega a tiempo, el cliente puede cancelar.</li>
-    <li><strong>Mercadillo navideño:</strong> los ayuntamientos suelen pedir alta de autónomo, estar al corriente con Hacienda y la Seguridad Social y una memoria de productos. Las bases cambian en cada municipio.</li>
-  </ul>
-  <p><strong>Plan con tu regla:</strong> en las semanas 1–2, publicar las 4 cajas y comprar solo 5–10 unidades de cada pieza en AliExpress Choice o CJ (150–250 €). Antes del Black Friday (27 de noviembre), reponer en Cobo Calleja solo las 2 cajas que más hayan vendido, en lotes de 20–30.</p>
-
-  <h2>7. Correcciones a la versión 1 (revisión interna)</h2>
-  <div class="scroll"><table>
-    <thead><tr><th>Versión 1 decía</th><th>Lo correcto</th></tr></thead>
-    <tbody>
-      <tr><td>Arancel de 3 € "por paquete"</td><td>3 € <strong>por cada categoría arancelaria distinta</strong> dentro del envío (Reglamento UE 2026/382, del 1/7/2026 al 1/7/2028). Una caja con artículos de varias categorías enviada desde China puede pagar 9–15 €. Además se habla de una tasa de gestión de unos 2 € desde noviembre de 2026, sin confirmar</td></tr>
-      <tr><td>Fuente eléctrica como producto estrella</td><td>Para venderla hay que inscribirse en el registro RII-AEE y adherirse a un sistema de reciclaje (SCRAP) antes de la primera venta, y tener marcado CE. <strong>Quitada:</strong> ahora solo hay productos sin electrónica</td></tr>
-      <tr><td>Cifras del resumen</td><td>Con anuncios de pago, la fuente sola perdía unos 8 € por pedido y el pack del gato unos 4 €. Esto confirma que el modelo de anuncios de pago no funcionaba</td></tr>
-      <tr><td>Shopify ~29/39 €</td><td>24 €/mes con pago anual y 32 €/mes con pago mensual, sin IVA, según guías de 2026. Confirmar en shopify.com/es/precios</td></tr>
-      <tr><td>Tarifa plana "unos 80 €"</td><td>80 € prorrogada en 2026. Con el MEI la cuota real es de unos 88,64 €/mes</td></tr>
-      <tr><td>OSS: umbral de 10.000 €</td><td>Solo se aplica si la mercancía sale de España. <strong>Canarias</strong> tiene IGIC y aduana: queda fuera al principio</td></tr>
-      <tr><td>Tienda: "2–5 días", "30 días", "lo probamos en casa", 4,8 estrellas</td><td>Ya no aparecen. Las reseñas inventadas son una práctica desleal (Directiva Omnibus, RDL 24/2021). La tienda v2 promete solo lo que se puede cumplir con stock propio</td></tr>
-      <tr><td>Calculadora: devoluciones como % del ingreso</td><td>Ahora cuentan el producto perdido más el envío, y hay comisión de plataforma y unidades por pedido</td></tr>
-      <tr><td>Faltaban obligaciones</td><td>Como importador de stock: registro de <strong>envases</strong> (RD 1055/2022), GPSR (fabricante, responsable en la UE y advertencias en castellano en cada ficha), LSSI (nombre, NIF y dirección en la web), formulario de desistimiento y banner de cookies</td></tr>
-      <tr><td>Faltaba (revisión final)</td><td><strong>Materiales en contacto con alimentos</strong> (moldes, pulverizador, papel de horno, lamedera): Reglamento (CE) 1935/2004. Hay que pedir al mayorista la declaración de conformidad y consultar con el gestor si, como importador, hace falta registro sanitario (RGSEAA). Sin declaración, no se compra. <strong>Higiene:</strong> los coleteros y la lima precintados no se pueden devolver una vez abiertos (art. 103 LGDCU), y hay que avisarlo en la ficha. <strong>Precios "por separado":</strong> solo se pueden mostrar si cada pieza se vende de verdad suelta a ese precio. La tienda v2 los ha quitado</td></tr>
-      <tr><td>Riesgos no mencionados</td><td>Contracargos y retención de fondos en tiendas nuevas, roturas de stock, plazo legal máximo de entrega de 30 días y stock que no se vende (nuevo riesgo con este modelo)</td></tr>
-    </tbody>
-  </table></div>
+  <p>Conviene guardar unos 100 € más para devoluciones.</p>
 
   <h2>8. Calendario</h2>
   <ol class="steps">
-    <li><strong>Esta semana (6–12 nov):</strong> gestor y alta de autónomo. No se puede retrasar: los mayoristas de Cobo Calleja suelen pedirla para venderte. Visita o pedido a mayoristas de Cobo Calleja (Fuenlabrada) y a CJ con stock en la UE para las muestras de las 4 cajas.</li>
-    <li><strong>13–22 nov:</strong> montar Shopify con el prototipo v2, fotos y vídeos de las cajas, fichas con los datos GPSR. Comprar solo el primer lote pequeño (10 cajas de cada uno de los 2 modelos que mejor hayan funcionado en la prueba) a un mayorista español que sirva en 1–3 días.</li>
-    <li><strong>23 nov–22 dic:</strong> vender las cajas como <em>regalo por menos de 20 €</em>: amigo invisible, calcetín de Navidad. Publicar a diario en TikTok y Reels y montar un puesto en un mercadillo navideño si es posible. Darse de alta en TikTok Shop para aprovechar el 4 % de comisión.</li>
-    <li><strong>Enero 2027:</strong> con los datos de venta, pedir la caja que funcione a 1688 por barco (llega en 30–45 días, más barato) y dejar las que no.</li>
-    <li><strong>Febrero–marzo:</strong> Amazon FBA para la caja ganadora y temporada de muda para el Kit Peludo.</li>
+    <li><strong>Hoy y mañana:</strong> abrir cuentas gratis en CJ y Dropea y pedir acceso a BigBuy. Buscar los 5 productos, filtrar por envío desde España o Alemania y apuntar el coste y el plazo reales. Si me los pasas, actualizo la calculadora.</li>
+    <li><strong>Esta semana:</strong> gestor, alta de autónomo y en el ROI. Pedir muestras de los 3 mejores productos.</li>
+    <li><strong>13–22 nov:</strong> pasar la tienda prototipo a Shopify, conectar la app del proveedor y completar las fichas con los datos de seguridad (GPSR) y las tallas. Alta en TikTok Shop para aprovechar el 4 % de comisión.</li>
+    <li><strong>23 nov–20 dic:</strong> vídeos diarios con las muestras y la batamanta y la cama como regalo de Navidad. Mandar muestras a 10–20 microcreadores.</li>
+    <li><strong>Enero 2027:</strong> quedarse con los 2 productos que vendan, añadir las bandas de resistencia (propósitos de año nuevo) y retirar el resto.</li>
   </ol>
 
   <h2>9. Lo que necesito que me digas</h2>
   <ol class="qs">
-    <li>¿Te parece bien <strong>comprar stock en lotes pequeños</strong> (unos 150–200 € el primer pedido y reposición semanal; unos 400–460 € el primer mes completo) en lugar de dropshipping puro? Es lo que hace viable vender barato.</li>
-    <li>¿Tienes un sitio para guardar unas 300 piezas y preparar los pedidos (basta una estantería), o prefieres pagar un almacén logístico?</li>
-    <li>¿Cuál de las 4 cajas te gusta más para empezar? Recomendamos Kit Freidora y Kit Pelo Perfecto para Navidad.</li>
-    <li>¿Estás dispuesto a grabar vídeos cortos a diario? Sin eso, lo barato no se vende.</li>
+    <li>¿Puedes abrir las cuentas de CJ y Dropea y pasarme el coste y el plazo reales de los 5 productos? Es lo único que no podemos hacer desde aquí.</li>
     <li>¿Ya eres autónomo? ¿Tienes gestor?</li>
-    <li>Nombre: la tienda deja de ser solo de mascotas. Proponemos <em>La Cajita</em>. ¿Te gusta o tienes otro?</li>
+    <li>¿Te gustan estos productos o prefieres centrarte en mascotas o en invierno?</li>
+    <li>¿Puedes grabar vídeos cortos casi a diario? ¿Tienes perro o gato?</li>
+    <li>Nombre: la tienda prototipo pasa a llamarse <em>Nido</em>, con productos para estar a gusto en casa con tu mascota. ¿Te gusta?</li>
   </ol>
+
+  <h2>10. Historial de cambios</h2>
+  <ul>
+    <li><strong>v1:</strong> mascotas con anuncios. Descartado: los anuncios hacían perder dinero en casi todos los productos.</li>
+    <li><strong>v2:</strong> productos de 1 € en cajas temáticas con stock propio, comprado en lotes pequeños. Era viable, pero exigía comprar y preparar pedidos.</li>
+    <li><strong>v3 (esta):</strong> dropshipping puro por decisión tuya. Productos de 25–45 €, sin stock.</li>
+  </ul>
 
   <h2>Fuentes</h2>
   <ul class="sources">
-    <li>Arancel: <a href="https://eur-lex.europa.eu/eli/reg/2026/382/oj/por">EUR-Lex 2026/382</a> · <a href="https://commission.europa.eu/news-and-media/news/ensuring-fairness-and-safety-eur3-customs-duty-low-value-parcels-2026-06-29_es">Comisión Europea</a> · <a href="https://www.euskadi.eus/gobierno-vasco/-/noticia/2026/nuevo-arancel-de-3-en-compras-online-fuera-de-la-ue/">Euskadi (ejemplos)</a> · <a href="https://marketing4ecommerce.net/asi-es-el-plan-temporal-de-aliexpress-contra-el-nuevo-arancel-europeo-de-3-euros/">AliExpress Bundle Deals</a></li>
-    <li>Envíos 2026: <a href="https://www.shippypro.com/blog/es/precios-de-envíos-de-paquetes-en-2026">ShippyPro</a> · <a href="https://www.packlink.com/eu-ES/enviar-paquete-a-espana-peninsular/">Packlink</a> · <a href="https://www.noticiasdenavarra.com/economia/2025/12/26/correos-sube-precios-10513668.amp.html">Correos sube precios</a></li>
-    <li>Canales: <a href="https://marketing4ecommerce.mx/tiktok-shop-aumenta-comision/">TikTok Shop 9 %</a> · <a href="https://www.edesk.com/es/blog/cuanto-cuesta-vender-en-tiktok-shop-espana/">eDesk: TikTok Shop España</a> · <a href="https://marketing4ecommerce.net/amazon-espana-recargo-coste-logistica-fba/">Amazon recargo FBA</a> · <a href="https://wiseppc.com/es/blog/amazon-fba-fees/">Tarifas Amazon</a> · <a href="https://www.cronista.com/espana/pc-movil/adios-shein-y-temu-amazon-destrona-a-los-gigantes-chinos-con-la-llegada-al-pais-de-su-tienda-low-cost">Amazon Haul</a> · <a href="https://www.andreybusiness.com/espana/blog/errores-comunes-dropshipping-contra-entrega-espana">Contra reembolso</a></li>
-    <li>Ticket medio: <a href="https://easyappsecom.com/guides/shopify-upsell-cross-sell-statistics-2026">Upsell 2026</a> · <a href="https://www.intelligems.io/resources/customer-stories/boost-aov-by-upping-your-free-shipping-threshold">Umbral de envío gratis</a></li>
-    <li>Productos: <a href="https://syncly.app/social-index/trends/heatless-curls-2026-09">Syncly: rizos sin calor</a> · <a href="https://www.echotik.live/blog/tiktok-shop-weekly-report-august-3-9-2026/">EchoTik: TikTok Shop</a> · <a href="https://www.compradiccion.com/mascotas/ropa-sofas-libres-pelos-tu-mascota-rodillo-quitapelos-superventas-amazon-muy-facil-usar">Compradicción: quitapelos</a> · <a href="https://www.chollometro.com/ofertas/2-moldes-de-silicona-reutilizables-para-air-frayer-1951036">Chollómetro: moldes freidora</a> · <a href="https://www.trendencias.com/shopping/pulverizadores-aceite-spray-mejor-accesorio-para-tu-freidora-aire-que-reducir-calorias-al-cocinar">Trendencias: pulverizadores</a> · <a href="https://www.action.com/es-es/p/3225989/pinza-del-pelo/">Action: pinza</a> · <a href="https://www.chilat.com/h5/al-por-mayor/ligas-para-el-cabello">Chilat: coleteros por mayor</a> · <a href="https://www.moncloa.com/2026/10/21/action-supermercado-madrid-3452423/">Action en España</a></li>
-    <li>Legal: <a href="https://industria.gob.es/registros-industriales/RAEE/Documents/07.2024%20GUIA%20INSCRIPCION%20RII-AEE_v3.pdf">Guía RII-AEE</a> · <a href="https://declarando.es/tarifa-plana-autonomos">Declarando: tarifa plana</a> · <a href="https://www.billeo.es/blog/tarifa-plana-autonomos-2026">Billeo</a> · <a href="https://m8d.io/shopify-precios/">Precios Shopify 2026</a> · <a href="https://easecert.com/es/blogs/perspectivas/cumplimiento-de-gpsr-para-dropshippers">GPSR</a></li>
-    <li>Versión 1 (mercado de mascotas): <a href="https://www.ifema.es/iberpet/notas-prensa/el-potente-sector-de-mascotas-en-nuestra-economia">IFEMA/AMVAC</a> · <a href="https://adligator.com/es/blog/cpm-facebook-por-pais-2026">Adligator CPM</a> · <a href="https://www.dropified.com/blog/pet-products-dropshipping-in-2026-best-selling-items-suppliers-profit-margins/">Dropified</a></li>
+    <li>Precios de Zooplus (consultados el 6/11/2026): <a href="https://www.zooplus.es/search/results?q=cama+calmante+perro">camas calmantes</a> · <a href="https://www.zooplus.es/search/results?q=hamaca+ventana+gato">hamacas de ventana</a> · <a href="https://www.zooplus.es/search/results?q=arnes+perro+antitirones">arneses antitirones</a> · <a href="https://www.zooplus.es/search/results?q=cama+radiador+gato">camas de radiador</a> · <a href="https://www.zooplus.es/search/results?q=abrigo+perro">abrigos</a></li>
+    <li>Otros precios: <a href="https://www.compradiccion.com/moda-hombre/amazon-tiene-batamanta-para-estar-calentita-sofa-este-invierno-que-no-para-agotarse-esta-rebajadisima">batamanta en Amazon</a> · <a href="https://www.chollometro.com/ofertas/fortem-organizador-maletero-coche-caja-maletero-coche-plegable-con-base-antideslizante-y-correas-ajustables-accesorios-coche-85l-1967049">organizador de maletero</a></li>
+    <li>CJ: <a href="https://cjdropshipping.com/blogs/cj-news/EU-Customs-Duty-Update-for-July-2026">aranceles UE julio 2026</a> · <a href="https://cjdropshipping.com/blogs/dropshipping-knowledge/European-Dropshipping-Supplier">almacenes europeos</a> · <a href="https://cjdropshipping.com/article-details/120">política de devoluciones</a> · <a href="https://www.spocket.co/blogs/cjdropshipping-overview">plazos</a></li>
+    <li>IVA: <a href="https://sede.agenciatributaria.gob.es/Sede/iva/iva-comercio-electronico/quienes-afectan.html">AEAT comercio electrónico</a> · <a href="https://www.legaltoday.com/opinion/blogs/fiscal-y-legal/blog-sobre-tributacion-indirecta/las-soluciones-rapidas-en-el-iva-las-operaciones-en-cadena-2019-11-28">operaciones en cadena</a> · <a href="https://quaderno.io/es/articulos/impuestos/ventas-a-distancia-en-la-ue-como-hacerlo-bien/">ventas a distancia en la UE</a></li>
+    <li>Legal: <a href="https://www.ineaf.es/tribuna/riesgos-del-dropshipping/">riesgos del dropshipping</a> · <a href="https://partnerplatform.bol.com/en/idp/gpsr">GPSR</a> · <a href="https://www.garrigues.com/es_ES/garrigues-digital/estas-son-obligaciones-plataformas-comercio-electronico-materia-residuos">Garrigues: envases</a> · <a href="https://www.miteco.gob.es/content/dam/miteco/es/calidad-y-evaluacion-ambiental/sgecocir/envases/Nota%20interpretativa%20del%20Ministerio%20para%20la%20Transición%20Ecológica%20y%20el%20Reto%20Demográfico%20Inscripcion%20RPP%20envases.pdf">nota del MITECO</a></li>
+    <li>Canales: <a href="https://channeldock.com/en/blogs/tiktok-shop-fulfillment-sla-playbook/">plazos de TikTok Shop</a> · <a href="https://marketing4ecommerce.mx/tiktok-shop-aumenta-comision/">comisión de TikTok Shop</a> · <a href="https://www.sellersprite.com/en/blog/amazon-dropshipping-policy">política de Amazon</a> · <a href="https://adligator.com/es/blog/cpm-facebook-por-pais-2026">coste de anuncios en España</a></li>
+    <li>Proveedores: <a href="https://www.trendtrack.io/es/blog-post/resena-de-bigbuy-es-una-opcion-confiable-para-tu-sitio-de-dropshipping">BigBuy</a> · <a href="https://apps.shopify.com/dropea?locale=es">Dropea</a></li>
   </ul>
 </div>
 
 <script>
 (function(){
-  var ids=["pvp","uds","cu","env","emb","ara","plat","dev","cpa"];
+  var ids=["pvp","cu","env","plat","dev","vuelta","cpa"];
   var presets={
-    caja:{pvp:19.9,uds:5,cu:1.3,env:3.5,emb:0.6,ara:0,plat:0,dev:5,cpa:0},
-    cinco:{pvp:14.9,uds:5,cu:1.3,env:3.5,emb:0.3,ara:0,plat:0,dev:5,cpa:0},
-    suelto:{pvp:3,uds:1,cu:1,env:2,emb:0,ara:3,plat:0,dev:5,cpa:0},
-    tiktok:{pvp:19.9,uds:5,cu:1.3,env:3.5,emb:0.6,ara:0,plat:24,dev:5,cpa:0},
-    navidad:{pvp:19.9,uds:5,cu:1.8,env:3.5,emb:0.6,ara:0,plat:0,dev:5,cpa:0}
+    manta:{pvp:34.99,cu:11,env:5,plat:0,dev:6,vuelta:5,cpa:0},
+    cama:{pvp:34.99,cu:9,env:6,plat:0,dev:6,vuelta:5,cpa:0},
+    packcama:{pvp:44.99,cu:12.5,env:6.5,plat:0,dev:6,vuelta:5,cpa:0},
+    rulos:{pvp:19.99,cu:3.5,env:2.5,plat:0,dev:6,vuelta:5,cpa:0},
+    tiktok:{pvp:34.99,cu:11,env:5,plat:24,dev:6,vuelta:5,cpa:0}
   };
-  var last={};
   function v(id){var n=parseFloat(document.getElementById(id).value);return isNaN(n)?0:n}
   function e(n){return n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" €"}
   function set(id,t){document.getElementById(id).textContent=t}
   function calc(){
-    var pvp=v("pvp"),neto=pvp/1.21,uds=Math.max(1,v("uds"));
-    var cogs=uds*v("cu")+v("env")+v("emb")+v("ara");
-    var plat=pvp*v("plat")/100;
-    var fees=(v("plat")>0?0:pvp*0.021+0.25)+plat;
-    /* pedido devuelto: se reembolsa el ingreso, se paga el envío de vuelta y el producto se da por perdido (ya contado en cogs) */
-    var devCost=v("dev")/100*(neto+v("env"));
-    var mb=neto-cogs-fees-devCost;
-    var ben=mb-v("cpa");
+    var pvp=v("pvp"),neto=pvp/1.21,cogs=v("cu")+v("env");
+    var fees=(v("plat")>0?0:pvp*0.021+0.25)+pvp*v("plat")/100;
+    var devCost=v("dev")/100*(neto+v("vuelta"));
+    var mb=neto-cogs-fees-devCost,ben=mb-v("cpa");
     set("o-neto",e(neto));set("o-cogs",e(cogs));set("o-fees",e(fees));set("o-dev",e(devCost));
     set("o-cpamax",e(Math.max(mb,0)));
+    set("o-roas",mb>0?(pvp/mb).toFixed(2)+" €":"no rentable");
     var b=document.getElementById("o-ben");b.textContent=(ben>=0?"+":"")+e(ben);b.className="big "+(ben>=0?"pos":"neg");
-    last={ben:ben,uds:uds,cu:v("cu"),emb:v("emb")};
-    stock();
-  }
-  function stock(){
-    var stk=v("stk"),fij=v("fij"),es=v("embStock");
-    var inv=stk*last.cu+fij+es;
-    var ped=Math.floor(stk/last.uds);
-    var cash=last.ben+last.uds*last.cu+last.emb;
-    set("s-inv",e(inv));set("s-ped",ped+" pedidos");
-    var need=cash>0?Math.ceil(inv/cash):0;set("s-rec",cash<=0?"nunca":(need>ped?need+" pedidos: hace falta reponer al menos una vez":need+" pedidos ("+Math.round(need/ped*100)+" % del stock)"));
-    var tot=ped*cash-inv;
-    var b=document.getElementById("s-ben");b.textContent=(tot>=0?"+":"")+e(tot);b.className="big "+(tot>=0?"pos":"neg");
   }
   function apply(k){var p=presets[k];ids.forEach(function(id){document.getElementById(id).value=p[id]});
     document.querySelectorAll("#presets1 button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.p===k?"true":"false")});calc()}
   ids.forEach(function(id){document.getElementById(id).addEventListener("input",function(){document.querySelectorAll("#presets1 button").forEach(function(b){b.setAttribute("aria-pressed","false")});calc()})});
-  ["stk","fij","embStock"].forEach(function(id){document.getElementById(id).addEventListener("input",stock)});
   document.querySelectorAll("#presets1 button").forEach(function(btn){btn.addEventListener("click",function(){apply(btn.dataset.p)})});
-  apply("caja");
-
-  function repo(){
-    var vd=v("r-vd"),st=v("r-stock"),pl=v("r-plazo"),sg=v("r-seg"),cob=v("r-cob");
-    var punto=Math.ceil(vd*(pl+sg));
-    set("r-dias",vd>0?(st/vd).toFixed(1)+" días":"sin ventas");
-    set("r-punto",punto+" cajas");
-    var a=document.getElementById("r-accion"),n=document.getElementById("r-nota");
-    if(vd<1){a.textContent="No reponer";a.className="big neg";n.textContent="Vende menos de 1 caja al día: aplica la regla de corte.";return}
-    if(st<=punto){var q=Math.max(0,Math.ceil(vd*cob+punto-st));a.textContent="Pide "+q+" cajas hoy";a.className="big pos";n.textContent="Con ese pedido cubres unos "+cob+" días de ventas más el colchón.";}
-    else{var d=Math.floor((st-punto)/vd);a.textContent="Aún no pidas";a.className="big";n.textContent=d<=1?"Te toca pedir mañana.":"Te toca pedir en unos "+d+" días.";}
-    if(vd>0&&st/vd>21)n.textContent+=" Tienes más de 21 días de stock: no compres más de este producto.";
-  }
-  ["r-vd","r-stock","r-plazo","r-seg","r-cob"].forEach(function(id){document.getElementById(id).addEventListener("input",repo)});
-  repo();
+  apply("manta");
 })();
 </script>
