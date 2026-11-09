@@ -7,6 +7,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Macrolab">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px;font-family:system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Macrolab</title>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -1762,6 +1766,7 @@ document.addEventListener("click",e=>{
 });
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h!==tab&&TABS.includes(h))go(h,false);});
 load();registerFoods();
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())){navigator.serviceWorker.register("sw.js").catch(()=>{});}
 selDay=(new Date().getDay()+6)%7;
 {const h=location.hash.slice(1);tab=TABS.includes(h)?h:(touched?"resumen":"datos");}
 render();
