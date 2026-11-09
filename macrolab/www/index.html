@@ -567,10 +567,18 @@ details.tbl-d summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(
 .myfoods{margin-top:20px;border:1.5px solid var(--line);border-radius:16px;padding:16px}
 .myfoods h3{margin:0 0 2px;font-size:16px;font-weight:850}
 .myfoods > p{margin:0 0 12px;font-size:13px;color:var(--muted)}
-.fform{display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,1fr)) auto;gap:8px;align-items:end}
+.fform{display:grid;grid-template-columns:minmax(0,2fr) repeat(5,minmax(0,1fr)) auto;gap:8px;align-items:end}
 @media (max-width:760px){.fform{grid-template-columns:repeat(2,minmax(0,1fr))}.fform label:first-child,.fform .btn{grid-column:1/-1}}
 .fform label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700}
 .fform input{font:inherit;font-size:14px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.fload{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.fload label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700}
+.fload input{font:inherit;font-size:14px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.fediting{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:var(--accent-soft);border-radius:10px;padding:8px 12px;margin-bottom:10px;font-size:13.5px}
+.fform input:disabled{opacity:.6}
+.fchip.lab{background:var(--carb-soft)}
+.fchip .tg{font-family:var(--font-data);font-size:10.5px;color:var(--warn)}
+.bn .linkbtn{font-size:11.5px;font-family:var(--font-body);white-space:nowrap}
 .fkcal{font-size:12.5px;color:var(--muted);margin:8px 0 0;font-family:var(--font-data)}
 .flist{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .fchip{display:inline-flex;align-items:center;gap:8px;background:var(--sunk);border-radius:12px;padding:6px 6px 6px 12px;font-size:13px}
@@ -887,7 +895,7 @@ const MEAT=new Set(["pollo","pavo","ternera","salmon","merluza","atun"]);
 const VEGS=["brocoli","ensalada","esparragos","espinacas","pimiento","tomate","champi","calabacin","tomatefrito"];
 const FRUITS=["platano","manzana","frutosrojos"];
 const PGROUPS=[["pro","Proteínas","var(--prot)"],["hc","Hidratos","var(--carb)"],["gra","Grasas","var(--fat)"],["fv","Fruta y verdura","var(--mint)"]];
-let prefs={}, priceOv={}, cart={}, mealOv={}, pro=false, kadj=0, kadjAt="", wlog=[], remind={}, LAST=null, myFoods=[], myMenu={}, mmode="auto", bSlot=0;
+let prefs={}, priceOv={}, cart={}, mealOv={}, pro=false, kadj=0, kadjAt="", wlog=[], remind={}, LAST=null, myFoods=[], myMenu={}, mmode="auto", bSlot=0, macroOv={}, fEdit="";
 const RECIPES={"Bol de avena con yogur griego, frutos rojos y nueces": ["Mezcla la avena con el yogur en un bol.", "Déjalo 10 minutos (o toda la noche en la nevera) para que se ablande.", "Añade los frutos rojos y las nueces troceadas por encima."], "Tostadas integrales con revuelto de huevo y claras, tomate y aguacate": ["Tuesta el pan.", "Bate el huevo con las claras y cuájalos a fuego medio sin dejar de remover, con una pizca de sal.", "Unta el aguacate machacado sobre el pan, añade el tomate en rodajas y el revuelto encima."], "Tortitas de avena y claras con plátano y crema de cacahuete": ["Tritura la avena con las claras y la mitad del plátano hasta tener una masa.", "Cuaja tortitas pequeñas en una sartén antiadherente, 1–2 minutos por lado.", "Sirve con el resto del plátano en rodajas y la crema de cacahuete."], "Tostadas con tomate, AOVE y pechuga de pavo": ["Tuesta el pan.", "Ralla el tomate encima y riega con el aceite.", "Añade la pechuga de pavo en lonchas."], "Batido de proteína con avena, plátano y crema de cacahuete": ["Pon todo en la batidora con 250–300 ml de agua o bebida vegetal.", "Tritura 30 segundos hasta que quede cremoso."], "Yogur griego con plátano y almendras": ["Sirve el yogur en un bol.", "Añade el plátano en rodajas y las almendras."], "Tortitas de arroz con atún y aguacate": ["Machaca el aguacate con sal y unas gotas de limón.", "Úntalo en las tortitas y reparte el atún escurrido por encima."], "Batido de proteína con plátano y crema de cacahuete": ["Tritura todo con 250 ml de agua o bebida vegetal y unos cubitos de hielo."], "Queso fresco batido con manzana y nueces": ["Corta la manzana en dados.", "Mézclala con el queso batido, canela al gusto y las nueces."], "Bocadillo integral de pavo con AOVE": ["Abre el pan, riégalo con el aceite y frota el tomate.", "Rellena con el pavo."], "Pollo a la plancha con arroz y brócoli salteado": ["Cuece el arroz en el doble de agua con sal, 15–18 minutos.", "Haz el pollo a la plancha con sal y pimienta, 5–6 minutos por lado.", "Saltea el brócoli con el aceite 5 minutos y sirve todo junto."], "Ternera magra con patata asada y ensalada": ["Asa la patata en dados a 200 °C unos 30 minutos.", "Marca la ternera en la plancha muy caliente, 2–3 minutos por lado.", "Aliña la ensalada con el aceite y sal."], "Salmón al horno con quinoa y espárragos": ["Lava la quinoa y cuécela 12 minutos en el doble de agua.", "Hornea el salmón y los espárragos con la mitad del aceite a 200 °C, 12–15 minutos.", "Sirve con el resto del aceite y limón."], "Pasta integral con atún y tomate": ["Cuece la pasta según el paquete.", "Calienta el tomate triturado con el aceite, ajo y orégano 10 minutos.", "Mezcla con la pasta y el atún escurrido."], "Lentejas estofadas con verduras y pavo": ["Sofríe el pimiento y la cebolla picados con el aceite.", "Añade el pavo en dados y dóralo 3 minutos.", "Incorpora las lentejas cocidas, un vaso de agua y pimentón; cuece 10 minutos."], "Garbanzos salteados con tofu y espinacas": ["Corta el tofu en dados y dóralo con el aceite 5 minutos.", "Añade los garbanzos escurridos, pimentón y comino.", "Incorpora las espinacas al final, hasta que se ablanden."], "Tempeh salteado con arroz y brócoli": ["Cuece el arroz 15–18 minutos.", "Saltea el tempeh en tiras con el aceite y un chorrito de salsa de soja.", "Añade el brócoli y saltea 5 minutos más."], "Seitán a la plancha con boniato asado y pimientos": ["Asa el boniato en rodajas a 200 °C unos 30 minutos.", "Saltea los pimientos con parte del aceite.", "Haz el seitán a la plancha, 3 minutos por lado."], "Pasta integral con tofu, calabacín y tomate": ["Cuece la pasta.", "Dora el tofu en dados con el aceite y añade el calabacín.", "Agrega el tomate triturado, cocina 8 minutos y mezcla con la pasta."], "Merluza al horno con boniato y calabacín": ["Hornea el boniato en rodajas a 200 °C, 20 minutos.", "Añade la merluza y el calabacín con el aceite y sal.", "Hornea 12 minutos más."], "Tortilla de patata ligera con ensalada": ["Haz la patata en láminas finas al microondas (6–8 minutos) hasta que esté tierna.", "Bate el huevo con las claras, mezcla con la patata y cuaja en sartén con el aceite, 3 minutos por lado.", "Sirve con la ensalada."], "Pavo a la plancha con pan integral, aguacate y ensalada": ["Haz el pavo a la plancha, 4 minutos por lado.", "Tuesta el pan y unta el aguacate.", "Acompaña con la ensalada."], "Salmón con patata cocida y ensalada": ["Cuece la patata en dados 15 minutos.", "Haz el salmón a la plancha con el aceite, 4 minutos por lado.", "Sirve con la ensalada."], "Wok de tofu con arroz y verduras": ["Cuece el arroz.", "Saltea el tofu en dados con el aceite a fuego fuerte hasta dorar.", "Añade las verduras en tiras y un chorrito de soja; saltea 4 minutos y sirve sobre el arroz."], "Revuelto de champiñones, huevo y claras con pan integral": ["Saltea los champiñones laminados con el aceite 5 minutos.", "Añade el huevo y las claras batidos y remueve hasta cuajar.", "Sirve con el pan tostado."], "Quinoa con tempeh y espinacas": ["Cuece la quinoa 12 minutos.", "Dora el tempeh en dados con el aceite.", "Añade las espinacas y la quinoa y saltea 2 minutos."], "Pollo al horno con patatas y pimientos": ["Pon la patata en gajos y los pimientos en una bandeja con el aceite y especias.", "Hornea a 200 °C 20 minutos.", "Añade el pollo y hornea 20 minutos más."]};
 const TODAY=(new Date().getDay()+6)%7;
 const LOCK='<svg viewBox="0 0 24 24" class="lk"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
@@ -922,14 +930,14 @@ function read(){
   if(!pro){s.libreTipo="comida";s.compensa=false;s.alerg=[];if(s.dieta==="vegan")s.dieta="veg";}
   return s;
 }
-function save(){try{localStorage.setItem("macrolab-pro",JSON.stringify({s:read(),seed,prefs,priceOv,cart,mealOv,pro,kadj,kadjAt,wlog,remind,myFoods,myMenu,mmode,bSlot}));}catch(e){}}
+function save(){try{localStorage.setItem("macrolab-pro",JSON.stringify({s:read(),seed,prefs,priceOv,cart,mealOv,pro,kadj,kadjAt,wlog,remind,myFoods,myMenu,mmode,bSlot,macroOv}));}catch(e){}}
 function load(){
   try{
     const d=JSON.parse(localStorage.getItem("macrolab-pro")||"null"); if(!d) return;
     FIELDS.forEach(k=>{if(d.s[k]!=null) $(k).value=d.s[k];});
     if(d.s.compensa!=null) $("compensa").checked=d.s.compensa;
     RADIOS.forEach(k=>{const el=document.querySelector(`input[name="${k}"][value="${d.s[k]}"]`); if(el) el.checked=true;});
-    if(d.seed) seed=d.seed; if(d.prefs) prefs=d.prefs; if(d.priceOv) priceOv=d.priceOv; if(d.cart) cart=d.cart; if(d.mealOv) mealOv=d.mealOv; if(d.pro) pro=true; if(d.kadj) kadj=d.kadj; if(d.kadjAt) kadjAt=d.kadjAt; if(d.wlog) wlog=d.wlog; if(d.remind) remind=d.remind; if(d.myFoods) myFoods=d.myFoods; if(d.myMenu) myMenu=d.myMenu; if(d.mmode) mmode=d.mmode; if(d.bSlot) bSlot=d.bSlot; if(d.s&&d.s.alerg) d.s.alerg.forEach(v=>{const el=document.getElementById("alg-"+v);if(el)el.checked=true;}); touched=true;
+    if(d.seed) seed=d.seed; if(d.prefs) prefs=d.prefs; if(d.priceOv) priceOv=d.priceOv; if(d.cart) cart=d.cart; if(d.mealOv) mealOv=d.mealOv; if(d.pro) pro=true; if(d.kadj) kadj=d.kadj; if(d.kadjAt) kadjAt=d.kadjAt; if(d.wlog) wlog=d.wlog; if(d.remind) remind=d.remind; if(d.myFoods) myFoods=d.myFoods; if(d.myMenu) myMenu=d.myMenu; if(d.mmode) mmode=d.mmode; if(d.bSlot) bSlot=d.bSlot; if(d.macroOv) macroOv=d.macroOv; if(d.s&&d.s.alerg) d.s.alerg.forEach(v=>{const el=document.getElementById("alg-"+v);if(el)el.checked=true;}); touched=true;
   }catch(e){}
 }
 
@@ -992,7 +1000,7 @@ function solve(tpl,Tg){
   fix.forEach(x=>items.push(x));
   const m={P:0,C:0,G:0};
   items.forEach(([k,gr])=>{m.P+=F[k].P*gr/100;m.C+=F[k].C*gr/100;m.G+=F[k].G*gr/100;});
-  m.kcal=4*m.P+4*m.C+9*m.G;
+  m.kcal=items.reduce((a,[k,gr])=>a+kcal100(F[k])*gr/100,0);
   return{tpl,items,m};
 }
 function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -1339,12 +1347,16 @@ async function scheduleReminders(){
 }
 
 
-function macrosOf(items){const m={P:0,C:0,G:0};items.forEach(([k,g])=>{const f=F[k];if(!f)return;m.P+=f.P*g/100;m.C+=f.C*g/100;m.G+=f.G*g/100;});m.kcal=4*m.P+4*m.C+9*m.G;return m;}
+function kcal100(f){return f.kcal!=null&&f.kcal!==""?+f.kcal:4*f.P+4*f.C+9*f.G;}
+const ORIG={};Object.keys(F).forEach(k=>{ORIG[k]={P:F[k].P,C:F[k].C,G:F[k].G};});
+const esc=t=>String(t).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+function macrosOf(items){const m={P:0,C:0,G:0,kcal:0};items.forEach(([k,g])=>{const f=F[k];if(!f)return;m.P+=f.P*g/100;m.C+=f.C*g/100;m.G+=f.G*g/100;m.kcal+=kcal100(f)*g/100;});return m;}
 function registerFoods(){
   Object.keys(F).filter(k=>F[k].custom).forEach(k=>{delete F[k];delete PRICE[k];});
   myFoods.forEach(f=>{const k="u"+f.id,pk=4*f.P,ck=4*f.C,gk=9*f.G,tot=pk+ck+gk;
     const grp=tot<60?"fv":(pk>=ck&&pk>=gk)?"pro":(ck>=gk?"hc":"gra");
-    F[k]={n:f.n,P:f.P,C:f.C,G:f.G,grp,max:800,custom:true};PRICE[k]=[f.price||0,"u",f.price?"":"Sin precio: añádelo"];});
+    F[k]={n:f.n,P:f.P,C:f.C,G:f.G,grp,max:800,custom:true};if(f.kcal)F[k].kcal=f.kcal;PRICE[k]=[f.price||0,"u",f.price?"":"Sin precio: añádelo"];});
+  Object.keys(ORIG).forEach(k=>{if(!F[k])return;Object.assign(F[k],ORIG[k]);delete F[k].kcal;const o=macroOv[k];if(o){F[k].P=o.P;F[k].C=o.C;F[k].G=o.G;if(o.kcal)F[k].kcal=o.kcal;}});
 }
 function fitItems(items,T){
   const M=["P","C","G"],w={};M.forEach(m=>{w[m]=1/Math.pow(Math.max(T[m],5),2);});
@@ -1363,10 +1375,17 @@ function findFood(q){
 }
 function builderHTML(s,R,menu){
   const d=R.days[selDay],day=menu[selDay],slots=SLOTS[s.comidas];
-  const foodsCard=`<div class="myfoods"><h3>Mis alimentos</h3><p>Añade tus productos con sus macros por cada 100 g (vienen en la etiqueta). Aparecerán en el buscador, en «Tus alimentos» y en la lista de la compra.</p>
-    <div class="fform"><label for="f-n">Nombre<input id="f-n" placeholder="Ej.: Yogur proteico fresa"></label><label for="f-p">Proteína<input id="f-p" type="number" min="0" max="100" step="0.1" placeholder="g"></label><label for="f-c">Hidratos<input id="f-c" type="number" min="0" max="100" step="0.1" placeholder="g"></label><label for="f-g">Grasas<input id="f-g" type="number" min="0" max="100" step="0.1" placeholder="g"></label><label for="f-pr">€/kg<input id="f-pr" type="number" min="0" step="0.05" placeholder="opc."></label><button type="button" class="btn" data-fadd>Añadir</button></div>
-    <p class="fkcal" id="fkcal">Las kcal se calculan solas: proteína e hidratos × 4, grasas × 9.</p>
-    <div class="flist">${myFoods.length?myFoods.map(f=>`<span class="fchip"><b>${f.n}</b><small>${fmt(4*f.P+4*f.C+9*f.G)} kcal · P ${fmt(f.P,1)} · H ${fmt(f.C,1)} · G ${fmt(f.G,1)}</small><button type="button" data-fdel="${f.id}" aria-label="Borrar ${f.n}">×</button></span>`).join(""):`<span class="hint">Todavía no has añadido ningún alimento.</span>`}</div></div>`;
+  const ed=fEdit&&F[fEdit]?F[fEdit]:null,edc=!!(ed&&ed.custom),ef=edc?myFoods.find(x=>"u"+x.id===fEdit):null;
+  const fopts=Object.keys(F).sort((a,b)=>F[a].n.localeCompare(F[b].n,"es")).map(k=>`<option value="${esc(F[k].n)}"></option>`).join("");
+  const edPrice=ed?(edc?(ef&&ef.price||""):(priceOv[fEdit]!=null?priceOv[fEdit]:PRICE[fEdit][0])):"";
+  const ovKeys=Object.keys(macroOv).filter(k=>F[k]&&!F[k].custom);
+  const foodsCard=`<div class="myfoods" id="myfoods"><h3>Mis alimentos y etiquetas</h3><p>Añade tus productos o corrige los macros de cualquier alimento para que coincidan con la etiqueta de la marca que compras. Valores por cada 100 g.</p>
+    <div class="fload"><label for="f-find">Corregir un alimento que ya existe<input id="f-find" list="foodlist2" placeholder="Ej.: Pan integral" autocomplete="off"></label><button type="button" class="btn ghost" data-fload>Editar sus macros</button></div>
+    <datalist id="foodlist2">${fopts}</datalist>
+    ${ed?`<div class="fediting">Editando <b>${esc(ed.n)}</b>${edc?"":"(alimento de la base: tus valores sustituyen a los de Macrolab)"}<button type="button" class="linkbtn" data-fcancel>Cancelar</button></div>`:""}
+    <div class="fform"><label for="f-n">Nombre<input id="f-n" value="${ed?esc(ed.n):""}" ${ed&&!edc?"disabled":""} placeholder="Ej.: Yogur proteico fresa"></label><label for="f-p">Proteína<input id="f-p" type="number" min="0" max="100" step="0.1" placeholder="g" value="${ed?ed.P:""}"></label><label for="f-c">Hidratos<input id="f-c" type="number" min="0" max="100" step="0.1" placeholder="g" value="${ed?ed.C:""}"></label><label for="f-g">Grasas<input id="f-g" type="number" min="0" max="100" step="0.1" placeholder="g" value="${ed?ed.G:""}"></label><label for="f-k">kcal<input id="f-k" type="number" min="0" max="900" step="1" placeholder="auto" value="${ed&&ed.kcal!=null?ed.kcal:""}"></label><label for="f-pr">€/kg<input id="f-pr" type="number" min="0" step="0.05" placeholder="opc." value="${edPrice}"></label>${ed?`<button type="button" class="btn" data-fsave>Guardar</button>`:`<button type="button" class="btn" data-fadd>Añadir</button>`}</div>
+    <p class="fkcal" id="fkcal">${ed?`Calculado: ${fmt(4*ed.P+4*ed.C+9*ed.G)} kcal por 100 g${ed.kcal!=null?` · usas la etiqueta: ${fmt(ed.kcal)} kcal`:""}`:"Las kcal se calculan solas (proteína e hidratos × 4, grasas × 9). Si la etiqueta da otra cifra, escríbela en «kcal»."}</p>
+    <div class="flist">${myFoods.map(f=>`<span class="fchip"><b>${esc(f.n)}</b><small>${fmt(kcal100(f))} kcal · P ${fmt(f.P,1)} · H ${fmt(f.C,1)} · G ${fmt(f.G,1)}</small><button type="button" data-fedit="u${f.id}" aria-label="Editar ${esc(f.n)}">✎</button><button type="button" data-fdel="${f.id}" aria-label="Borrar ${esc(f.n)}">×</button></span>`).join("")}${ovKeys.map(k=>`<span class="fchip lab"><b>${esc(F[k].n)}</b><small>${fmt(kcal100(F[k]))} kcal · P ${fmt(F[k].P,1)} · H ${fmt(F[k].C,1)} · G ${fmt(F[k].G,1)}</small><span class="tg">etiqueta</span><button type="button" data-fedit="${k}" aria-label="Editar ${esc(F[k].n)}">✎</button><button type="button" data-frestore="${k}" aria-label="Restaurar los valores de Macrolab de ${esc(F[k].n)}" title="Restaurar valores de Macrolab">↺</button></span>`).join("")}${!myFoods.length&&!ovKeys.length?`<span class="hint">Todavía no has añadido ni corregido ningún alimento.</span>`:""}</div></div>`;
   if(d.free==="dia")return `<div class="bempty">El ${d.n.toLowerCase()} es tu día libre: no hay menú que crear.</div>${foodsCard}`;
   const idx=Math.min(bSlot,slots.length-1),[,label,pct]=slots[idx],key=selDay+"-"+idx;
   const isFree=d.free==="comida"&&idx===slots.length-1;
@@ -1383,7 +1402,7 @@ function builderHTML(s,R,menu){
   const editor=isFree?`<div class="bempty">Esta comida es libre: no hace falta contarla.</div>`:`<div class="bcard">
     <div class="btargets">${bar("Energía","var(--accent)",m.kcal,T.kcal,"kcal")}${bar("Proteína","var(--prot)",m.P,T.P,"g")}${bar("Hidratos","var(--carb)",m.C,T.C,"g")}${bar("Grasas","var(--fat)",m.G,T.G,"g")}</div>
     <label class="f" for="b-name">Nombre del plato<input class="bname" id="b-name" value="${mine&&mine.name?mine.name.replace(/"/g,"&quot;"):""}" placeholder="Ej.: Mi bowl de pollo"></label>
-    <div class="brows">${items.length?items.map(([k,g],i)=>{const f=F[k];return `<div class="brow"><span class="bn">${f.n}<small>${fmt(4*f.P*g/100+4*f.C*g/100+9*f.G*g/100)} kcal · P ${fmt(f.P*g/100,1)} · H ${fmt(f.C*g/100,1)} · G ${fmt(f.G*g/100,1)}</small></span><label><input type="number" min="0" step="5" value="${g}" data-bg="${i}" aria-label="Gramos de ${f.n}"><span>g</span></label><button type="button" data-bdel="${i}" aria-label="Quitar ${f.n}">×</button></div>`;}).join(""):`<div class="bempty">Añade alimentos con el buscador o parte del plato recomendado.</div>`}</div>
+    <div class="brows">${items.length?items.map(([k,g],i)=>{const f=F[k];return `<div class="brow"><span class="bn">${f.n}<small>${fmt(kcal100(f)*g/100)} kcal · P ${fmt(f.P*g/100,1)} · H ${fmt(f.C*g/100,1)} · G ${fmt(f.G*g/100,1)}${macroOv[k]||f.custom?" · etiqueta":""} · <button type="button" class="linkbtn" data-fedit="${k}">editar macros</button></small></span><label><input type="number" min="0" step="5" value="${g}" data-bg="${i}" aria-label="Gramos de ${f.n}"><span>g</span></label><button type="button" data-bdel="${i}" aria-label="Quitar ${f.n}">×</button></div>`;}).join(""):`<div class="bempty">Añade alimentos con el buscador o parte del plato recomendado.</div>`}</div>
     <div class="badd"><label for="b-food">Alimento<input id="b-food" list="foodlist" placeholder="Busca: arroz, pollo, tus alimentos…" autocomplete="off"></label><label for="b-grams">Gramos<input id="b-grams" type="number" min="1" step="5" value="100"></label><button type="button" class="btn" data-badd>Añadir</button></div>
     <datalist id="foodlist">${opts}</datalist>
     <div class="bacts"><button type="button" class="btn gold" data-bfit ${items.length?"":"disabled"}>Ajustar cantidades a mis macros</button><button type="button" class="btn ghost" data-bcopy>Partir del recomendado</button>${items.length?`<button type="button" class="btn ghost" data-bclear>Vaciar</button>`:""}</div>
@@ -1672,7 +1691,7 @@ function setPro(v){pro=v;if(pro)selDay=TODAY;render();save();animate($("mark"),"
   if(pro){$("btxt").textContent="¡Pro activado! Ya tienes el menú de 7 días, tus gustos, precios y proyección.";const bb=$("bubble");bb.hidden=false;bb.classList.remove("pop");void bb.offsetWidth;bb.classList.add("pop");clearTimeout(hideT);hideT=setTimeout(()=>{bb.hidden=true;},6000);}}
 if(window.MacrolabPay)(MacrolabPay.status||MacrolabPay.restore)().then(v=>{if(typeof v==="boolean"&&v!==pro){pro=v;render();save();}}).catch(()=>{});
 document.addEventListener("input",e=>{
-  if(["f-p","f-c","f-g"].includes(e.target.id)){const P=parseFloat($("f-p").value)||0,C=parseFloat($("f-c").value)||0,G=parseFloat($("f-g").value)||0;$("fkcal").textContent=`${fmt(4*P+4*C+9*G)} kcal por cada 100 g`;}
+  if(["f-p","f-c","f-g","f-k"].includes(e.target.id)){const P=parseFloat($("f-p").value)||0,C=parseFloat($("f-c").value)||0,G=parseFloat($("f-g").value)||0,K=$("f-k").value.trim();$("fkcal").textContent=`Calculado: ${fmt(4*P+4*C+9*G)} kcal por 100 g`+(K!==""?` · usarás la de la etiqueta: ${fmt(parseFloat(K)||0)} kcal`:"");}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&(e.target.id==="b-food"||e.target.id==="b-grams")){e.preventDefault();const b=document.querySelector("[data-badd]");if(b)b.click();}});
 document.addEventListener("click",e=>{
@@ -1695,12 +1714,27 @@ document.addEventListener("click",e=>{
     const src=meal?(meal.gen||(!meal.custom&&meal.items)):null;if(!src||!src.length){note("Esta comida no tiene plato recomendado.");return;}
     myMenu[key]={name:(myMenu[key]&&myMenu[key].name)||"",items:src.map(([k,g])=>[k,g])};render();save();return;}
   if(e.target.closest("[data-bclear]")){delete myMenu[builderKey()];render();save();return;}
+  const fe=e.target.closest("[data-fedit]");
+  if(fe){fEdit=fe.dataset.fedit;if(mmode!=="crear"){mmode="crear";}render();const mf=$("myfoods");if(mf)mf.scrollIntoView({behavior:"smooth",block:"start"});const fp=$("f-p");if(fp)fp.focus({preventScroll:true});return;}
+  if(e.target.closest("[data-fload]")){const k=findFood($("f-find").value);if(!k){note("Elige un alimento de la lista.");return;}fEdit=k;render();const fp=$("f-p");if(fp)fp.focus();return;}
+  if(e.target.closest("[data-fcancel]")){fEdit="";render();return;}
+  const fr=e.target.closest("[data-frestore]");
+  if(fr){const k=fr.dataset.frestore;delete macroOv[k];registerFoods();render();save();note("Valores de Macrolab restaurados para «"+F[k].n+"».");return;}
+  const readF=()=>{const P=parseFloat($("f-p").value)||0,C=parseFloat($("f-c").value)||0,G=parseFloat($("f-g").value)||0,ks=$("f-k").value.trim(),K=ks===""?null:parseFloat(ks),pr=parseFloat($("f-pr").value)||0;
+    if(P+C+G>100.5||P<0||C<0||G<0){note("Revisa los macros: son gramos por cada 100 g y no pueden sumar más de 100.");return null;}
+    if(K!=null&&!(K>=0&&K<=900)){note("Las kcal por 100 g deben estar entre 0 y 900.");return null;}
+    return{P,C,G,K,pr};};
+  if(e.target.closest("[data-fsave]")){const k=fEdit;if(!F[k])return;const v=readF();if(!v)return;
+    if(F[k].custom){const f=myFoods.find(x=>"u"+x.id===k);const n=$("f-n").value.trim();if(!n){note("Ponle un nombre al alimento.");return;}
+      if(Object.keys(F).some(x=>x!==k&&F[x].n.toLowerCase()===n.toLowerCase())){note("Ya existe un alimento con ese nombre.");return;}
+      Object.assign(f,{n,P:v.P,C:v.C,G:v.G,kcal:v.K,price:v.pr});}
+    else{macroOv[k]={P:v.P,C:v.C,G:v.G,kcal:v.K};if($("f-pr").value!=="")priceOv[k]=v.pr;}
+    const nm=F[k].n;registerFoods();fEdit="";render();save();note("Macros de «"+nm+"» guardados: ya se usan en todo el plan.");return;}
   if(e.target.closest("[data-fadd]")){
-    const n=$("f-n").value.trim(),P=parseFloat($("f-p").value)||0,C=parseFloat($("f-c").value)||0,G=parseFloat($("f-g").value)||0,pr=parseFloat($("f-pr").value)||0;
+    const n=$("f-n").value.trim();const v=readF();if(!v)return;
     if(!n){note("Ponle un nombre al alimento.");return;}
-    if(P+C+G>100.5||P<0||C<0||G<0){note("Revisa los macros: son gramos por cada 100 g y no pueden sumar más de 100.");return;}
-    if(Object.values(F).some(f=>f.n.toLowerCase()===n.toLowerCase())){note("Ya existe un alimento con ese nombre.");return;}
-    myFoods.push({id:Date.now().toString(36),n,P,C,G,price:pr});registerFoods();render();save();note("«"+n+"» añadido a tus alimentos.");return;}
+    if(Object.values(F).some(f=>f.n.toLowerCase()===n.toLowerCase())){note("Ya existe un alimento con ese nombre. Para corregir sus macros usa «Editar sus macros».");return;}
+    myFoods.push({id:Date.now().toString(36),n,P:v.P,C:v.C,G:v.G,kcal:v.K,price:v.pr});registerFoods();render();save();note("«"+n+"» añadido a tus alimentos.");return;}
   const fd=e.target.closest("[data-fdel]");
   if(fd){const k="u"+fd.dataset.fdel;myFoods=myFoods.filter(f=>f.id!==fd.dataset.fdel);
     Object.keys(myMenu).forEach(x=>{myMenu[x].items=myMenu[x].items.filter(([kk])=>kk!==k);if(!myMenu[x].items.length&&!myMenu[x].name)delete myMenu[x];});
