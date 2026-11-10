@@ -94,7 +94,7 @@ button{cursor:pointer}
 .book .label{position:absolute;left:20%;right:24%;top:20%;background:var(--sheet);padding:10px 8px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.3);border:1px solid rgba(0,0,0,.25);outline:1px solid var(--sheet);outline-offset:-4px}
 .book .label b{display:block;font:800 clamp(12px,1.6vw,16px)/1.15 var(--display);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .book .label small{display:block;margin-top:6px;padding-top:5px;border-top:1px solid var(--hair);font:600 10px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-.story-link:hover .book,.story-link:focus-visible .book{transform:translateY(-3px) rotate(-1deg)}
+@media (hover:hover){.story-link:hover .book,.story-link:focus-visible .book{transform:translateY(-3px) rotate(-1deg)}}
 
 .empty{text-align:center;padding:60px 16px;font:italic 20px/1.4 var(--display);color:var(--ink-2)}
 .empty .btn{margin-top:16px;font-style:normal}
@@ -188,7 +188,7 @@ button{cursor:pointer}
 .hit .where{display:flex;align-items:center;gap:7px;font:700 11px/1.3 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 .hit .where::before{content:"";width:9px;height:12px;border-radius:1px 3px 3px 1px;background:var(--c);flex:none}
 .hit .snip{display:flex;gap:8px;align-items:baseline;margin-top:4px;font-size:15px;line-height:1.45}
-.hit:hover .snip{text-decoration:underline;text-decoration-color:var(--hair)}
+@media (hover:hover){.hit:hover .snip{text-decoration:underline;text-decoration-color:var(--hair)}}
 mark{background:#F2D46B;color:inherit;padding:0 1px}
 .chk-mini{flex:none;width:14px;height:14px;border:1.6px solid var(--ink);display:inline-block;position:relative;top:2px}
 .chk-mini.on{background:var(--ink)}
@@ -202,7 +202,6 @@ mark{background:#F2D46B;color:inherit;padding:0 1px}
 .index li.none{padding:12px 14px;font:italic 14px/1.3 var(--display);color:var(--ink-3)}
 .index .adds{display:flex;gap:6px;margin:10px}
 .index .adds .btn{flex:1;justify-content:center;padding:0 8px}
-#to-list.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 /* Página de lista */
 .list{flex:1;min-height:0;overflow:auto;padding:4px 18px 28px 6px;margin-top:8px}
@@ -220,8 +219,8 @@ mark{background:#F2D46B;color:inherit;padding:0 1px}
 .txt{flex:1;min-width:0;border:0;background:transparent;outline:0;font:17px/1.4 var(--body);color:#1E2A38;padding:8px 0}
 li.done .txt{text-decoration:line-through;text-decoration-color:rgba(30,42,56,.5);color:#8A93A0}
 .rm{flex:none;width:34px;height:34px;border:0;background:transparent;font-size:22px;line-height:1;color:#A9A193;opacity:.55}
-#list-items li:hover .rm,#list-items li:focus-within .rm{opacity:1}
-.rm:hover{color:var(--accent)}
+@media (hover:hover){#list-items li:hover .rm,#list-items li:focus-within .rm{opacity:1}}
+@media (hover:hover){.rm:hover{color:var(--accent)}}
 #list-items .hidden-note{font:italic 13px/1.3 var(--display);color:var(--ink-3);border-bottom:0}
 #list-add{display:flex;align-items:center;gap:10px;min-height:46px;border-bottom:1px solid var(--line)}
 #list-add .plus{width:24px;height:24px;flex:none;display:grid;place-items:center;border:2px dashed #A9B6C6;border-radius:3px;color:#7C8A9C;font:700 16px/1 var(--display)}
@@ -287,18 +286,17 @@ hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A1916' stroke-width='2'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 14px center}
 .btn{padding:0 18px}
-.btn:hover,.icon-btn:hover:not(:disabled){background-color:var(--glass-strong);border-color:rgba(26,25,22,.3)}
+@media (hover:hover){.btn:hover,.icon-btn:hover:not(:disabled){background-color:var(--glass-strong);border-color:rgba(26,25,22,.3)}}
 .btn.solid,#list-add button{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
-.btn.solid:hover{background-color:rgba(26,25,22,.9)}
+@media (hover:hover){.btn.solid:hover{background-color:rgba(26,25,22,.9)}}
 .btn.danger{color:var(--accent);border-color:rgba(168,50,42,.35);background-color:rgba(168,50,42,.06)}
 .icon-btn{padding:0 14px}
 .icon-btn:has(> svg:only-child),.icon-btn:not(:has(svg)){padding:0;width:42px;height:42px}
 .btn:active,.icon-btn:active{transform:scale(.96)}
 .nb-bar{background:rgba(243,238,226,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .page-tools .icon-btn{background-color:rgba(255,253,247,.35);border-color:var(--glass-line)}
-#to-list.on{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
 .pager .icon-btn{background-color:rgba(255,253,247,.28);color:#fff;border-color:rgba(255,255,255,.4);box-shadow:0 2px 12px rgba(0,0,0,.12)}
-.pager .icon-btn:hover:not(:disabled){background-color:rgba(255,253,247,.45)}
+@media (hover:hover){.pager .icon-btn:hover:not(:disabled){background-color:rgba(255,253,247,.45)}}
 .pager .icon-btn:disabled{opacity:.3}
 .index .filter{padding:8px 14px}
 .index li button{border-radius:999px;margin:1px 6px;width:calc(100% - 12px)}
@@ -330,7 +328,6 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
   #page-title{order:2;flex-basis:100%}
   .pager{color:var(--ink-2);text-shadow:none;background:var(--sheet);border-top:1px solid var(--line);padding:8px calc(12px + var(--sar)) calc(8px + var(--sab)) calc(12px + var(--sal))}
   .pager .icon-btn{background-color:var(--glass);color:var(--ink);border-color:var(--glass-line);box-shadow:none}
-  .pager .icon-btn:hover:not(:disabled){background-color:var(--glass-strong)}
 }
 </style>
 </head>
@@ -383,7 +380,7 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
         <div class="sheet-head">
           <textarea id="page-title" rows="1" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página"></textarea>
           <div class="page-tools">
-            <button class="icon-btn" id="quick-add" type="button" title="Nueva página" aria-label="Nueva página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg></button>
+            <button class="icon-btn" id="quick-add" type="button" title="Nueva página" aria-label="Nueva página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></button>
             <button class="icon-btn" id="to-list" type="button" title="Convertir en lista" aria-label="Convertir en lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="6" height="6" rx="1"/><path d="m4.5 7 1.2 1.2L8 6M13 7h8M3 15h6v6H3zM13 18h8"/></svg></button>
             <button class="icon-btn" id="move-up" type="button" title="Mover antes" aria-label="Mover la página antes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
             <button class="icon-btn" id="move-down" type="button" title="Mover después" aria-label="Mover la página después"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>

@@ -346,7 +346,6 @@ function showPage(id) {
   bodyEl.hidden = isList;
   $("#list-box").hidden = !isList;
   $("#to-list").title = $("#to-list").ariaLabel = isList ? "Convertir en página de texto" : "Convertir en lista";
-  $("#to-list").classList.toggle("on", isList);
   if (isList) {
     renderList();
     if (pendingFocusItem) {

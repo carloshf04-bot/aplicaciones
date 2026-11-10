@@ -1,6 +1,6 @@
 // La Gaceta · funciona sin conexión una vez instalada.
 // Primero intenta la red (para recibir actualizaciones) y, si no hay, usa la copia guardada.
-const V = "gaceta-v9";
+const V = "gaceta-v10";
 const FILES = [
   "./", "index.html", "app.js", "sync.js", "firebase-config.js", "manifest.webmanifest",
   "icon.svg", "icon-192.png", "icon-512.png", "apple-touch-icon.png",
