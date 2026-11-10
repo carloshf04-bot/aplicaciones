@@ -258,6 +258,51 @@ dialog::backdrop{background:rgba(26,25,22,.45)}
 hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
 
 .toast{position:fixed;left:50%;bottom:calc(20px + var(--sab));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;font:600 14px/1.3 var(--display);z-index:50;max-width:90vw;box-shadow:4px 4px 0 rgba(0,0,0,.2)}
+
+/* ───────── Controles redondos y translúcidos ───────── */
+:root{--glass:rgba(255,253,247,.42);--glass-strong:rgba(255,253,247,.62);--glass-line:rgba(26,25,22,.16);--glass-ink:rgba(26,25,22,.78)}
+.search,.toolbar select,.btn,.icon-btn,.index .filter,.field input,.list-tools button,#list-add button,.pill{
+  border-radius:999px;border:1px solid var(--glass-line);background-color:var(--glass);
+  -webkit-backdrop-filter:blur(12px) saturate(1.3);backdrop-filter:blur(12px) saturate(1.3);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 2px 10px rgba(40,30,10,.06);
+  transition:background-color .15s,border-color .15s,box-shadow .15s,transform .1s}
+.search{padding:0 16px}
+.search:focus-within,.index .filter:focus,.field input:focus{border-color:rgba(26,25,22,.45);background-color:var(--glass-strong);box-shadow:0 0 0 4px rgba(26,25,22,.08)}
+.toolbar select{-webkit-appearance:none;appearance:none;padding:0 34px 0 16px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A1916' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.btn{padding:0 18px}
+.btn:hover,.icon-btn:hover:not(:disabled){background-color:var(--glass-strong);border-color:rgba(26,25,22,.3)}
+.btn.solid,#list-add button{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
+.btn.solid:hover{background-color:rgba(26,25,22,.9)}
+.btn.danger{color:var(--accent);border-color:rgba(168,50,42,.35);background-color:rgba(168,50,42,.06)}
+.icon-btn{padding:0 14px}
+.icon-btn:has(> svg:only-child),.icon-btn:not(:has(svg)){padding:0;width:42px;height:42px}
+.btn:active,.icon-btn:active{transform:scale(.96)}
+.nb-bar{background:rgba(243,238,226,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.page-tools .icon-btn{background-color:rgba(255,253,247,.35);border-color:var(--glass-line)}
+#to-list.on{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
+.pager .icon-btn{background-color:rgba(255,253,247,.28);color:#fff;border-color:rgba(255,255,255,.4);box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.pager .icon-btn:hover:not(:disabled){background-color:rgba(255,253,247,.45)}
+.pager .icon-btn:disabled{opacity:.3}
+.index .filter{padding:8px 14px}
+.index li button{border-radius:999px;margin:1px 6px;width:calc(100% - 12px)}
+.index{border-radius:18px;overflow:hidden;border-color:rgba(0,0,0,.18)}
+.field input{padding:10px 16px}
+.list-tools button{padding:5px 12px}
+#list-add button{padding:7px 14px}
+#list-add .plus,.chk{border-radius:50%}
+.chk[aria-checked=true]::after{left:6.5px;top:2px}
+.toast{border-radius:999px;background:rgba(26,25,22,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 6px 24px rgba(0,0,0,.2);padding:10px 20px}
+dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.dlg-b .row .btn,.cover-row .btn{min-height:44px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .search,.toolbar select,.btn,.icon-btn,.index .filter,.field input{background-color:rgba(255,253,247,.7)}
+}
+@media (max-width:800px){
+  .page-tools .icon-btn{width:36px;height:36px;min-width:36px;min-height:36px}
+  .index{border-radius:0 18px 18px 0}
+}
 </style>
 </head>
 <body>
