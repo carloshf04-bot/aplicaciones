@@ -799,6 +799,8 @@ function toast(text) {
 }
 
 /* ───────── Arranque ───────── */
+// Safari en el iPhone solo muestra el estado «pulsado» (:active) si hay un oyente táctil.
+document.addEventListener("touchstart", () => {}, { passive: true });
 route();
 sync.start();
 setInterval(() => { if (!current.nb) renderBoard(); else renderMeta(); }, 60000);
