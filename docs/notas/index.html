@@ -302,6 +302,18 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
 @media (max-width:800px){
   .page-tools .icon-btn{width:36px;height:36px;min-width:36px;min-height:36px}
   .index{border-radius:0 18px 18px 0}
+  /* En el móvil solo se ve la hoja: sin tapa, sin anillas, a pantalla completa */
+  #nb-view{background:var(--sheet);background-image:none}
+  .index:not(.open){box-shadow:none}
+  .nb-bar{background:rgba(255,253,247,.88);border-bottom:1px solid var(--line)}
+  .nb-body{padding:0}
+  .sheet{box-shadow:none;border-radius:0;padding-left:34px}
+  .sheet::before{left:24px;opacity:.6}
+  .sheet::after{display:none}
+  .sheet-head{padding-top:12px}
+  .pager{color:var(--ink-2);text-shadow:none;background:var(--sheet);border-top:1px solid var(--line);padding:8px calc(12px + var(--sar)) calc(8px + var(--sab)) calc(12px + var(--sal))}
+  .pager .icon-btn{background-color:var(--glass);color:var(--ink);border-color:var(--glass-line);box-shadow:none}
+  .pager .icon-btn:hover:not(:disabled){background-color:var(--glass-strong)}
 }
 </style>
 </head>
