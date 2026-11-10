@@ -200,3 +200,103 @@ export function createSync(hooks) {
     }
   };
 }
+
+/**
+ * Versión para el artefacto de Claude: guarda las libretas en el espacio privado
+ * de tu cuenta de Claude (`data/users/<tu id>/`), así que el mismo enlace abierto
+ * en el iPhone y en el ordenador con tu cuenta muestra las mismas libretas.
+ * Cada cuaderno o página es un documento «nb~<id>» o «pg~<id>».
+ */
+export function createClaudeSync(hooks) {
+  const PREFIX = { notebooks: "nb~", pages: "pg~" };
+  let col = null, user = null;
+  const queue = new Map(); // clave → {kind, doc} pendiente de escribir
+  let writing = false, initialDone = false, unreachable = false;
+
+  function settle() {
+    if (!col) return;
+    if (!initialDone) return hooks.status(unreachable ? "offline" : "syncing");
+    if (queue.size || writing) return hooks.status("saving");
+    hooks.status("synced");
+  }
+
+  async function start() {
+    hooks.status("connecting");
+    const c = window.claude;
+    if (!c || !c.use) return hooks.status("off");
+    const [db, u] = await Promise.all([c.use("db"), c.use("user")]);
+    const uid = u ? await u.id() : null;
+    if (!db || !uid) return hooks.status("off");
+    user = { id: uid };
+    hooks.user(user);
+    col = db.collection("data/users/" + uid);
+    const timer = setTimeout(() => { unreachable = true; settle(); }, 10000);
+    settle();
+    col.onSnapshot(
+      (snap) => {
+        const remote = { notebooks: {}, pages: {} };
+        for (const d of snap.docs) {
+          const body = d.data();
+          if (!body || !body.doc || !remote[body.kind]) continue;
+          remote[body.kind][body.doc.id] = body.doc;
+          const l = hooks.local(body.kind)[body.doc.id];
+          if (!l || (body.doc.updatedAt || 0) > (l.updatedAt || 0)) hooks.apply(body.kind, JSON.parse(JSON.stringify(body.doc)));
+        }
+        if (snap.metadata.fromCache) return;
+        clearTimeout(timer);
+        unreachable = false;
+        if (!initialDone) {
+          initialDone = true;
+          // Sube lo que este dispositivo tiene más nuevo (o que la cuenta aún no tiene).
+          for (const kind of ["notebooks", "pages"]) {
+            const local = hooks.local(kind);
+            for (const id in local) {
+              const r = remote[kind][id];
+              if (!r || (local[id].updatedAt || 0) > (r.updatedAt || 0)) push(kind, local[id]);
+            }
+          }
+        }
+        settle();
+      },
+      (err) => hooks.status("error", err && err.code === "quota_exceeded" ? "No queda espacio en tu cuenta para más libretas." : "Se ha perdido la conexión con tu cuenta. Recarga la página.")
+    );
+  }
+
+  function push(kind, doc) {
+    if (!col || !doc) return;
+    queue.set(PREFIX[kind] + doc.id, { kind, doc: JSON.parse(JSON.stringify(doc)) });
+    settle();
+    drain();
+  }
+
+  // Escribe de uno en uno para respetar el ritmo del almacén.
+  async function drain() {
+    if (writing) return;
+    writing = true;
+    while (queue.size) {
+      const [key, body] = queue.entries().next().value;
+      queue.delete(key);
+      try {
+        await col.doc(key).set(body);
+      } catch (e) {
+        const code = e && e.code;
+        if (code === "unavailable" || code === "resource_exhausted") {
+          if (!queue.has(key)) queue.set(key, body);
+          await new Promise((r) => setTimeout(r, 1500 + Math.random() * 1500));
+        } else {
+          hooks.status("error", code === "quota_exceeded" ? "No queda espacio en tu cuenta para más libretas." : "No se ha podido guardar un cambio en tu cuenta.");
+        }
+      }
+    }
+    writing = false;
+    settle();
+  }
+
+  return {
+    configured: true,
+    get user() { return user; },
+    start,
+    push,
+    async signIn() {}, async signUp() {}, async reset() {}, async signOut() {}
+  };
+}

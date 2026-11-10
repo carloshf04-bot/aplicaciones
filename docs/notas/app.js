@@ -1,5 +1,8 @@
 // La Gaceta · notas con forma de periódico. Cada libreta tiene sus páginas.
-import { createSync, friendlyError } from "./sync.js";
+import { createSync, createClaudeSync, friendlyError } from "./sync.js";
+
+// Dentro de un artefacto de Claude las libretas se guardan en la cuenta de Claude.
+const IN_CLAUDE = !!window.__GACETA_ARTIFACT__;
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -77,7 +80,7 @@ const STATUS_TEXT = {
   syncing: "Sincronizando…", saving: "Guardando…", synced: "Sincronizado", offline: "Sin conexión · guardado aquí", error: "Error de sincronización"
 };
 let syncState = "off", syncDetail = "";
-const sync = createSync({
+const sync = (IN_CLAUDE ? createClaudeSync : createSync)({
   local: (kind) => db[kind],
   apply(kind, doc) {
     db[kind][doc.id] = doc;
@@ -239,16 +242,22 @@ $("#sort").addEventListener("change", (e) => {
 });
 $("#new-nb").addEventListener("click", () => openNbDialog());
 
-/* ───────── Navegación (#/l/<libreta>/<página>) ───────── */
-function go(nb, page) { location.hash = nb ? `#/l/${encodeURIComponent(nb)}${page ? "/" + encodeURIComponent(page) : ""}` : "#/"; }
+/* ───────── Navegación (#l-<libreta>--<página>) ───────── */
+const hashFor = (nb, page) => (nb ? `#l-${nb}${page ? "--" + page : ""}` : "#portada");
+function go(nb, page) {
+  const h = hashFor(nb, page);
+  if (location.hash === h) return route();
+  location.hash = h;
+  if (location.hash !== h) route(); // por si el marco no deja cambiar la dirección
+}
 function route() {
-  const m = location.hash.match(/^#\/l\/([^/]+)(?:\/([^/]+))?/);
+  const m = location.hash.match(/^#l-([A-Za-z0-9-]+?)(?:--([A-Za-z0-9-]+))?$/);
   const nb = m && db.notebooks[decodeURIComponent(m[1])];
   if (nb && !nb.deleted) {
     openNotebook(nb.id, m[2] ? decodeURIComponent(m[2]) : "");
   } else {
     if (current.nb) closeNotebook();
-    if (m) history.replaceState(null, "", "#/");
+    if (m) history.replaceState(null, "", "#portada");
     $("#board-view").hidden = false;
     $("#nb-view").hidden = true;
     document.title = "La Gaceta · Notas";
@@ -325,7 +334,7 @@ function showPage(id) {
   current.page = id;
   db.meta["last:" + current.nb] = id;
   persist();
-  const want = `#/l/${encodeURIComponent(current.nb)}/${encodeURIComponent(id)}`;
+  const want = hashFor(current.nb, id);
   if (location.hash !== want) history.replaceState(null, "", want);
   titleEl.value = p.title || "";
   titleEl.placeholder = p.kind === "list" ? "Título de la lista" : "Título de la página";
@@ -517,11 +526,11 @@ function move(d) {
 }
 $("#move-up").addEventListener("click", () => move(-1));
 $("#move-down").addEventListener("click", () => move(1));
-$("#del-page").addEventListener("click", () => {
+$("#del-page").addEventListener("click", async () => {
   const p = db.pages[current.page];
   if (!p) return;
   const empty = !(p.title || "").trim() && !(p.body || "").trim() && !(p.items || []).length;
-  if (!empty && !confirm(`¿Arrancar la página «${p.title || "Sin título"}»? No se puede deshacer.`)) return;
+  if (!empty && !(await ask(`¿Arrancar la página «${p.title || "Sin título"}»?`, "Arrancar"))) return;
   const pages = pagesOf(current.nb);
   const i = pages.findIndex((x) => x.id === p.id);
   put("pages", { ...p, deleted: true, title: "", body: "", items: [] });
@@ -613,10 +622,10 @@ $("#nb-form").addEventListener("submit", (e) => {
     setTimeout(() => titleEl.focus(), 50);
   }
 });
-$("#nb-delete").addEventListener("click", () => {
+$("#nb-delete").addEventListener("click", async () => {
   const nb = db.notebooks[editing];
   if (!nb) return;
-  if (!confirm(`¿Tirar la libreta «${nb.title}» con todas sus páginas? No se puede deshacer.`)) return;
+  if (!(await ask(`¿Tirar la libreta «${nb.title}» con todas sus páginas?`, "Tirar libreta"))) return;
   pagesOf(nb.id).forEach((p) => put("pages", { ...p, deleted: true, title: "", body: "", items: [] }));
   const { cover, ...gone } = nb;
   put("notebooks", { ...gone, deleted: true });
@@ -624,6 +633,16 @@ $("#nb-delete").addEventListener("click", () => {
   go("");
   toast("Libreta tirada a la papelera");
 });
+
+/* ───────── Confirmar (dentro de la página) ───────── */
+function ask(text, okLabel) {
+  const d = $("#ask");
+  $("#ask-text").textContent = text;
+  $("#ask-ok").textContent = okLabel;
+  d.returnValue = "";
+  d.showModal();
+  return new Promise((ok) => d.addEventListener("close", () => ok(d.returnValue === "ok"), { once: true }));
+}
 
 /* ───────── Diálogo: cuenta ───────── */
 const accDialog = $("#account");
@@ -635,6 +654,14 @@ function accMsg(text, ok) {
 }
 function renderAccount() {
   const u = sync.user;
+  if (IN_CLAUDE) {
+    $("#acc-off").hidden = $("#acc-in").hidden = $("#acc-user").hidden = true;
+    $("#acc-claude").hidden = false;
+    $("#acc-claude-state").textContent = sync.user
+      ? (STATUS_TEXT[syncState] || "") + (syncDetail ? ` — ${syncDetail}` : "")
+      : "Entra en Claude con tu cuenta para guardar las libretas en ella. Mientras tanto se guardan solo en este navegador.";
+    return;
+  }
   $("#acc-off").hidden = sync.configured;
   $("#acc-in").hidden = !sync.configured || !!u;
   $("#acc-user").hidden = !u;
@@ -678,12 +705,20 @@ $("#acc-signout").addEventListener("click", async () => {
 });
 
 /* Copia de seguridad */
-$("#export").addEventListener("click", () => {
+$("#export").addEventListener("click", async () => {
   flush();
   const data = { app: "la-gaceta", version: 1, exportedAt: new Date().toISOString(), notebooks: db.notebooks, pages: db.pages };
+  const filename = `la-gaceta-${new Date().toISOString().slice(0, 10)}.json`;
+  if (IN_CLAUDE) {
+    const dl = window.claude && (await window.claude.use("downloads").catch(() => null));
+    if (!dl) return accMsg("Aquí no se pueden descargar archivos.");
+    try { await dl.save({ filename, data: JSON.stringify(data, null, 1) }); accMsg("Copia descargada.", true); }
+    catch (e) { if (e && e.code !== "declined") accMsg("No se ha podido descargar la copia."); }
+    return;
+  }
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: "application/json" }));
-  a.download = `la-gaceta-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = filename;
   document.body.append(a);
   a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);

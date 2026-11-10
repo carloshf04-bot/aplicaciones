@@ -408,6 +408,10 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
 <dialog id="account">
   <div class="dlg-h"><h2>Tu cuenta</h2><button class="icon-btn" type="button" id="account-close" aria-label="Cerrar">✕</button></div>
   <div class="dlg-b">
+    <div id="acc-claude" hidden>
+      <p>Tus libretas se guardan en <b>tu cuenta de Claude</b>. Abre este mismo enlace en el iPhone y en el ordenador, con la misma cuenta, y verás las mismas libretas en los dos.</p>
+      <p id="acc-claude-state" class="note" style="margin-top:10px"></p>
+    </div>
     <div id="acc-off" hidden>
       <p>Ahora mismo tus libretas se guardan <b>solo en este dispositivo</b>.</p>
       <p style="margin-top:10px">Para tener las mismas notas en el iPhone y en Windows hay que conectar la app a un proyecto gratuito de Firebase (se hace una sola vez, unos 10 minutos). Los pasos están en el README del repositorio, apartado «La Gaceta».</p>
@@ -436,6 +440,20 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
       <label class="btn" style="justify-content:center;flex:1">Cargar copia<input type="file" id="import" accept="application/json,.json" hidden></label>
     </div>
   </div>
+</dialog>
+
+<!-- Confirmar -->
+<dialog id="ask">
+  <form method="dialog">
+    <div class="dlg-b">
+      <p id="ask-text" style="font:700 19px/1.35 var(--display);color:var(--ink)"></p>
+      <p class="note">No se puede deshacer.</p>
+      <div class="row">
+        <button class="btn" value="cancel" formnovalidate>Cancelar</button>
+        <button class="btn danger" value="ok" id="ask-ok">Borrar</button>
+      </div>
+    </div>
+  </form>
 </dialog>
 
 <div class="toast" id="toast" hidden role="status"></div>
