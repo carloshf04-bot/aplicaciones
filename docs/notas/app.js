@@ -522,22 +522,8 @@ function addPage(kind) {
 }
 $("#add-page").addEventListener("click", () => addPage("text"));
 $("#add-list").addEventListener("click", () => addPage("list"));
-// Botón «+» junto a las herramientas de la hoja: elige página de texto o lista.
-const addMenu = $("#add-menu"), quickAdd = $("#quick-add");
-function toggleAddMenu(open) {
-  addMenu.hidden = !open;
-  quickAdd.setAttribute("aria-expanded", String(open));
-  if (open) addMenu.querySelector("button").focus();
-}
-quickAdd.addEventListener("click", (e) => { e.stopPropagation(); toggleAddMenu(addMenu.hidden); });
-addMenu.addEventListener("click", (e) => {
-  const b = e.target.closest("[data-add]");
-  if (!b) return;
-  toggleAddMenu(false);
-  addPage(b.dataset.add);
-});
-document.addEventListener("click", (e) => { if (!addMenu.hidden && !e.target.closest(".add-wrap")) toggleAddMenu(false); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !addMenu.hidden) { e.stopPropagation(); toggleAddMenu(false); quickAdd.focus(); } }, true);
+// Botón «+» junto a las herramientas de la hoja: añade una página de texto.
+$("#quick-add").addEventListener("click", () => addPage("text"));
 function move(d) {
   const pages = pagesOf(current.nb);
   const i = pages.findIndex((p) => p.id === current.page);

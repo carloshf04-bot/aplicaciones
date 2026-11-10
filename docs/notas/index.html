@@ -237,13 +237,7 @@ li.done .txt{text-decoration:line-through;text-decoration-color:rgba(30,42,56,.5
 .cover-row .btns{display:flex;flex-direction:column;gap:8px;flex:1}
 
 /* Añadir página desde la hoja */
-.add-wrap{position:relative}
 .page-tools .icon-btn.solid-ic,.page-tools .icon-btn.solid-ic:hover{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
-.add-menu{position:absolute;left:0;top:calc(100% + 8px);z-index:15;min-width:200px;padding:6px;display:grid;gap:2px;border-radius:18px;
-  background:rgba(255,253,247,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--glass-line);box-shadow:0 12px 32px rgba(40,30,10,.18)}
-.add-menu button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;cursor:pointer;font:600 16px/1.2 var(--display);color:var(--ink)}
-.add-menu button:hover,.add-menu button:focus-visible{background:rgba(26,25,22,.07)}
-.add-menu svg{width:20px;height:20px;flex:none}
 
 /* ───────── Diálogos ───────── */
 dialog{border:1px solid var(--ink);background:var(--paper);color:var(--ink);padding:0;width:min(92vw,460px);box-shadow:8px 10px 0 rgba(0,0,0,.2),0 20px 60px rgba(0,0,0,.3)}
@@ -377,13 +371,7 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
         <div class="sheet-head">
           <textarea id="page-title" rows="1" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página"></textarea>
           <div class="page-tools">
-            <div class="add-wrap">
-              <button class="icon-btn solid-ic" id="quick-add" type="button" title="Añadir página" aria-label="Añadir página" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg></button>
-              <div class="add-menu" id="add-menu" role="menu" hidden>
-                <button type="button" role="menuitem" data-add="text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6zM9 11h7M9 15h7"/></svg>Página de texto</button>
-                <button type="button" role="menuitem" data-add="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="6" height="6" rx="3"/><path d="M13 7h8M3 15h6v6H3zM13 18h8"/></svg>Lista</button>
-              </div>
-            </div>
+            <button class="icon-btn solid-ic" id="quick-add" type="button" title="Nueva página" aria-label="Nueva página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg></button>
             <button class="icon-btn" id="to-list" type="button" title="Convertir en lista" aria-label="Convertir en lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="6" height="6" rx="1"/><path d="m4.5 7 1.2 1.2L8 6M13 7h8M3 15h6v6H3zM13 18h8"/></svg></button>
             <button class="icon-btn" id="move-up" type="button" title="Mover antes" aria-label="Mover la página antes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
             <button class="icon-btn" id="move-down" type="button" title="Mover después" aria-label="Mover la página después"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
