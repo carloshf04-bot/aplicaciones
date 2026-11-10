@@ -173,6 +173,69 @@ button{cursor:pointer}
   .page-tools .icon-btn{min-width:34px;min-height:34px;padding:0 6px}
 }
 
+
+/* Foto en la tapa */
+.book .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+.book.has-photo::before{background:linear-gradient(160deg,rgba(255,255,255,.12),transparent 45%,rgba(0,0,0,.28)),linear-gradient(90deg,var(--c) 0 14px,transparent 14px)}
+.book.has-photo .label{top:auto;bottom:9%;padding:7px 8px}
+.book.has-photo .band{background:rgba(0,0,0,.55)}
+
+/* Resultados de búsqueda */
+.results{list-style:none;margin:0 0 6px;padding:0;columns:2 340px;column-gap:28px;column-rule:1px solid var(--hair)}
+.results li{break-inside:avoid;border-bottom:1px solid var(--hair)}
+.hit{all:unset;box-sizing:border-box;display:block;width:100%;padding:10px 0;cursor:pointer}
+.hit:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hit .where{display:flex;align-items:center;gap:7px;font:700 11px/1.3 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.hit .where::before{content:"";width:9px;height:12px;border-radius:1px 3px 3px 1px;background:var(--c);flex:none}
+.hit .snip{display:flex;gap:8px;align-items:baseline;margin-top:4px;font-size:15px;line-height:1.45}
+.hit:hover .snip{text-decoration:underline;text-decoration-color:var(--hair)}
+mark{background:#F2D46B;color:inherit;padding:0 1px}
+.chk-mini{flex:none;width:14px;height:14px;border:1.6px solid var(--ink);display:inline-block;position:relative;top:2px}
+.chk-mini.on{background:var(--ink)}
+.chk-mini.on::after{content:"";position:absolute;left:3.5px;top:0;width:4px;height:8px;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* Índice: filtro y marcas */
+.index .filter{margin:8px 10px 0;border:1px solid var(--hair);background:var(--sheet);padding:7px 9px;font-size:16px;outline:0;border-radius:0;width:calc(100% - 20px)}
+.index .filter:focus{border-color:var(--ink)}
+.index li button .lst{font:700 11px/1 var(--display);color:var(--ink-3);white-space:nowrap}
+.index li button[aria-current=true] .lst{color:var(--paper)}
+.index li.none{padding:12px 14px;font:italic 14px/1.3 var(--display);color:var(--ink-3)}
+.index .adds{display:flex;gap:6px;margin:10px}
+.index .adds .btn{flex:1;justify-content:center;padding:0 8px}
+#to-list.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* Página de lista */
+.list{flex:1;min-height:0;overflow:auto;padding:4px 18px 28px 6px;margin-top:8px}
+.list-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:4px 0 8px;border-bottom:2px solid var(--line);font:600 13px/1.3 var(--display);color:var(--ink-2)}
+.list-tools #list-count{flex:1;min-width:120px}
+.list-tools label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.list-tools input{width:16px;height:16px;accent-color:var(--ink)}
+.list-tools button{border:1px solid var(--hair);background:transparent;padding:4px 8px;font:600 12px/1.2 var(--display)}
+#list-items{list-style:none;margin:0;padding:0}
+#list-items li{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line);transition:background .4s}
+#list-items li.flash{background:#F7E7A6}
+.chk{flex:none;width:24px;height:24px;border:2px solid #1E2A38;background:var(--sheet);border-radius:3px;position:relative;padding:0}
+.chk[aria-checked=true]{background:#2F7D4F;border-color:#2F7D4F}
+.chk[aria-checked=true]::after{content:"";position:absolute;left:6px;top:1px;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.txt{flex:1;min-width:0;border:0;background:transparent;outline:0;font:17px/1.4 var(--body);color:#1E2A38;padding:8px 0}
+li.done .txt{text-decoration:line-through;text-decoration-color:rgba(30,42,56,.5);color:#8A93A0}
+.rm{flex:none;width:34px;height:34px;border:0;background:transparent;font-size:22px;line-height:1;color:#A9A193;opacity:.55}
+#list-items li:hover .rm,#list-items li:focus-within .rm{opacity:1}
+.rm:hover{color:var(--accent)}
+#list-items .hidden-note{font:italic 13px/1.3 var(--display);color:var(--ink-3);border-bottom:0}
+#list-add{display:flex;align-items:center;gap:10px;min-height:46px;border-bottom:1px solid var(--line)}
+#list-add .plus{width:24px;height:24px;flex:none;display:grid;place-items:center;border:2px dashed #A9B6C6;border-radius:3px;color:#7C8A9C;font:700 16px/1 var(--display)}
+#list-new{flex:1;min-width:0;border:0;background:transparent;outline:0;font:17px/1.4 var(--body);padding:8px 0}
+#list-new::placeholder{color:#A9A193;font-style:italic}
+#list-add button{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:6px 10px;font:700 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+
+/* Diálogo: foto */
+.cover-row{display:flex;gap:14px;align-items:center}
+#cover-preview{width:72px;aspect-ratio:3/4;flex:none;background:var(--c);border-radius:2px 7px 7px 2px;box-shadow:inset 6px 0 0 rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.3);overflow:hidden;display:grid;place-items:center}
+#cover-preview img{width:100%;height:100%;object-fit:cover;display:block}
+#cover-preview span{font:italic 11px/1.2 var(--display);color:rgba(255,255,255,.8);text-align:center;padding:4px}
+.cover-row .btns{display:flex;flex-direction:column;gap:8px;flex:1}
+
 /* ───────── Diálogos ───────── */
 dialog{border:1px solid var(--ink);background:var(--paper);color:var(--ink);padding:0;width:min(92vw,460px);box-shadow:8px 10px 0 rgba(0,0,0,.2),0 20px 60px rgba(0,0,0,.3)}
 dialog::backdrop{background:rgba(26,25,22,.45)}
@@ -234,14 +297,19 @@ hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
     <div class="index-backdrop" id="index-backdrop"></div>
     <aside class="index" id="index">
       <h2>Índice</h2>
+      <input class="filter" id="page-filter" type="search" placeholder="Buscar en esta libreta" aria-label="Buscar en esta libreta" autocomplete="off">
       <ol id="page-list"></ol>
-      <button class="btn solid add" id="add-page" type="button">+ Nueva página</button>
+      <div class="adds">
+        <button class="btn solid" id="add-page" type="button">+ Página</button>
+        <button class="btn" id="add-list" type="button">+ Lista</button>
+      </div>
     </aside>
     <section class="sheet-wrap">
       <article class="sheet">
         <div class="sheet-head">
           <input id="page-title" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página">
           <div class="page-tools">
+            <button class="icon-btn" id="to-list" type="button" title="Convertir en lista" aria-label="Convertir en lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="6" height="6" rx="1"/><path d="m4.5 7 1.2 1.2L8 6M13 7h8M3 15h6v6H3zM13 18h8"/></svg></button>
             <button class="icon-btn" id="move-up" type="button" title="Mover antes" aria-label="Mover la página antes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
             <button class="icon-btn" id="move-down" type="button" title="Mover después" aria-label="Mover la página después"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
             <button class="icon-btn" id="del-page" type="button" title="Arrancar página" aria-label="Eliminar la página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
@@ -249,6 +317,15 @@ hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
         </div>
         <div class="page-meta" id="page-meta"></div>
         <textarea id="page-body" placeholder="Escribe aquí…" aria-label="Contenido de la página"></textarea>
+        <div class="list" id="list-box" hidden>
+          <div class="list-tools">
+            <span id="list-count"></span>
+            <label><input type="checkbox" id="hide-done"> Ocultar lo que ya tengo</label>
+            <button type="button" id="uncheck-all">Desmarcar todo</button>
+          </div>
+          <ul id="list-items"></ul>
+          <form id="list-add"><span class="plus" aria-hidden="true">+</span><input id="list-new" placeholder="Añadir a la lista…" enterkeyhint="done" autocomplete="off" aria-label="Añadir a la lista"><button type="submit">Añadir</button></form>
+        </div>
       </article>
       <footer class="pager">
         <button class="icon-btn" id="prev" type="button" aria-label="Página anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -267,6 +344,15 @@ hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
       <label class="field"><span>Titular</span><input id="nb-f-title" required maxlength="80" placeholder="p. ej. Ideas, Viaje a Lisboa, Recetas"></label>
       <label class="field"><span>Subtítulo (opcional)</span><input id="nb-f-sub" maxlength="120" placeholder="Una línea que lo resuma"></label>
       <div class="field"><span>Color de la tapa</span><div class="swatches" id="swatches"></div></div>
+      <div class="field"><span>Foto de portada (opcional)</span>
+        <div class="cover-row">
+          <div id="cover-preview"></div>
+          <div class="btns">
+            <label class="btn" style="justify-content:center"><span id="cover-pick-text">Elegir foto</span><input type="file" id="cover-file" accept="image/*" hidden></label>
+            <button class="btn danger" type="button" id="cover-remove" style="justify-content:center">Quitar foto</button>
+          </div>
+        </div>
+      </div>
       <div class="row"><button class="btn solid" id="nb-save" value="save">Guardar</button></div>
       <div id="nb-danger" class="row"><button class="btn danger" type="button" id="nb-delete">Tirar esta libreta</button></div>
     </div>

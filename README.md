@@ -28,8 +28,10 @@ y funciona sin conexión. Si cambias `macrolab/www`, copia la carpeta a `docs/ap
 ## La Gaceta · notas para iPhone y Windows
 
 App de notas con aspecto de periódico: la portada muestra tus libretas como noticias (la última que tocaste sale en
-primera plana) y cada nota es una libreta con tapa de color e índice, dentro de la cual creas, ordenas y arrancas páginas.
-Funciona sin conexión y, con una cuenta, tiene las mismas libretas en todos tus dispositivos.
+primera plana) y cada nota es una libreta con tapa de color (o con una foto tuya) e índice, dentro de la cual creas,
+ordenas y arrancas páginas. Una página puede ser de texto o una **lista con casillas** para marcar lo que ya tienes.
+El buscador encuentra libretas, páginas y elementos concretos de las listas, y cada libreta tiene su propio buscador
+en el índice. Funciona sin conexión y, con una cuenta, tiene las mismas libretas en todos tus dispositivos.
 
 Es una app web instalable (no necesita App Store ni Microsoft Store). Con GitHub Pages activado (ver arriba) queda en
 `https://carloshf04-bot.github.io/aplicaciones/notas/`.

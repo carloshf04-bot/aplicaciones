@@ -118,13 +118,45 @@ try { sortBy = localStorage.getItem("gaceta-sort") || "recent"; } catch {}
 $("#sort").value = sortBy;
 
 function bookHTML(nb, n) {
-  return `<div class="book" style="--c:${esc(nb.color)}"><span class="stitch"></span><span class="band"></span>
+  const photo = nb.cover ? `<img class="photo" src="${esc(nb.cover)}" alt="">` : "";
+  return `<div class="book${nb.cover ? " has-photo" : ""}" style="--c:${esc(nb.color)}">${photo}<span class="stitch"></span><span class="band"></span>
     <span class="label"><b>${esc(nb.title || "Sin título")}</b><small>${n} ${n === 1 ? "página" : "páginas"}</small></span></div>`;
 }
 function excerpt(nb) {
   const pages = pagesOf(nb.id);
   const p = pages.slice().sort((a, b) => b.updatedAt - a.updatedAt)[0];
-  return { pages, latest: p, text: (p && p.body ? p.body : "").trim() };
+  return { pages, latest: p, text: pageText(p) };
+}
+// Texto plano de una página (las listas como «☐ cosa / ☑ cosa»).
+function pageText(p) {
+  if (!p) return "";
+  if (p.kind === "list") return (p.items || []).map((i) => (i.done ? "☑ " : "☐ ") + i.text).join("\n");
+  return (p.body || "").trim();
+}
+const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function snippet(text, q) {
+  const i = norm(text).indexOf(q);
+  if (i < 0) return esc(text.slice(0, 120));
+  const a = Math.max(0, i - 50), b = Math.min(text.length, i + q.length + 70);
+  return (a ? "…" : "") + esc(text.slice(a, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length, b)) + (b < text.length ? "…" : "");
+}
+
+// Busca en titulares, páginas y cada elemento de las listas.
+function searchHits(q) {
+  const hits = [];
+  for (const nb of notebooks()) {
+    for (const p of pagesOf(nb.id)) {
+      const where = `${nb.title || "Sin título"} › ${p.title || "Sin título"}`;
+      if (p.kind === "list") {
+        const items = (p.items || []).filter((i) => norm(i.text).includes(q));
+        if (norm(p.title).includes(q) && !items.length) hits.push({ nb, p, where, html: snippet(p.title || "", q), list: true });
+        items.forEach((i) => hits.push({ nb, p, where, item: i, html: snippet(i.text, q) }));
+      } else if (norm(p.title + " " + p.body).includes(q)) {
+        hits.push({ nb, p, where, html: norm(p.body).includes(q) ? snippet(p.body, q) : snippet(p.title, q) });
+      }
+    }
+  }
+  return hits.sort((a, b) => (b.p.updatedAt || 0) - (a.p.updatedAt || 0));
 }
 
 function renderBoard() {
@@ -135,11 +167,10 @@ function renderBoard() {
   const totalPages = Object.values(db.pages).filter((p) => !p.deleted && db.notebooks[p.nb] && !db.notebooks[p.nb].deleted).length;
   $("#stats").textContent = `${all.length} ${all.length === 1 ? "libreta" : "libretas"} · ${totalPages} ${totalPages === 1 ? "página" : "páginas"}`;
 
-  const q = query.trim().toLowerCase();
+  const q = norm(query.trim());
   let list = all.map((nb) => ({ nb, t: touched(nb), ...excerpt(nb) }));
-  if (q) list = list.filter(({ nb, pages }) =>
-    (nb.title + " " + (nb.subtitle || "")).toLowerCase().includes(q) ||
-    pages.some((p) => ((p.title || "") + " " + (p.body || "")).toLowerCase().includes(q)));
+  const hits = q ? searchHits(q) : [];
+  if (q) list = list.filter(({ nb }) => norm(nb.title + " " + (nb.subtitle || "")).includes(q) || hits.some((h) => h.nb === nb));
   if (sortBy === "alpha") list.sort((a, b) => (a.nb.title || "").localeCompare(b.nb.title || "", "es"));
   else if (sortBy === "created") list.sort((a, b) => a.nb.createdAt - b.nb.createdAt);
   else list.sort((a, b) => b.t - a.t);
@@ -155,6 +186,16 @@ function renderBoard() {
   }
   const [lead, ...rest] = q || sortBy !== "recent" ? [null, ...list] : list;
   let html = "";
+  if (hits.length) {
+    html += `<div class="section-h"><h2>${hits.length} ${hits.length === 1 ? "coincidencia" : "coincidencias"}</h2></div><ol class="results">`;
+    for (const h of hits.slice(0, 80)) {
+      const mark = h.item ? `<span class="chk-mini${h.item.done ? " on" : ""}" aria-label="${h.item.done ? "Marcado" : "Sin marcar"}"></span>` : "";
+      html += `<li><button type="button" class="hit" data-open="${esc(h.nb.id)}" data-page="${esc(h.p.id)}"${h.item ? ` data-item="${esc(h.item.id)}"` : ""}>
+        <span class="where" style="--c:${esc(h.nb.color)}">${esc(h.where)}</span>
+        <span class="snip">${mark}<span>${h.html}</span></span></button></li>`;
+    }
+    html += `</ol>`;
+  }
   if (lead) {
     const { nb, pages, latest, text, t } = lead;
     html += `<div class="section-h"><h2>Primera plana</h2></div>
@@ -169,7 +210,7 @@ function renderBoard() {
     </article>`;
   }
   if (rest.length) {
-    html += `<div class="section-h"><h2>${q ? "Resultados" : lead ? "Más noticias" : "Todas las libretas"}</h2></div><div class="grid">`;
+    html += `<div class="section-h"><h2>${q ? "Libretas" : lead ? "Más noticias" : "Todas las libretas"}</h2></div><div class="grid">`;
     for (const { nb, pages, latest, text, t } of rest) {
       html += `<article class="story"><button class="story-link" type="button" data-open="${esc(nb.id)}">
         ${bookHTML(nb, pages.length)}
@@ -187,6 +228,7 @@ $("#board").addEventListener("click", (e) => {
   const b = e.target.closest("[data-open],[data-new]");
   if (!b) return;
   if (b.dataset.new !== undefined) return openNbDialog();
+  pendingFocusItem = b.dataset.item || "";
   go(b.dataset.open, b.dataset.page || "");
 });
 $("#search").addEventListener("input", (e) => { query = e.target.value; renderBoard(); });
@@ -218,6 +260,8 @@ addEventListener("hashchange", route);
 /* ───────── Dentro de la libreta ───────── */
 const current = { nb: "", page: "" };
 const titleEl = $("#page-title"), bodyEl = $("#page-body");
+let pendingFocusItem = "";
+const newPage = (kind, order) => ({ id: newId(), nb: current.nb, title: "", body: "", ...(kind === "list" ? { kind: "list", items: [] } : {}), order, createdAt: Date.now() });
 
 function openNotebook(nbId, pageId) {
   const changed = current.nb !== nbId;
@@ -245,14 +289,20 @@ function renderNbHeader() {
   if (!nb) return;
   $("#nb-view").style.setProperty("--c", nb.color);
   $("#nb-name").textContent = nb.title || "Sin título";
-  $("#nb-sub").textContent = nb.subtitle || `${pagesOf(nb.id).length} páginas`;
+  const n = pagesOf(nb.id).length;
+  $("#nb-sub").textContent = nb.subtitle || `${n} ${n === 1 ? "página" : "páginas"}`;
   document.title = `${nb.title || "Libreta"} · La Gaceta`;
 }
 
 function renderIndex() {
   const pages = pagesOf(current.nb);
-  $("#page-list").innerHTML = pages.map((p, i) =>
-    `<li><button type="button" data-page="${esc(p.id)}" aria-current="${p.id === current.page}"><span class="n">${i + 1}</span><span class="t">${esc(p.title || "Sin título")}</span></button></li>`).join("");
+  const f = norm($("#page-filter").value.trim());
+  $("#page-list").innerHTML = pages.map((p, i) => {
+    if (f && !norm(p.title + " " + pageText(p)).includes(f)) return "";
+    const done = p.kind === "list" ? (p.items || []).filter((x) => x.done).length : 0;
+    const badge = p.kind === "list" ? `<span class="lst">${done}/${(p.items || []).length}</span>` : "";
+    return `<li><button type="button" data-page="${esc(p.id)}" aria-current="${p.id === current.page}"><span class="n">${i + 1}</span><span class="t">${p.kind === "list" ? "☑ " : ""}${esc(p.title || (p.kind === "list" ? "Lista sin título" : "Sin título"))}</span>${badge}</button></li>`;
+  }).join("") || `<li class="none">Ninguna página coincide</li>`;
   const i = pages.findIndex((p) => p.id === current.page);
   $("#pager-text").textContent = `Página ${i + 1} de ${pages.length}`;
   $("#prev").disabled = i <= 0;
@@ -260,6 +310,7 @@ function renderIndex() {
   $("#move-up").disabled = i <= 0;
   $("#move-down").disabled = i >= pages.length - 1;
 }
+$("#page-filter").addEventListener("input", renderIndex);
 
 function renderMeta() {
   const p = db.pages[current.page];
@@ -277,8 +328,23 @@ function showPage(id) {
   const want = `#/l/${encodeURIComponent(current.nb)}/${encodeURIComponent(id)}`;
   if (location.hash !== want) history.replaceState(null, "", want);
   titleEl.value = p.title || "";
-  bodyEl.value = p.body || "";
-  bodyEl.scrollTop = 0;
+  titleEl.placeholder = p.kind === "list" ? "Título de la lista" : "Título de la página";
+  const isList = p.kind === "list";
+  bodyEl.hidden = isList;
+  $("#list-box").hidden = !isList;
+  $("#to-list").title = $("#to-list").ariaLabel = isList ? "Convertir en página de texto" : "Convertir en lista";
+  $("#to-list").classList.toggle("on", isList);
+  if (isList) {
+    renderList();
+    if (pendingFocusItem) {
+      const li = $(`#list-items [data-id="${CSS.escape(pendingFocusItem)}"]`);
+      if (li) { li.scrollIntoView({ block: "center" }); li.classList.add("flash"); setTimeout(() => li.classList.remove("flash"), 1600); }
+    }
+  } else {
+    bodyEl.value = p.body || "";
+    bodyEl.scrollTop = 0;
+  }
+  pendingFocusItem = "";
   renderNbHeader();
   renderIndex();
   renderMeta();
@@ -295,7 +361,119 @@ function editPage(field, value) {
 }
 titleEl.addEventListener("input", () => editPage("title", titleEl.value));
 bodyEl.addEventListener("input", () => editPage("body", bodyEl.value));
-titleEl.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); bodyEl.focus(); } });
+titleEl.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter") return;
+  e.preventDefault();
+  (db.pages[current.page]?.kind === "list" ? $("#list-new") : bodyEl).focus();
+});
+
+/* ───────── Listas con casillas ───────── */
+let hideDone = false;
+try { hideDone = localStorage.getItem("gaceta-hide-done") === "1"; } catch {}
+$("#hide-done").checked = hideDone;
+
+const curItems = () => (db.pages[current.page]?.items || []);
+function setItems(items, delay = 0) {
+  const p = db.pages[current.page];
+  if (!p) return;
+  put("pages", { ...p, items }, delay);
+  renderMeta();
+}
+function renderList(focus) {
+  const p = db.pages[current.page];
+  if (!p || p.kind !== "list") return;
+  // Recuerda dónde estaba el cursor para no perderlo al redibujar.
+  const a = document.activeElement;
+  if (!focus && a && a.closest && a.closest("#list-items li")) {
+    focus = { id: a.closest("li").dataset.id, pos: a.selectionStart };
+  }
+  const items = p.items || [];
+  const done = items.filter((i) => i.done).length;
+  $("#list-count").innerHTML = items.length ? `Tienes <b>${done}</b> de <b>${items.length}</b>` : "Lista vacía";
+  $("#uncheck-all").hidden = !done;
+  const shown = hideDone ? items.filter((i) => !i.done) : items;
+  $("#list-items").innerHTML = shown.map((i) => `<li data-id="${esc(i.id)}" class="${i.done ? "done" : ""}">
+      <button type="button" class="chk" role="checkbox" aria-checked="${!!i.done}" aria-label="${i.done ? "Lo tengo" : "No lo tengo"}"></button>
+      <input class="txt" value="${esc(i.text)}" aria-label="Elemento" enterkeyhint="next">
+      <button type="button" class="rm" aria-label="Quitar">×</button></li>`).join("") +
+    (hideDone && done ? `<li class="hidden-note">${done} ${done === 1 ? "marcado oculto" : "marcados ocultos"}</li>` : "");
+  if (focus) {
+    const inp = $(`#list-items [data-id="${CSS.escape(focus.id)}"] .txt`);
+    if (inp) { inp.focus(); const n = Math.min(focus.pos ?? inp.value.length, inp.value.length); inp.setSelectionRange(n, n); }
+  }
+}
+$("#list-items").addEventListener("click", (e) => {
+  const li = e.target.closest("li[data-id]");
+  if (!li) return;
+  const id = li.dataset.id;
+  if (e.target.closest(".chk")) {
+    setItems(curItems().map((i) => (i.id === id ? { ...i, done: !i.done } : i)));
+    renderList(); renderIndex();
+  } else if (e.target.closest(".rm")) {
+    setItems(curItems().filter((i) => i.id !== id));
+    renderList(); renderIndex();
+  }
+});
+$("#list-items").addEventListener("input", (e) => {
+  const li = e.target.closest("li[data-id]");
+  if (!li || !e.target.classList.contains("txt")) return;
+  setItems(curItems().map((i) => (i.id === li.dataset.id ? { ...i, text: e.target.value } : i)), 700);
+});
+$("#list-items").addEventListener("keydown", (e) => {
+  const li = e.target.closest("li[data-id]");
+  if (!li || !e.target.classList.contains("txt")) return;
+  const items = curItems();
+  const k = items.findIndex((i) => i.id === li.dataset.id);
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const it = { id: newId(), text: "", done: false };
+    setItems([...items.slice(0, k + 1), it, ...items.slice(k + 1)]);
+    renderList({ id: it.id, pos: 0 }); renderIndex();
+  } else if (e.key === "Backspace" && !e.target.value) {
+    e.preventDefault();
+    const prevLi = li.previousElementSibling;
+    setItems(items.filter((i) => i.id !== li.dataset.id));
+    renderList(prevLi ? { id: prevLi.dataset.id } : null); renderIndex();
+    if (!prevLi) $("#list-new").focus();
+  }
+});
+$("#list-add").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inp = $("#list-new");
+  const lines = inp.value.split(/\n/).map((t) => t.trim()).filter(Boolean);
+  if (!lines.length) return;
+  setItems([...curItems(), ...lines.map((text) => ({ id: newId(), text, done: false }))]);
+  inp.value = "";
+  renderList(); renderIndex();
+  inp.focus();
+  inp.scrollIntoView({ block: "nearest" });
+});
+$("#hide-done").addEventListener("change", (e) => {
+  hideDone = e.target.checked;
+  try { localStorage.setItem("gaceta-hide-done", hideDone ? "1" : "0"); } catch {}
+  renderList();
+});
+$("#uncheck-all").addEventListener("click", () => {
+  setItems(curItems().map((i) => ({ ...i, done: false })));
+  renderList(); renderIndex();
+});
+// Convierte una página de texto en lista (una línea = un elemento) y al revés.
+$("#to-list").addEventListener("click", () => {
+  const p = db.pages[current.page];
+  if (!p) return;
+  if (p.kind === "list") {
+    const body = (p.items || []).map((i) => (i.done ? "☑ " : "☐ ") + i.text).join("\n");
+    const { kind, items, ...rest } = p;
+    put("pages", { ...rest, body });
+    toast("Ahora es una página de texto");
+  } else {
+    const items = (p.body || "").split("\n").map((t) => t.trim()).filter(Boolean)
+      .map((t) => ({ id: newId(), done: /^(☑|\[x\])/i.test(t), text: t.replace(/^(☑|☐|\[[ x]\]|[-*•])\s*/i, "") }));
+    put("pages", { ...p, kind: "list", items, body: "" });
+    toast("Ahora es una lista");
+  }
+  showPage(p.id);
+});
 
 function step(d) {
   const pages = pagesOf(current.nb);
@@ -316,15 +494,17 @@ $("#page-list").addEventListener("click", (e) => {
   const b = e.target.closest("[data-page]");
   if (b) { showPage(b.dataset.page); closeIndex(); }
 });
-$("#add-page").addEventListener("click", () => {
+function addPage(kind) {
   const pages = pagesOf(current.nb);
-  const p = { id: newId(), nb: current.nb, title: "", body: "", order: (pages.at(-1)?.order || 0) + 1, createdAt: Date.now() };
+  const p = newPage(kind, (pages.at(-1)?.order || 0) + 1);
   put("pages", p);
-  touchNb();
+  $("#page-filter").value = "";
   showPage(p.id);
   closeIndex();
   titleEl.focus();
-});
+}
+$("#add-page").addEventListener("click", () => addPage("text"));
+$("#add-list").addEventListener("click", () => addPage("list"));
 function move(d) {
   const pages = pagesOf(current.nb);
   const i = pages.findIndex((p) => p.id === current.page);
@@ -340,11 +520,11 @@ $("#move-down").addEventListener("click", () => move(1));
 $("#del-page").addEventListener("click", () => {
   const p = db.pages[current.page];
   if (!p) return;
-  const empty = !(p.title || "").trim() && !(p.body || "").trim();
+  const empty = !(p.title || "").trim() && !(p.body || "").trim() && !(p.items || []).length;
   if (!empty && !confirm(`¿Arrancar la página «${p.title || "Sin título"}»? No se puede deshacer.`)) return;
   const pages = pagesOf(current.nb);
   const i = pages.findIndex((x) => x.id === p.id);
-  put("pages", { ...p, deleted: true, title: "", body: "" });
+  put("pages", { ...p, deleted: true, title: "", body: "", items: [] });
   const rest = pagesOf(current.nb);
   if (!rest.length) {
     const np = { id: newId(), nb: current.nb, title: "", body: "", order: 1, createdAt: Date.now() };
@@ -354,10 +534,6 @@ $("#del-page").addEventListener("click", () => {
   showPage(rest[Math.min(i, rest.length - 1)].id);
   toast("Página arrancada");
 });
-function touchNb() {
-  const nb = db.notebooks[current.nb];
-  if (nb) put("notebooks", { ...nb });
-}
 
 $("#back").addEventListener("click", () => go(""));
 $("#nb-edit").addEventListener("click", () => openNbDialog(current.nb));
@@ -368,13 +544,42 @@ $("#index-backdrop").addEventListener("click", closeIndex);
 
 /* ───────── Diálogo: libreta ───────── */
 const nbDialog = $("#nb-dialog");
-let editing = "", pickedColor = COLORS[0][0];
+let editing = "", pickedColor = COLORS[0][0], pickedCover = "";
+function renderCover() {
+  const prev = $("#cover-preview");
+  prev.style.setProperty("--c", pickedColor);
+  prev.innerHTML = pickedCover ? `<img src="${esc(pickedCover)}" alt="">` : `<span>Sin foto</span>`;
+  $("#cover-remove").hidden = !pickedCover;
+  $("#cover-pick-text").textContent = pickedCover ? "Cambiar foto" : "Elegir foto";
+}
+// Recorta la foto a formato de tapa (3:4) y la reduce para que ocupe poco y se sincronice rápido.
+async function coverFromFile(file) {
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = url; });
+    const W = 420, H = 560, r = W / H;
+    let sw = img.naturalWidth, sh = img.naturalHeight, sx = 0, sy = 0;
+    if (sw / sh > r) { sx = (sw - sh * r) / 2; sw = sh * r; } else { sy = (sh - sw / r) / 2; sh = sw / r; }
+    const c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    c.getContext("2d").drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
+    return c.toDataURL("image/jpeg", 0.72);
+  } finally { URL.revokeObjectURL(url); }
+}
+$("#cover-file").addEventListener("change", async (e) => {
+  const f = e.target.files[0];
+  e.target.value = "";
+  if (!f) return;
+  try { pickedCover = await coverFromFile(f); renderCover(); }
+  catch { toast("No se ha podido abrir esa foto"); }
+});
+$("#cover-remove").addEventListener("click", () => { pickedCover = ""; renderCover(); });
 function renderSwatches() {
   $("#swatches").innerHTML = COLORS.map(([c, n]) => `<button type="button" style="--c:${c}" data-c="${c}" aria-label="${n}" title="${n}" aria-pressed="${c === pickedColor}"></button>`).join("");
 }
 $("#swatches").addEventListener("click", (e) => {
   const b = e.target.closest("[data-c]");
-  if (b) { pickedColor = b.dataset.c; renderSwatches(); }
+  if (b) { pickedColor = b.dataset.c; renderSwatches(); renderCover(); }
 });
 function openNbDialog(id = "") {
   editing = id;
@@ -383,8 +588,10 @@ function openNbDialog(id = "") {
   $("#nb-f-title").value = nb ? nb.title : "";
   $("#nb-f-sub").value = nb ? nb.subtitle || "" : "";
   pickedColor = nb ? nb.color : COLORS[notebooks().length % COLORS.length][0];
+  pickedCover = nb ? nb.cover || "" : "";
   $("#nb-danger").hidden = !nb;
   renderSwatches();
+  renderCover();
   nbDialog.showModal();
   if (!nb) $("#nb-f-title").focus();
 }
@@ -394,10 +601,11 @@ $("#nb-form").addEventListener("submit", (e) => {
   if (!title) { e.preventDefault(); $("#nb-f-title").focus(); return; }
   const subtitle = $("#nb-f-sub").value.trim();
   if (editing) {
-    put("notebooks", { ...db.notebooks[editing], title, subtitle, color: pickedColor });
+    const { cover, ...old } = db.notebooks[editing];
+    put("notebooks", { ...old, title, subtitle, color: pickedColor, ...(pickedCover ? { cover: pickedCover } : {}) });
     renderNbHeader();
   } else {
-    const nb = { id: newId(), title, subtitle, color: pickedColor, createdAt: Date.now() };
+    const nb = { id: newId(), title, subtitle, color: pickedColor, ...(pickedCover ? { cover: pickedCover } : {}), createdAt: Date.now() };
     put("notebooks", nb);
     const p = { id: newId(), nb: nb.id, title: "", body: "", order: 1, createdAt: Date.now() };
     put("pages", p);
@@ -409,8 +617,9 @@ $("#nb-delete").addEventListener("click", () => {
   const nb = db.notebooks[editing];
   if (!nb) return;
   if (!confirm(`¿Tirar la libreta «${nb.title}» con todas sus páginas? No se puede deshacer.`)) return;
-  pagesOf(nb.id).forEach((p) => put("pages", { ...p, deleted: true, title: "", body: "" }));
-  put("notebooks", { ...nb, deleted: true });
+  pagesOf(nb.id).forEach((p) => put("pages", { ...p, deleted: true, title: "", body: "", items: [] }));
+  const { cover, ...gone } = nb;
+  put("notebooks", { ...gone, deleted: true });
   nbDialog.close();
   go("");
   toast("Libreta tirada a la papelera");
@@ -512,7 +721,10 @@ function scheduleRender(kind, doc) {
   if (kind === "pages" && doc.id === current.page) {
     if (doc.deleted) return setTimeout(route, 0);
     if (titleEl.value !== (doc.title || "")) titleEl.value = doc.title || "";
-    if (bodyEl.value !== (doc.body || "")) {
+    const wasList = !$("#list-box").hidden;
+    if (wasList !== (doc.kind === "list")) return setTimeout(() => showPage(doc.id), 0);
+    if (doc.kind === "list") renderList();
+    else if (bodyEl.value !== (doc.body || "")) {
       const { selectionStart: s, selectionEnd: en } = bodyEl;
       bodyEl.value = doc.body || "";
       if (document.activeElement === bodyEl) bodyEl.setSelectionRange(s, en);
