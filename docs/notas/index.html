@@ -143,7 +143,7 @@ button{cursor:pointer}
 .sheet::before{content:"";position:absolute;top:0;bottom:0;left:52px;border-left:2px solid var(--margin);opacity:.8}
 .sheet::after{content:"";position:absolute;top:18px;bottom:18px;left:14px;width:16px;background:radial-gradient(circle at 8px 8px,var(--c,#1F3A5F) 0 5px,rgba(0,0,0,.25) 5.5px,transparent 6.5px) 0 0/16px 46px repeat-y;opacity:.9}
 .sheet-head{display:flex;gap:8px;align-items:flex-start;padding:16px 16px 0 6px}
-#page-title{flex:1;min-width:0;border:0;background:transparent;outline:0;font:800 clamp(22px,3.4vw,32px)/1.2 var(--display);padding:4px 0;border-bottom:2px solid var(--ink)}
+#page-title{flex:1;min-width:0;border:0;border-radius:0;background:transparent;outline:0;font:800 clamp(22px,3.4vw,32px)/1.2 var(--display);padding:4px 0;border-bottom:2px solid var(--ink);resize:none;overflow:hidden;display:block;overflow-wrap:anywhere}
 #page-title::placeholder{color:#B8B0A0}
 .page-tools{display:flex;gap:6px;flex:none}
 .page-tools .icon-btn{min-width:38px;min-height:38px;background:transparent;border-color:var(--hair)}
@@ -310,7 +310,9 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
   .sheet{box-shadow:none;border-radius:0;padding-left:34px}
   .sheet::before{left:24px;opacity:.6}
   .sheet::after{display:none}
-  .sheet-head{padding-top:12px}
+  .sheet-head{padding-top:10px;flex-wrap:wrap;row-gap:6px}
+  .page-tools{order:1;margin-left:auto}
+  #page-title{order:2;flex-basis:100%}
   .pager{color:var(--ink-2);text-shadow:none;background:var(--sheet);border-top:1px solid var(--line);padding:8px calc(12px + var(--sar)) calc(8px + var(--sab)) calc(12px + var(--sal))}
   .pager .icon-btn{background-color:var(--glass);color:var(--ink);border-color:var(--glass-line);box-shadow:none}
   .pager .icon-btn:hover:not(:disabled){background-color:var(--glass-strong)}
@@ -364,7 +366,7 @@ dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px 
     <section class="sheet-wrap">
       <article class="sheet">
         <div class="sheet-head">
-          <input id="page-title" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página">
+          <textarea id="page-title" rows="1" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página"></textarea>
           <div class="page-tools">
             <button class="icon-btn" id="to-list" type="button" title="Convertir en lista" aria-label="Convertir en lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="6" height="6" rx="1"/><path d="m4.5 7 1.2 1.2L8 6M13 7h8M3 15h6v6H3zM13 18h8"/></svg></button>
             <button class="icon-btn" id="move-up" type="button" title="Mover antes" aria-label="Mover la página antes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>

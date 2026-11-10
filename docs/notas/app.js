@@ -269,6 +269,9 @@ addEventListener("hashchange", route);
 /* ───────── Dentro de la libreta ───────── */
 const current = { nb: "", page: "" };
 const titleEl = $("#page-title"), bodyEl = $("#page-body");
+// El título ocupa las líneas que necesite, sin cortarse.
+function fitTitle() { titleEl.style.height = "auto"; titleEl.style.height = titleEl.scrollHeight + "px"; }
+addEventListener("resize", fitTitle);
 let pendingFocusItem = "";
 const newPage = (kind, order) => ({ id: newId(), nb: current.nb, title: "", body: "", ...(kind === "list" ? { kind: "list", items: [] } : {}), order, createdAt: Date.now() });
 
@@ -338,6 +341,7 @@ function showPage(id) {
   if (location.hash !== want) history.replaceState(null, "", want);
   titleEl.value = p.title || "";
   titleEl.placeholder = p.kind === "list" ? "Título de la lista" : "Título de la página";
+  requestAnimationFrame(fitTitle);
   const isList = p.kind === "list";
   bodyEl.hidden = isList;
   $("#list-box").hidden = !isList;
@@ -368,7 +372,11 @@ function editPage(field, value) {
   if (field === "title") renderIndex();
   renderMeta();
 }
-titleEl.addEventListener("input", () => editPage("title", titleEl.value));
+titleEl.addEventListener("input", () => {
+  if (titleEl.value.includes("\n")) titleEl.value = titleEl.value.replace(/\n+/g, " ");
+  fitTitle();
+  editPage("title", titleEl.value);
+});
 bodyEl.addEventListener("input", () => editPage("body", bodyEl.value));
 titleEl.addEventListener("keydown", (e) => {
   if (e.key !== "Enter") return;
@@ -755,7 +763,7 @@ function scheduleRender(kind, doc) {
   // Si la página abierta ha cambiado en otro dispositivo, se actualiza sin perder el cursor.
   if (kind === "pages" && doc.id === current.page) {
     if (doc.deleted) return setTimeout(route, 0);
-    if (titleEl.value !== (doc.title || "")) titleEl.value = doc.title || "";
+    if (titleEl.value !== (doc.title || "")) { titleEl.value = doc.title || ""; fitTitle(); }
     const wasList = !$("#list-box").hidden;
     if (wasList !== (doc.kind === "list")) return setTimeout(() => showPage(doc.id), 0);
     if (doc.kind === "list") renderList();
