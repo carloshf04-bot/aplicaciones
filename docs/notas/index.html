@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Gaceta · Notas</title>
+<meta name="description" content="Tus notas como un periódico: cada nota es una libreta con sus páginas.">
+<meta name="theme-color" content="#F3EEE2">
+<meta name="color-scheme" content="light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="La Gaceta">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --paper:#F3EEE2; --paper-2:#EAE3D2; --ink:#1A1916; --ink-2:#4A463E; --ink-3:#7A7466;
+  --rule:#1A1916; --hair:#CFC6B2; --accent:#A8322A;
+  --sheet:#FFFDF7; --line:#D5DEEA; --margin:#E3A3A0;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"Lora",Georgia,"Times New Roman",serif;
+  --black:"UnifrakturMaguntia","Old English Text MT",var(--display);
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:4px 4px;
+}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ───────── Portada ───────── */
+#board-view{max-width:1180px;margin:0 auto;padding:calc(12px + var(--sat)) calc(16px + var(--sar)) calc(40px + var(--sab)) calc(16px + var(--sal))}
+.ears{display:flex;justify-content:space-between;align-items:center;gap:12px;font:600 11px/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);padding:5px 9px;border-radius:999px;background:transparent;font:inherit;letter-spacing:.1em;white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ink-3);display:inline-block}
+.pill[data-s=synced] i{background:#2F7D4F}
+.pill[data-s=saving] i,.pill[data-s=syncing] i,.pill[data-s=connecting] i{background:#C9962B;animation:blink 1s infinite}
+.pill[data-s=error] i{background:var(--accent)}
+.pill[data-s=offline] i{background:#9A8F78}
+@keyframes blink{50%{opacity:.25}}
+.nameplate{font:400 clamp(44px,10vw,104px)/1 var(--black);text-align:center;margin:10px 0 6px;letter-spacing:.01em}
+.motto{text-align:center;font:italic 14px/1.3 var(--display);color:var(--ink-2);margin:0 0 10px}
+.dateline{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:6px 2px;font:600 11px/1.3 var(--display);letter-spacing:.12em;text-transform:uppercase}
+.dateline span:nth-child(2){text-align:center;flex:1}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--rule)}
+.search{flex:1 1 220px;display:flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--sheet);padding:0 10px;min-height:42px}
+.search input{border:0;background:transparent;outline:0;flex:1;min-width:0;font-size:16px;padding:8px 0}
+.toolbar select{min-height:42px;border:1px solid var(--ink);background:var(--sheet);padding:0 8px;font-size:15px}
+.btn{min-height:42px;border:1px solid var(--ink);background:var(--sheet);padding:0 14px;font:700 13px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn:active{transform:translateY(1px)}
+.btn.danger{color:var(--accent);border-color:var(--accent)}
+
+.section-h{display:flex;align-items:baseline;gap:12px;margin:22px 0 12px}
+.section-h h2{margin:0;font:900 13px/1 var(--display);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.section-h::after{content:"";flex:1;border-top:1px solid var(--rule)}
+
+/* Noticia principal */
+.lead{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:28px;align-items:start;padding-bottom:22px;border-bottom:3px double var(--rule)}
+.lead .headline{font:900 clamp(30px,5vw,54px)/1.02 var(--display);margin:2px 0 10px;letter-spacing:-.01em}
+.lead .dek{font:italic 19px/1.45 var(--display);color:var(--ink-2);margin:0 0 12px}
+.lead .excerpt{max-width:62ch;font-size:15px;line-height:1.6;margin:0;text-align:justify;hyphens:auto;white-space:pre-line}
+.lead .excerpt.long::first-letter{font:900 3.3em/.8 var(--display);float:left;margin:6px 8px 0 0}
+.kicker{font:700 11px/1.3 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+/* Rejilla de cuadernos */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));column-gap:0;row-gap:26px}
+.story{padding:0 18px;border-left:1px solid var(--hair);min-width:0}
+.story h3{font:800 21px/1.15 var(--display);margin:12px 0 4px;overflow-wrap:anywhere}
+.story p{margin:0;font-size:14px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line}
+.story .meta{font:italic 12px/1.4 var(--display);color:var(--ink-3);margin-top:6px}
+.story-link{all:unset;display:block;cursor:pointer}
+.story-link:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+
+/* La libreta (portada del cuaderno) */
+.book{position:relative;aspect-ratio:3/4;width:100%;background:var(--c,#1F3A5F);border-radius:3px 10px 10px 3px;
+  box-shadow:inset 14px 0 0 rgba(0,0,0,.22),inset 15px 0 0 rgba(255,255,255,.08),0 1px 0 rgba(0,0,0,.2),3px 4px 0 -1px #fff,3px 4px 0 0 #bdb4a0,6px 8px 0 -1px #fff,6px 8px 0 0 #bdb4a0,8px 14px 18px rgba(40,30,10,.18);
+  transition:transform .18s ease;overflow:hidden}
+.book::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px),
+  linear-gradient(160deg,rgba(255,255,255,.14),transparent 45%,rgba(0,0,0,.14))}
+.book .band{position:absolute;top:0;bottom:0;right:16%;width:9px;background:rgba(0,0,0,.42);box-shadow:inset 1px 0 rgba(255,255,255,.18)}
+.book .stitch{position:absolute;top:8px;bottom:8px;left:5px;border-left:1px dashed rgba(255,255,255,.35)}
+.book .label{position:absolute;left:20%;right:24%;top:20%;background:var(--sheet);padding:10px 8px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.3);border:1px solid rgba(0,0,0,.25);outline:1px solid var(--sheet);outline-offset:-4px}
+.book .label b{display:block;font:800 clamp(12px,1.6vw,16px)/1.15 var(--display);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.book .label small{display:block;margin-top:6px;padding-top:5px;border-top:1px solid var(--hair);font:600 10px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+@media (hover:hover){.story-link:hover .book,.story-link:focus-visible .book{transform:translateY(-3px) rotate(-1deg)}}
+
+.empty{text-align:center;padding:60px 16px;font:italic 20px/1.4 var(--display);color:var(--ink-2)}
+.empty .btn{margin-top:16px;font-style:normal}
+
+@media (max-width:640px){
+  .lead{grid-template-columns:.8fr 1.2fr;gap:16px}
+  .book .label small{letter-spacing:.06em}
+  .lead .headline{font-size:28px}
+  .lead .dek{font-size:15px}
+  .lead .excerpt{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}
+  .story{padding:0 10px}
+  .story:nth-child(odd){border-left:0;padding-left:0}
+  .story h3{font-size:17px}
+  .story p{-webkit-line-clamp:2;font-size:13px}
+  .dateline span:nth-child(3){display:none}
+  .toolbar .btn .t{display:none}
+}
+
+/* ───────── Dentro de la libreta ───────── */
+#nb-view{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--c,#1F3A5F);
+  background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.03) 0 2px,transparent 2px 5px),linear-gradient(160deg,rgba(255,255,255,.12),rgba(0,0,0,.18))}
+.nb-bar{display:flex;align-items:center;gap:8px;padding:calc(8px + var(--sat)) calc(12px + var(--sar)) 8px calc(12px + var(--sal));background:var(--paper);border-bottom:3px double var(--rule)}
+.nb-bar .nb-title{flex:1;min-width:0;text-align:center}
+.nb-bar .nb-title b{display:block;font:900 20px/1.1 var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nb-bar .nb-title small{display:block;font:600 10px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{min-width:42px;min-height:42px;border:1px solid var(--ink);background:var(--sheet);display:inline-grid;place-items:center;padding:0 10px;font:700 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;gap:6px;grid-auto-flow:column}
+.icon-btn svg{width:18px;height:18px}
+.nb-body{flex:1;display:flex;min-height:0;gap:0;padding:18px calc(18px + var(--sar)) calc(10px + var(--sab)) calc(18px + var(--sal))}
+
+.index{width:250px;flex:none;display:flex;flex-direction:column;background:var(--paper);margin-right:18px;border:1px solid rgba(0,0,0,.4);box-shadow:4px 6px 0 rgba(0,0,0,.18);min-height:0}
+.index h2{margin:0;padding:12px 14px 10px;font:900 12px/1 var(--display);letter-spacing:.24em;text-transform:uppercase;border-bottom:1px solid var(--rule)}
+.index ol{list-style:none;margin:0;padding:6px 0;overflow:auto;flex:1}
+.index li button{all:unset;box-sizing:border-box;display:flex;gap:10px;width:100%;padding:9px 14px;cursor:pointer;align-items:baseline}
+.index li button .n{font:700 12px/1 var(--display);color:var(--ink-3);min-width:20px;text-align:right}
+.index li button .t{flex:1;min-width:0;font:600 15px/1.3 var(--display);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-bottom:1px dotted var(--hair);padding-bottom:3px}
+.index li button[aria-current=true]{background:var(--ink);color:var(--paper)}
+.index li button[aria-current=true] .n{color:var(--paper)}
+.index li button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.index .add{margin:10px;justify-content:center}
+
+.sheet-wrap{flex:1;min-width:0;display:flex;flex-direction:column;min-height:0;position:relative}
+.sheet{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--sheet);position:relative;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25),3px 3px 0 -1px var(--sheet),3px 3px 0 0 rgba(0,0,0,.25),6px 6px 0 -1px var(--sheet),6px 6px 0 0 rgba(0,0,0,.25),10px 14px 24px rgba(0,0,0,.25);
+  padding:0 0 0 64px;border-radius:2px}
+.sheet::before{content:"";position:absolute;top:0;bottom:0;left:52px;border-left:2px solid var(--margin);opacity:.8}
+.sheet::after{content:"";position:absolute;top:18px;bottom:18px;left:14px;width:16px;background:radial-gradient(circle at 8px 8px,var(--c,#1F3A5F) 0 5px,rgba(0,0,0,.25) 5.5px,transparent 6.5px) 0 0/16px 46px repeat-y;opacity:.9}
+.sheet-head{display:flex;gap:8px;align-items:flex-start;padding:16px 16px 0 6px}
+#page-title{flex:1;min-width:0;border:0;border-radius:0;background:transparent;outline:0;font:800 clamp(22px,3.4vw,32px)/1.2 var(--display);padding:4px 0;border-bottom:2px solid var(--ink);resize:none;overflow:hidden;display:block;overflow-wrap:anywhere}
+#page-title::placeholder{color:#B8B0A0}
+.page-tools{display:flex;gap:6px;flex:none}
+.page-tools .icon-btn{min-width:38px;min-height:38px;background:transparent;border-color:var(--hair)}
+.page-meta{padding:6px 16px 0 6px;font:italic 12px/1.4 var(--display);color:var(--ink-3)}
+#page-body{flex:1;min-height:0;width:100%;resize:none;border:0;outline:0;padding:0 18px 32px 6px;margin-top:8px;
+  font:17px/32px var(--body);color:#1E2A38;
+  background:repeating-linear-gradient(to bottom,transparent 0 31px,var(--line) 31px 32px);background-attachment:local;background-position:0 -5px}
+#page-body::placeholder{color:#B8B0A0;font-style:italic}
+.pager{display:flex;justify-content:center;align-items:center;gap:14px;padding:14px 0 4px;color:var(--paper);font:700 12px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-shadow:0 1px 1px rgba(0,0,0,.4)}
+.pager .icon-btn{background:var(--paper);color:var(--ink)}
+.pager .icon-btn:disabled{opacity:.4;cursor:default}
+.only-mobile{display:none!important}
+.index-backdrop{display:none}
+
+@media (max-width:800px){
+  .nb-body{padding:10px calc(10px + var(--sar)) calc(6px + var(--sab)) calc(10px + var(--sal))}
+  .only-mobile{display:inline-grid!important}
+  .index{position:fixed;z-index:20;left:0;top:0;bottom:0;width:min(84vw,320px);margin:0;padding-top:var(--sat);transform:translateX(-105%);transition:transform .22s ease;box-shadow:6px 0 30px rgba(0,0,0,.35)}
+  .index.open{transform:none}
+  .index-backdrop.open{display:block;position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.35)}
+  .sheet{padding-left:40px}
+  .sheet::before{left:32px}
+  .sheet::after{left:6px;width:14px;background-size:14px 40px}
+  .nb-bar .icon-btn .t{display:none}
+  .sheet-head{padding-right:10px}
+  .page-tools{gap:4px}
+  .page-tools .icon-btn{min-width:34px;min-height:34px;padding:0 6px}
+}
+
+
+/* Foto en la tapa */
+.book .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+.book.has-photo::before{background:linear-gradient(160deg,rgba(255,255,255,.12),transparent 45%,rgba(0,0,0,.28)),linear-gradient(90deg,var(--c) 0 14px,transparent 14px)}
+.book.has-photo .label{top:auto;bottom:9%;padding:7px 8px}
+.book.has-photo .band{background:rgba(0,0,0,.55)}
+
+/* Resultados de búsqueda */
+.results{list-style:none;margin:0 0 6px;padding:0;columns:2 340px;column-gap:28px;column-rule:1px solid var(--hair)}
+.results li{break-inside:avoid;border-bottom:1px solid var(--hair)}
+.hit{all:unset;box-sizing:border-box;display:block;width:100%;padding:10px 0;cursor:pointer}
+.hit:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hit .where{display:flex;align-items:center;gap:7px;font:700 11px/1.3 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.hit .where::before{content:"";width:9px;height:12px;border-radius:1px 3px 3px 1px;background:var(--c);flex:none}
+.hit .snip{display:flex;gap:8px;align-items:baseline;margin-top:4px;font-size:15px;line-height:1.45}
+@media (hover:hover){.hit:hover .snip{text-decoration:underline;text-decoration-color:var(--hair)}}
+mark{background:#F2D46B;color:inherit;padding:0 1px}
+.chk-mini{flex:none;width:14px;height:14px;border:1.6px solid var(--ink);display:inline-block;position:relative;top:2px}
+.chk-mini.on{background:var(--ink)}
+.chk-mini.on::after{content:"";position:absolute;left:3.5px;top:0;width:4px;height:8px;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* Índice: filtro y marcas */
+.index .filter{margin:8px 10px 0;border:1px solid var(--hair);background:var(--sheet);padding:7px 9px;font-size:16px;outline:0;border-radius:0;width:calc(100% - 20px)}
+.index .filter:focus{border-color:var(--ink)}
+.index li button .lst{font:700 11px/1 var(--display);color:var(--ink-3);white-space:nowrap}
+.index li button[aria-current=true] .lst{color:var(--paper)}
+.index li.none{padding:12px 14px;font:italic 14px/1.3 var(--display);color:var(--ink-3)}
+.index .adds{display:flex;gap:6px;margin:10px}
+.index .adds .btn{flex:1;justify-content:center;padding:0 8px}
+
+/* Página de lista */
+.list{flex:1;min-height:0;overflow:auto;padding:4px 18px 28px 6px;margin-top:8px}
+.list-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:4px 0 8px;border-bottom:2px solid var(--line);font:600 13px/1.3 var(--display);color:var(--ink-2)}
+.list-tools #list-count{flex:1;min-width:120px}
+.list-tools label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.list-tools input{width:16px;height:16px;accent-color:var(--ink)}
+.list-tools button{border:1px solid var(--hair);background:transparent;padding:4px 8px;font:600 12px/1.2 var(--display)}
+#list-items{list-style:none;margin:0;padding:0}
+#list-items li{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line);transition:background .4s}
+#list-items li.flash{background:#F7E7A6}
+.chk{flex:none;width:24px;height:24px;border:2px solid #1E2A38;background:var(--sheet);border-radius:3px;position:relative;padding:0}
+.chk[aria-checked=true]{background:#2F7D4F;border-color:#2F7D4F}
+.chk[aria-checked=true]::after{content:"";position:absolute;left:6px;top:1px;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.txt{flex:1;min-width:0;border:0;background:transparent;outline:0;font:17px/1.4 var(--body);color:#1E2A38;padding:8px 0}
+li.done .txt{text-decoration:line-through;text-decoration-color:rgba(30,42,56,.5);color:#8A93A0}
+.rm{flex:none;width:34px;height:34px;border:0;background:transparent;font-size:22px;line-height:1;color:#A9A193;opacity:.55}
+@media (hover:hover){#list-items li:hover .rm,#list-items li:focus-within .rm{opacity:1}}
+@media (hover:hover){.rm:hover{color:var(--accent)}}
+#list-items .hidden-note{font:italic 13px/1.3 var(--display);color:var(--ink-3);border-bottom:0}
+#list-add{display:flex;align-items:center;gap:10px;min-height:46px;border-bottom:1px solid var(--line)}
+#list-add .plus{width:24px;height:24px;flex:none;display:grid;place-items:center;border:2px dashed #A9B6C6;border-radius:3px;color:#7C8A9C;font:700 16px/1 var(--display)}
+#list-new{flex:1;min-width:0;border:0;background:transparent;outline:0;font:17px/1.4 var(--body);padding:8px 0}
+#list-new::placeholder{color:#A9A193;font-style:italic}
+#list-add button{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:6px 10px;font:700 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+
+/* Diálogo: foto */
+.cover-row{display:flex;gap:14px;align-items:center}
+#cover-preview{width:72px;aspect-ratio:3/4;flex:none;background:var(--c);border-radius:2px 7px 7px 2px;box-shadow:inset 6px 0 0 rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.3);overflow:hidden;display:grid;place-items:center}
+#cover-preview img{width:100%;height:100%;object-fit:cover;display:block}
+#cover-preview span{font:italic 11px/1.2 var(--display);color:rgba(255,255,255,.8);text-align:center;padding:4px}
+.cover-row .btns{display:flex;flex-direction:column;gap:8px;flex:1}
+
+/* Los botones reaccionan al pulsarlos: se hunden un poco y se oscurecen */
+.btn,.icon-btn,.pill,.chk,.rm,.swatches button,.list-tools button,#list-add button,.index li button,.hit,.story-link .book{transition:transform .12s ease,background-color .12s ease,box-shadow .12s ease,filter .12s ease}
+.btn:active,.icon-btn:active:not(:disabled),.pill:active,.list-tools button:active,.page-tools .icon-btn:active:not(:disabled),.pager .icon-btn:active:not(:disabled){transform:scale(.9);background-color:rgba(26,25,22,.14);box-shadow:inset 0 2px 6px rgba(26,25,22,.18)}
+.btn.solid:active,#list-add button:active{transform:scale(.94);background-color:var(--ink)}
+.pager .icon-btn:active:not(:disabled){background-color:rgba(255,253,247,.6)}
+.chk:active{transform:scale(.82)}
+.rm:active{transform:scale(.8);color:var(--accent)}
+.swatches button:active{transform:scale(.88)}
+.index li button:active{background-color:rgba(26,25,22,.1)}
+.index li button[aria-current=true]:active{background-color:var(--ink)}
+.hit:active{background-color:rgba(26,25,22,.06)}
+.story-link:active .book{transform:scale(.97);filter:brightness(.95)}
+@media (prefers-reduced-motion:reduce){.btn:active,.icon-btn:active,.pill:active,.chk:active,.rm:active,.swatches button:active,.story-link:active .book{transform:none}}
+@media (max-width:800px){.pager .icon-btn:active:not(:disabled){background-color:rgba(26,25,22,.14)}}
+
+/* ───────── Diálogos ───────── */
+dialog{border:1px solid var(--ink);background:var(--paper);color:var(--ink);padding:0;width:min(92vw,460px);box-shadow:8px 10px 0 rgba(0,0,0,.2),0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(26,25,22,.45)}
+.dlg-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:3px double var(--rule)}
+.dlg-h h2{margin:0;font:900 22px/1.1 var(--display)}
+.dlg-b{padding:16px;display:grid;gap:14px;max-height:72vh;overflow:auto}
+.dlg-b p{margin:0;font-size:15px;color:var(--ink-2)}
+.field{display:grid;gap:5px}
+.field span{font:700 11px/1 var(--display);letter-spacing:.16em;text-transform:uppercase}
+.field input{border:1px solid var(--ink);background:var(--sheet);padding:10px;font-size:16px;outline:0;border-radius:0}
+.field input:focus{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.swatches button{width:38px;height:48px;border:0;border-radius:2px 6px 6px 2px;background:var(--c);box-shadow:inset 5px 0 0 rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.3)}
+.swatches button[aria-pressed=true]{box-shadow:inset 5px 0 0 rgba(0,0,0,.25),0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row .btn{flex:1;justify-content:center}
+.note{font:italic 13px/1.45 var(--display);color:var(--ink-3)}
+.msg{font-size:14px;padding:8px 10px;border-left:3px solid var(--accent);background:var(--sheet)}
+.msg.ok{border-color:#2F7D4F}
+hr.rule{border:0;border-top:1px solid var(--rule);margin:2px 0}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + var(--sab));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;font:600 14px/1.3 var(--display);z-index:50;max-width:90vw;box-shadow:4px 4px 0 rgba(0,0,0,.2)}
+
+/* ───────── Controles redondos y translúcidos ───────── */
+:root{--glass:rgba(255,253,247,.42);--glass-strong:rgba(255,253,247,.62);--glass-line:rgba(26,25,22,.16);--glass-ink:rgba(26,25,22,.78)}
+.search,.toolbar select,.btn,.icon-btn,.index .filter,.field input,.list-tools button,#list-add button,.pill{
+  border-radius:999px;border:1px solid var(--glass-line);background-color:var(--glass);
+  -webkit-backdrop-filter:blur(12px) saturate(1.3);backdrop-filter:blur(12px) saturate(1.3);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 2px 10px rgba(40,30,10,.06);
+  transition:background-color .15s,border-color .15s,box-shadow .15s,transform .1s}
+.search{padding:0 16px}
+.search:focus-within,.index .filter:focus,.field input:focus{border-color:rgba(26,25,22,.45);background-color:var(--glass-strong);box-shadow:0 0 0 4px rgba(26,25,22,.08)}
+.toolbar select{-webkit-appearance:none;appearance:none;padding:0 34px 0 16px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A1916' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.btn{padding:0 18px}
+@media (hover:hover){.btn:hover,.icon-btn:hover:not(:disabled){background-color:var(--glass-strong);border-color:rgba(26,25,22,.3)}}
+.btn.solid,#list-add button{background-color:var(--glass-ink);color:var(--paper);border-color:transparent}
+@media (hover:hover){.btn.solid:hover{background-color:rgba(26,25,22,.9)}}
+.btn.danger{color:var(--accent);border-color:rgba(168,50,42,.35);background-color:rgba(168,50,42,.06)}
+.icon-btn{padding:0 14px}
+.icon-btn:has(> svg:only-child),.icon-btn:not(:has(svg)){padding:0;width:42px;height:42px}
+.btn:active,.icon-btn:active{transform:scale(.96)}
+.nb-bar{background:rgba(243,238,226,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.page-tools .icon-btn{background-color:rgba(255,253,247,.35);border-color:var(--glass-line)}
+.pager .icon-btn{background-color:rgba(255,253,247,.28);color:#fff;border-color:rgba(255,255,255,.4);box-shadow:0 2px 12px rgba(0,0,0,.12)}
+@media (hover:hover){.pager .icon-btn:hover:not(:disabled){background-color:rgba(255,253,247,.45)}}
+.pager .icon-btn:disabled{opacity:.3}
+.index .filter{padding:8px 14px}
+.index li button{border-radius:999px;margin:1px 6px;width:calc(100% - 12px)}
+.index{border-radius:18px;overflow:hidden;border-color:rgba(0,0,0,.18)}
+.field input{padding:10px 16px}
+.list-tools button{padding:5px 12px}
+#list-add button{padding:7px 14px}
+#list-add .plus,.chk{border-radius:50%}
+.chk[aria-checked=true]::after{left:6.5px;top:2px}
+.toast{border-radius:999px;background:rgba(26,25,22,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 6px 24px rgba(0,0,0,.2);padding:10px 20px}
+dialog{border-radius:20px;border-color:rgba(26,25,22,.2);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.dlg-b .row .btn,.cover-row .btn{min-height:44px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .search,.toolbar select,.btn,.icon-btn,.index .filter,.field input{background-color:rgba(255,253,247,.7)}
+}
+@media (max-width:800px){
+  .page-tools .icon-btn{width:36px;height:36px;min-width:36px;min-height:36px}
+  .index{border-radius:0 18px 18px 0}
+  /* En el móvil solo se ve la hoja: sin tapa, sin anillas, a pantalla completa */
+  #nb-view{background:var(--sheet);background-image:none}
+  .index:not(.open){box-shadow:none}
+  .nb-bar{background:rgba(255,253,247,.88);border-bottom:1px solid var(--line)}
+  .nb-body{padding:0}
+  .sheet{box-shadow:none;border-radius:0;padding-left:34px}
+  .sheet::before{left:24px;opacity:.6}
+  .sheet::after{display:none}
+  .sheet-head{padding-top:10px;flex-wrap:wrap;row-gap:6px}
+  .page-tools{order:1;margin-left:auto}
+  #page-title{order:2;flex-basis:100%}
+  .pager{color:var(--ink-2);text-shadow:none;background:var(--sheet);border-top:1px solid var(--line);padding:8px calc(12px + var(--sar)) calc(8px + var(--sab)) calc(12px + var(--sal))}
+  .pager .icon-btn{background-color:var(--glass);color:var(--ink);border-color:var(--glass-line);box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA: el periódico con todos los cuadernos -->
+<div id="board-view">
+  <header>
+    <div class="ears">
+      <span id="today"></span>
+      <button class="pill" id="sync-pill" data-s="off" type="button"><i></i><span>Solo en este dispositivo</span></button>
+    </div>
+    <h1 class="nameplate">La Gaceta</h1>
+    <p class="motto">«Todas las notas que merecen ser escritas»</p>
+    <div class="dateline"><span id="edition">Edición nº 1</span><span id="stats"></span><span>Ejemplar gratuito</span></div>
+  </header>
+
+  <nav class="toolbar" aria-label="Herramientas">
+    <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="sr">Buscar</span><input id="search" type="search" placeholder="Buscar en libretas y páginas" autocomplete="off"></label>
+    <select id="sort" aria-label="Ordenar"><option value="recent">Más recientes</option><option value="alpha">A–Z</option><option value="created">Más antiguos</option></select>
+    <button class="btn" id="account-btn" type="button" aria-label="Cuenta y sincronización"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="t">Cuenta</span></button>
+    <button class="btn solid" id="new-nb" type="button">+ Nueva libreta</button>
+  </nav>
+
+  <main id="board"></main>
+</div>
+
+<!-- DENTRO DE UNA LIBRETA -->
+<div id="nb-view" hidden>
+  <header class="nb-bar">
+    <button class="icon-btn" id="back" type="button" aria-label="Volver a la portada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg><span class="t">Portada</span></button>
+    <button class="icon-btn only-mobile" id="index-toggle" type="button" aria-label="Índice de páginas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button>
+    <div class="nb-title"><b id="nb-name"></b><small id="nb-sub"></small></div>
+    <button class="icon-btn" id="nb-edit" type="button" aria-label="Editar libreta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4"/></svg><span class="t">Libreta</span></button>
+  </header>
+  <div class="nb-body">
+    <div class="index-backdrop" id="index-backdrop"></div>
+    <aside class="index" id="index">
+      <h2>Índice</h2>
+      <input class="filter" id="page-filter" type="search" placeholder="Buscar en esta libreta" aria-label="Buscar en esta libreta" autocomplete="off">
+      <ol id="page-list"></ol>
+      <div class="adds">
+        <button class="btn solid" id="add-page" type="button">+ Página</button>
+        <button class="btn" id="add-list" type="button">+ Lista</button>
+      </div>
+    </aside>
+    <section class="sheet-wrap">
+      <article class="sheet">
+        <div class="sheet-head">
+          <textarea id="page-title" rows="1" placeholder="Título de la página" autocomplete="off" aria-label="Título de la página"></textarea>
+          <div class="page-tools">
+            <button class="icon-btn" id="quick-add" type="button" title="Nueva página" aria-label="Nueva página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></button>
+            <button class="icon-btn" id="to-list" type="button" title="Convertir en lista" aria-label="Convertir en lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="6" height="6" rx="1"/><path d="m4.5 7 1.2 1.2L8 6M13 7h8M3 15h6v6H3zM13 18h8"/></svg></button>
+            <button class="icon-btn" id="move-up" type="button" title="Mover antes" aria-label="Mover la página antes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+            <button class="icon-btn" id="move-down" type="button" title="Mover después" aria-label="Mover la página después"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
+            <button class="icon-btn" id="del-page" type="button" title="Arrancar página" aria-label="Eliminar la página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
+          </div>
+        </div>
+        <div class="page-meta" id="page-meta"></div>
+        <textarea id="page-body" placeholder="Escribe aquí…" aria-label="Contenido de la página"></textarea>
+        <div class="list" id="list-box" hidden>
+          <div class="list-tools">
+            <span id="list-count"></span>
+            <label><input type="checkbox" id="hide-done"> Ocultar lo que ya tengo</label>
+            <button type="button" id="uncheck-all">Desmarcar todo</button>
+          </div>
+          <ul id="list-items"></ul>
+          <form id="list-add"><span class="plus" aria-hidden="true">+</span><input id="list-new" placeholder="Añadir a la lista…" enterkeyhint="done" autocomplete="off" aria-label="Añadir a la lista"><button type="submit">Añadir</button></form>
+        </div>
+      </article>
+      <footer class="pager">
+        <button class="icon-btn" id="prev" type="button" aria-label="Página anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <span id="pager-text"></span>
+        <button class="icon-btn" id="next" type="button" aria-label="Página siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 5l7 7-7 7"/></svg></button>
+      </footer>
+    </section>
+  </div>
+</div>
+
+<!-- Crear / editar libreta -->
+<dialog id="nb-dialog">
+  <form method="dialog" id="nb-form">
+    <div class="dlg-h"><h2 id="nb-dialog-title">Nueva libreta</h2><button class="icon-btn" value="cancel" formnovalidate aria-label="Cerrar">✕</button></div>
+    <div class="dlg-b">
+      <label class="field"><span>Titular</span><input id="nb-f-title" required maxlength="80" placeholder="p. ej. Ideas, Viaje a Lisboa, Recetas"></label>
+      <label class="field"><span>Subtítulo (opcional)</span><input id="nb-f-sub" maxlength="120" placeholder="Una línea que lo resuma"></label>
+      <div class="field"><span>Color de la tapa</span><div class="swatches" id="swatches"></div></div>
+      <div class="field"><span>Foto de portada (opcional)</span>
+        <div class="cover-row">
+          <div id="cover-preview"></div>
+          <div class="btns">
+            <label class="btn" style="justify-content:center"><span id="cover-pick-text">Elegir foto</span><input type="file" id="cover-file" accept="image/*" hidden></label>
+            <button class="btn danger" type="button" id="cover-remove" style="justify-content:center">Quitar foto</button>
+          </div>
+        </div>
+      </div>
+      <div class="row"><button class="btn solid" id="nb-save" value="save">Guardar</button></div>
+      <div id="nb-danger" class="row"><button class="btn danger" type="button" id="nb-delete">Tirar esta libreta</button></div>
+    </div>
+  </form>
+</dialog>
+
+<!-- Cuenta y sincronización -->
+<dialog id="account">
+  <div class="dlg-h"><h2>Tu cuenta</h2><button class="icon-btn" type="button" id="account-close" aria-label="Cerrar">✕</button></div>
+  <div class="dlg-b">
+    <div id="acc-claude" hidden>
+      <p>Tus libretas se guardan en <b>tu cuenta de Claude</b>. Abre este mismo enlace en el iPhone y en el ordenador, con la misma cuenta, y verás las mismas libretas en los dos.</p>
+      <p id="acc-claude-state" class="note" style="margin-top:10px"></p>
+    </div>
+    <div id="acc-off" hidden>
+      <p>Ahora mismo tus libretas se guardan <b>solo en este dispositivo</b>.</p>
+      <p style="margin-top:10px">Para tener las mismas notas en el iPhone y en Windows hay que conectar la app a un proyecto gratuito de Firebase (se hace una sola vez, unos 10 minutos). Los pasos están en el README del repositorio, apartado «La Gaceta».</p>
+    </div>
+    <form id="acc-in" hidden>
+      <p>Entra con la misma cuenta en el iPhone y en el ordenador y verás las mismas libretas en los dos.</p>
+      <label class="field"><span>Correo</span><input id="acc-email" type="email" autocomplete="username" required></label>
+      <label class="field"><span>Contraseña</span><input id="acc-pass" type="password" autocomplete="current-password" minlength="6"></label>
+      <div class="row">
+        <button class="btn solid" type="submit" id="acc-signin">Entrar</button>
+        <button class="btn" type="button" id="acc-signup">Crear cuenta</button>
+      </div>
+      <button class="btn" type="button" id="acc-reset" style="border:0;background:none;text-transform:none;letter-spacing:0;font-weight:600;text-decoration:underline;justify-content:flex-start;padding:0">He olvidado la contraseña</button>
+      <p class="note">Las libretas que ya tengas en este dispositivo se suben a tu cuenta al entrar.</p>
+    </form>
+    <div id="acc-user" hidden>
+      <p>Conectado como <b id="acc-who"></b>.</p>
+      <p id="acc-state" class="note"></p>
+      <div class="row"><button class="btn" type="button" id="acc-signout">Cerrar sesión</button></div>
+    </div>
+    <div id="acc-msg" class="msg" hidden></div>
+    <hr class="rule">
+    <p><b>Copia de seguridad.</b> Descarga todas tus libretas en un archivo, o recupéralas desde uno.</p>
+    <div class="row">
+      <button class="btn" type="button" id="export">Descargar copia</button>
+      <label class="btn" style="justify-content:center;flex:1">Cargar copia<input type="file" id="import" accept="application/json,.json" hidden></label>
+    </div>
+  </div>
+</dialog>
+
+<!-- Confirmar -->
+<dialog id="ask">
+  <form method="dialog">
+    <div class="dlg-b">
+      <p id="ask-text" style="font:700 19px/1.35 var(--display);color:var(--ink)"></p>
+      <p class="note">No se puede deshacer.</p>
+      <div class="row">
+        <button class="btn" value="cancel" formnovalidate>Cancelar</button>
+        <button class="btn danger" value="ok" id="ask-ok">Borrar</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script type="module" src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
+</body>
+</html>
